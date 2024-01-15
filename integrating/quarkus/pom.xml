@@ -21,16 +21,6 @@
   </properties>
 
   <dependencies>
-    <!-- Jakarta EE dependency -->
-    <dependency>
-      <groupId>jakarta.platform</groupId>
-      <artifactId>jakarta.jakartaee-core-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate.validator</groupId>
-      <artifactId>hibernate-validator</artifactId>
-    </dependency>
   </dependencies>
 
 </project>
