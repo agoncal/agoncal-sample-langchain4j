@@ -1,2 +1,2 @@
-# agoncal-sample-langchain4j
-Public Samples about LangChain4j
+# LangChain4j Samples
+
