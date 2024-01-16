@@ -21,6 +21,9 @@
     <!-- LangChain4j -->
     <version.langchain4j>0.25.0</version.langchain4j>
     <!-- Other -->
+    <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
+    <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
+    <quarkus.platform.version>3.6.5</quarkus.platform.version>
     <!-- Test -->
     <version.junit>5.10.1</version.junit>
     <!-- Core Maven Plugins -->
@@ -70,9 +73,14 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-
       <!-- Other -->
-
+      <dependency>
+        <groupId>${quarkus.platform.group-id}</groupId>
+        <artifactId>${quarkus.platform.artifact-id}</artifactId>
+        <version>${quarkus.platform.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
       <!-- Test -->
       <dependency>
         <groupId>org.junit.jupiter</groupId>
