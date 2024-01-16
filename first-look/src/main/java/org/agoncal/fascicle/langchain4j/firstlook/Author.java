@@ -1,6 +1,6 @@
 package org.agoncal.fascicle.langchain4j.firstlook;
 
-// tag::adocSkip[]
+// tag::adocSnippet[]
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
@@ -28,4 +28,4 @@ public class Author {
     System.out.println(response);
   }
 }
-// end::adocSkip[]
+// end::adocSnippet[]
