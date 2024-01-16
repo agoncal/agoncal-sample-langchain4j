@@ -1,16 +1,16 @@
 package org.agoncal.fascicle.langchain4j.firstlook;
 
-// tag::adocSnippet[]
-
-import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.openai.OpenAiChatModel;
-import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import static java.time.Duration.ofSeconds;
+
+// tag::adocSnippet[]
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
 
 // tag::adocSkip[]
 
