@@ -27,6 +27,7 @@
     <quarkus.platform.version>3.6.5</quarkus.platform.version>
     <!-- Test -->
     <version.junit>5.10.1</version.junit>
+    <version.wiremock>3.3.1</version.wiremock>
     <!-- Core Maven Plugins -->
     <version.antrun.plugin>3.1.0</version.antrun.plugin>
     <version.archetype.plugin>3.2.1</version.archetype.plugin>

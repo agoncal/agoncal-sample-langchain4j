@@ -31,6 +31,25 @@ public class AuthorResource {
   private String[] scifiAuthors = {"Isaac Asimov", "Nora Jemisin", "Douglas Adams"};
 
   @GET
+  public String getIsaacAsimovBiography() {
+
+    ChatLanguageModel model = OpenAiChatModel.builder()
+      .apiKey(OPENAI_API_KEY)
+      .modelName(GPT_3_5_TURBO)
+      .temperature(0.3)
+      .timeout(ofSeconds(60))
+      .logRequests(true)
+      .logResponses(true)
+      .build();
+
+    String prompt = "Write a short biography about Isaac Asimov";
+
+    String biography = model.generate(prompt);
+
+    return biography;
+  }
+
+  @GET
   @Path("/{index}")
   public String getAuthorBiography(@PathParam("index") int index) {
 
