@@ -11,8 +11,9 @@
 
   <modules>
     <module>advanced</module>
-    <module>getting-started</module>
+    <module>chatting</module>
     <module>first-look</module>
+    <module>getting-started</module>
     <module>integrating</module>
     <module>putting-together</module>
   </modules>
