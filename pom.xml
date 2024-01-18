@@ -16,6 +16,7 @@
     <module>getting-started</module>
     <module>integrating</module>
     <module>putting-together</module>
+    <module>testing-debugging</module>
   </modules>
 
   <properties>
@@ -25,6 +26,7 @@
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
     <quarkus.platform.version>3.6.5</quarkus.platform.version>
+    <version.tinylog>2.6.2</version.tinylog>
     <!-- Test -->
     <version.junit>5.10.1</version.junit>
     <version.wiremock>3.3.1</version.wiremock>
@@ -77,17 +79,27 @@
       </dependency>
       <!-- Other -->
       <dependency>
-        <groupId>${quarkus.platform.group-id}</groupId>
-        <artifactId>${quarkus.platform.artifact-id}</artifactId>
-        <version>${quarkus.platform.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
+        <groupId>org.tinylog</groupId>
+        <artifactId>slf4j-tinylog</artifactId>
+        <version>${version.tinylog}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.tinylog</groupId>
+        <artifactId>tinylog-impl</artifactId>
+        <version>${version.tinylog}</version>
       </dependency>
       <!-- Test -->
       <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
         <version>${version.junit}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.wiremock</groupId>
+        <artifactId>wiremock-standalone</artifactId>
+        <version>${version.wiremock}</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
@@ -138,18 +150,14 @@
           <version>${version.compiler.plugin}</version>
           <inherited>true</inherited>
           <configuration>
-            <source>${version.java}</source>
-            <target>${version.java}</target>
+            <source>${maven.compiler.release}</source>
+            <target>${maven.compiler.release}</target>
           </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
           <version>${version.dependency.plugin}</version>
-          <configuration>
-            <!-- Perfs improvements - PAR-191 -->
-            <useJvmChmod>true</useJvmChmod>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
