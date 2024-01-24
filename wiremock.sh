@@ -5,4 +5,7 @@
 # http://localhost:8080/__admin/mappings
 # http://localhost:8080/__admin/requests
 
-java -jar ~/.m2/repository/org/wiremock/wiremock-standalone/3.3.1/wiremock-standalone-3.3.1.jar
+# --https-port 8443
+# https://api.openai.com/v1/chat/completions
+
+java -jar ~/.m2/repository/org/wiremock/wiremock-standalone/3.3.1/wiremock-standalone-3.3.1.jar --port 8089 --verbose

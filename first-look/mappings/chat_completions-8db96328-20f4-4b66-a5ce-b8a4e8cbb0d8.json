@@ -1,0 +1,34 @@
+{
+  "id" : "8db96328-20f4-4b66-a5ce-b8a4e8cbb0d8",
+  "name" : "chat_completions",
+  "request" : {
+    "url" : "/chat/completions",
+    "method" : "POST",
+    "bodyPatterns" : [ {
+      "equalToJson" : "{\n  \"model\": \"gpt-3.5-turbo\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Write a short biography about Isaac Asimov\"\n    }\n  ],\n  \"temperature\": 0.3\n}",
+      "ignoreArrayOrder" : true,
+      "ignoreExtraElements" : true
+    } ]
+  },
+  "response" : {
+    "status" : 404,
+    "body" : "{\n    \"error\": {\n        \"message\": \"Invalid URL (POST /v1/chat/completions/chat/completions)\",\n        \"type\": \"invalid_request_error\",\n        \"param\": null,\n        \"code\": null\n    }\n}\n",
+    "headers" : {
+      "x-request-id" : "12b0023f3677e5a86489a4eddebcb792",
+      "CF-Cache-Status" : "DYNAMIC",
+      "CF-RAY" : "84a9350f5d563cf5-CDG",
+      "Server" : "cloudflare",
+      "vary" : "Origin",
+      "Set-Cookie" : [ "__cf_bm=aY4f9UVgpaYNbbfktoAaV7IMBW7J0.XCJfvAMZXu4ec-1706109068-1-AbssAsiWVUC5p1nMsredciM9WXa3XY4X1iPePMqzmP+w5d8fOwPtNzVz3d56R/s6PuGHtL6hmEQoIzdUyxxaKMU=; path=/; expires=Wed, 24-Jan-24 15:41:08 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None", "_cfuvid=uC7R0NtF7qglkiDvvFATlCOwBtr3pu__tBpjz05t548-1706109068848-0-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None" ],
+      "alt-svc" : "h3=\":443\"; ma=86400",
+      "strict-transport-security" : "max-age=15724800; includeSubDomains",
+      "Date" : "Wed, 24 Jan 2024 15:11:08 GMT",
+      "Content-Type" : "application/json; charset=utf-8"
+    }
+  },
+  "uuid" : "8db96328-20f4-4b66-a5ce-b8a4e8cbb0d8",
+  "persistent" : true,
+  "scenarioName" : "scenario-1-chat-completions",
+  "requiredScenarioState" : "scenario-1-chat-completions-3",
+  "insertionIndex" : 1
+}
