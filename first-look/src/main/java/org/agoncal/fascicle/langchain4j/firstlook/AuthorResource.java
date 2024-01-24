@@ -23,6 +23,11 @@ import static java.time.Duration.ofSeconds;
 @Produces(MediaType.TEXT_PLAIN)
 public class AuthorResource {
 
+  public static void main(String[] args) {
+    AuthorResource authorResource = new AuthorResource();
+    System.out.println(authorResource.getIsaacAsimovBiography());
+  }
+
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
 
 //  private String[] scifiAuthors = {"Isaac Asimov", "Nora Jemisin", "Douglas Adams"};
