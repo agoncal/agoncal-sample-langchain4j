@@ -2,6 +2,9 @@ package org.agoncal.fascicle.langchain4j.chatting;
 
 // tag::adocSnippet[]
 
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.data.message.SystemMessage;
+import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiLanguageModel;
@@ -109,14 +112,26 @@ public class MusicianService {
     System.out.println("### useOpenAiChatModelBuilder");
 
     OpenAiChatModel model = OpenAiChatModel.builder()
-      .modelName(GPT_3_5_TURBO)
       .apiKey(OPENAI_API_KEY)
+      .modelName(GPT_3_5_TURBO)
       .temperature(0.9)
       .logRequests(true)
       .logResponses(true)
       .build();
 
     String completion = model.generate("When was the first Rolling Stones album released?");
+
+    System.out.println(completion);
+  }
+
+  public void useOpenAiChatModelAiMessage() {
+    System.out.println("### useOpenAiChatModelAiMessage");
+
+    OpenAiChatModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+
+    SystemMessage sysMsg = new SystemMessage("You are a music expert.");
+    UserMessage userMsg = new UserMessage("When was the first Rolling Stones album released?");
+    Response<AiMessage> completion = model.generate(sysMsg, userMsg);
 
     System.out.println(completion);
   }
