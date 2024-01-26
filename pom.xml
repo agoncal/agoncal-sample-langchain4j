@@ -16,6 +16,7 @@
     <module>getting-started</module>
     <module>integrating</module>
     <module>putting-together</module>
+    <module>rag</module>
     <module>testing-debugging</module>
   </modules>
 
