@@ -1,4 +1,4 @@
-package org.agoncal.fascicle.langchain4j.chatting;
+package org.agoncal.fascicle.langchain4j.chatting.openai;
 
 import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO_0301;
 import dev.langchain4j.model.openai.OpenAiTokenizer;

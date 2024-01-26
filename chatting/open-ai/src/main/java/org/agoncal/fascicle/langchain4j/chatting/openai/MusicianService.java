@@ -1,11 +1,10 @@
-package org.agoncal.fascicle.langchain4j.chatting;
+package org.agoncal.fascicle.langchain4j.chatting.openai;
 
 // tag::adocSnippet[]
 
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
-import dev.langchain4j.model.azure.AzureOpenAiChatModel;
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiLanguageModel;
@@ -27,19 +26,14 @@ public class MusicianService {
   public static void main(String[] args) {
     MusicianService musicianService = new MusicianService();
 
-    musicianService.useAzureOpenAiLanguageModel();
-
-//    musicianService.useOpenAiLanguageModel();
-//    musicianService.useOpenAiLanguageModelPrompt();
-//    musicianService.useOpenAiLanguageModelBuilder();
-//    musicianService.useOpenAiChatModel();
-//    musicianService.useOpenAiChatModelBuilder();
+    musicianService.useOpenAiLanguageModel();
+    musicianService.useOpenAiLanguageModelPrompt();
+    musicianService.useOpenAiLanguageModelBuilder();
+    musicianService.useOpenAiChatModel();
+    musicianService.useOpenAiChatModelBuilder();
   }
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
-  private static final String AZURE_OPENAI_KEY = System.getenv("AZURE_OPENAI_KEY");
-  private static final String AZURE_OPENAI_ENDPOINT = System.getenv("AZURE_OPENAI_ENDPOINT");
-  private static final String AZURE_OPENAI_DEPLOYMENT_NAME = System.getenv("AZURE_OPENAI_DEPLOYMENT_NAME");
 
   private static final String PROMPT = "When was the first Beatles album released?";
 
@@ -137,24 +131,6 @@ public class MusicianService {
     SystemMessage sysMsg = new SystemMessage("You are a music expert.");
     UserMessage userMsg = new UserMessage("When was the first Rolling Stones album released?");
     Response<AiMessage> completion = model.generate(sysMsg, userMsg);
-
-    System.out.println(completion);
-  }
-
-  // ###################################
-  // ### AZURE OPENAI LANGUAGE MODEL ###
-  // ###################################
-  public void useAzureOpenAiLanguageModel() {
-    System.out.println("### useAzureOpenAiLanguageModel");
-
-    AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
-      .apiKey(AZURE_OPENAI_KEY)
-      .endpoint(AZURE_OPENAI_ENDPOINT)
-      .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
-      .temperature(0.9)
-      .build();
-
-    String completion = model.generate("When was the first Beatles album released?");
 
     System.out.println(completion);
   }
