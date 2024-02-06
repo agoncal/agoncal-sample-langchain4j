@@ -12,6 +12,7 @@
   <modules>
     <module>advanced</module>
     <module>chatting</module>
+    <module>context</module>
     <module>first-look</module>
     <module>getting-started</module>
     <module>integrating</module>
