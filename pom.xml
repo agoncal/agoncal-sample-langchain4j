@@ -10,8 +10,8 @@
   <name>LangChain4j</name>
 
   <modules>
+    <module>accessing</module>
     <module>advanced</module>
-    <module>chatting</module>
     <module>context</module>
     <module>first-look</module>
     <module>getting-started</module>
