@@ -18,6 +18,7 @@
 
   <modules>
     <module>azure-open-ai</module>
+    <module>ollama</module>
     <module>open-ai</module>
   </modules>
 
