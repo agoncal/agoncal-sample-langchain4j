@@ -26,10 +26,10 @@ public class MusicianService {
     MusicianService musicianService = new MusicianService();
 
     musicianService.useOllamaLanguageModel();
-    musicianService.useOllamaLanguageModelPrompt();
-    musicianService.useOllamaLanguageModelBuilder();
-    musicianService.useOllamaChatModel();
-    musicianService.useOllamaChatModelBuilder();
+//    musicianService.useOllamaLanguageModelPrompt();
+//    musicianService.useOllamaLanguageModelBuilder();
+//    musicianService.useOllamaChatModel();
+//    musicianService.useOllamaChatModelBuilder();
   }
 
   private static final String PROMPT = "When was the first Beatles album released?";
@@ -40,16 +40,17 @@ public class MusicianService {
   public void useOllamaLanguageModel() {
     System.out.println("### useOpenAiLanguageModel");
 
-    OllamaLanguageModel model = OllamaLanguageModel.builder().build();
+    OllamaLanguageModel model = OllamaLanguageModel.builder()
+      .baseUrl("http://localhost:11434")
+      .modelName("orca-mini")
+      .build();
 
     Response<String> completion = model.generate("When was the first Beatles album released?");
 
     String content = completion.content();
-    FinishReason finishReason = completion.finishReason();
     TokenUsage tokenUsage = completion.tokenUsage();
 
     System.out.println(content);
-    System.out.println(finishReason.name());
     System.out.println(tokenUsage.inputTokenCount());
     System.out.println(tokenUsage.outputTokenCount());
     System.out.println(tokenUsage.totalTokenCount());
@@ -58,7 +59,10 @@ public class MusicianService {
   public void useOllamaLanguageModelPrompt() {
     System.out.println("### useOpenAiLanguageModelPrompt");
 
-    OllamaLanguageModel model = OllamaLanguageModel.builder().build();
+    OllamaLanguageModel model = OllamaLanguageModel.builder()
+      .baseUrl("http://localhost:11434")
+      .modelName("orca-mini")
+      .build();
 
     Prompt prompt = new Prompt("When was the first Beatles album released?");
     Response<String> completion = model.generate(prompt);
@@ -78,6 +82,8 @@ public class MusicianService {
     System.out.println("### useOpenAiLanguageModelBuilder");
 
     OllamaLanguageModel model = OllamaLanguageModel.builder()
+      .baseUrl("http://localhost:11434")
+      .modelName("orca-mini")
       .temperature(0.3)
       .build();
 
