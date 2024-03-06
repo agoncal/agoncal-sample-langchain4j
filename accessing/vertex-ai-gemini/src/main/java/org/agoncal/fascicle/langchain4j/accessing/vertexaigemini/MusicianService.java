@@ -1,7 +1,5 @@
 package org.agoncal.fascicle.langchain4j.accessing.vertexaigemini;
 
-// tag::adocSnippet[]
-
 import dev.langchain4j.model.vertexai.VertexAiGeminiChatModel;
 
 // tag::adocSkip[]

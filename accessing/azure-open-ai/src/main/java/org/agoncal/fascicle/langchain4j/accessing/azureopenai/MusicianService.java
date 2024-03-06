@@ -1,7 +1,5 @@
 package org.agoncal.fascicle.langchain4j.accessing.azureopenai;
 
-// tag::adocSnippet[]
-
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
@@ -89,6 +87,7 @@ public class MusicianService {
   public void useAzureOpenAiChatModel() {
     System.out.println("### useAzureOpenAiChatModel");
 
+    // tag::adocSnippet[]
     AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
       .apiKey(AZURE_OPENAI_KEY)
       .endpoint(AZURE_OPENAI_ENDPOINT)
@@ -96,6 +95,7 @@ public class MusicianService {
       .temperature(0.3)
       .logRequestsAndResponses(true)
       .build();
+    // end::adocSnippet[]
 
     String completion = model.generate("When was the first Rolling Stones album released?");
 
@@ -136,4 +136,3 @@ public class MusicianService {
     System.out.println(completion);
   }
 }
-// end::adocSnippet[]

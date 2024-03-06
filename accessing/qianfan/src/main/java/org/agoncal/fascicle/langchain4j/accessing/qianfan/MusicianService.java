@@ -1,7 +1,5 @@
 package org.agoncal.fascicle.langchain4j.accessing.qianfan;
 
-// tag::adocSnippet[]
-
 import dev.langchain4j.model.qianfan.QianfanChatModel;
 
 // tag::adocSkip[]

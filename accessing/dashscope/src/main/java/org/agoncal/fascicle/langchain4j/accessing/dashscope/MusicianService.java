@@ -1,7 +1,5 @@
 package org.agoncal.fascicle.langchain4j.accessing.dashscope;
 
-// tag::adocSnippet[]
-
 import dev.langchain4j.model.dashscope.QwenChatModel;
 
 // tag::adocSkip[]

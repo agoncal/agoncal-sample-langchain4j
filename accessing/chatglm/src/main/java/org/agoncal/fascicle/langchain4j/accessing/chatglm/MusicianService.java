@@ -1,7 +1,5 @@
 package org.agoncal.fascicle.langchain4j.accessing.chatglm;
 
-// tag::adocSnippet[]
-
 import dev.langchain4j.model.chatglm.ChatGlmChatModel;
 
 // tag::adocSkip[]

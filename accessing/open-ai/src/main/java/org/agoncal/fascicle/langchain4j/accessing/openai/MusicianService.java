@@ -1,7 +1,5 @@
 package org.agoncal.fascicle.langchain4j.accessing.openai;
 
-// tag::adocSnippet[]
-
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;

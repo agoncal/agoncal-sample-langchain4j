@@ -1,7 +1,5 @@
 package org.agoncal.fascicle.langchain4j.accessing.mistralai;
 
-// tag::adocSnippet[]
-
 import dev.langchain4j.model.mistralai.MistralAiChatModel;
 
 // tag::adocSkip[]

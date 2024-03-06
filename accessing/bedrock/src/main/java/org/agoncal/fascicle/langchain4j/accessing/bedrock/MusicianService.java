@@ -1,7 +1,5 @@
 package org.agoncal.fascicle.langchain4j.accessing.bedrock;
 
-// tag::adocSnippet[]
-
 import dev.langchain4j.model.bedrock.BedrockAnthropicChatModel;
 
 // tag::adocSkip[]

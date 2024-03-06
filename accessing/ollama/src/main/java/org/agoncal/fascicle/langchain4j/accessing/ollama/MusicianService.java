@@ -1,7 +1,5 @@
 package org.agoncal.fascicle.langchain4j.accessing.ollama;
 
-// tag::adocSnippet[]
-
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
