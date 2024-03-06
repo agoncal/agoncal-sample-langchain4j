@@ -21,12 +21,12 @@
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j</artifactId>
     </dependency>
-    <!-- tag::adocSnippet[]-->
+    <!-- tag::adocSnippet[] -->
     <dependency>
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j-vertex-ai-gemini</artifactId>
     </dependency>
-    <!-- end::adocSnippet[]-->
+    <!-- end::adocSnippet[] -->
     <!-- Other -->
     <dependency>
       <groupId>org.tinylog</groupId>
