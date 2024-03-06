@@ -39,4 +39,3 @@ public class MusicianService {
 
   }
 }
-// end::adocSnippet[]

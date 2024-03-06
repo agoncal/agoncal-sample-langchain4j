@@ -43,4 +43,3 @@ public class MusicianService {
     System.out.println(completion);
   }
 }
-// end::adocSnippet[]

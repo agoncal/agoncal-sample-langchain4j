@@ -40,4 +40,3 @@ public class MusicianService {
     String completion = model.generate(PROMPT);
   }
 }
-// end::adocSnippet[]
