@@ -30,9 +30,11 @@ public class MusicianService {
   public void useChatGLMChatModel() {
     System.out.println("### useChatGLMChatModel");
 
+    // tag::adocSnippet[]
     ChatGlmChatModel model = ChatGlmChatModel.builder()
       .temperature(0.3)
       .build();
+    // end::adocSnippet[]
 
     String completion = model.generate("When was the first Rolling Stones album released?");
 

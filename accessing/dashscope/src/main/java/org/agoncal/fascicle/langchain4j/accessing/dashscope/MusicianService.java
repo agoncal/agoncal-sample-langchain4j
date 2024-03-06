@@ -30,10 +30,12 @@ public class MusicianService {
   public void useQwenChatModel() {
     System.out.println("### useAzureOpenAiChatModel");
 
+    // tag::adocSnippet[]
     QwenChatModel model = QwenChatModel.builder()
       .apiKey(AZURE_OPENAI_KEY)
       .temperature(0.3f)
       .build();
+    // end::adocSnippet[]
 
     String completion = model.generate("When was the first Rolling Stones album released?");
 

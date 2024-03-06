@@ -30,9 +30,11 @@ public class MusicianService {
   public void useHuggingFaceChatModel() {
     System.out.println("### useHuggingFaceChatModel");
 
+    // tag::adocSnippet[]
     HuggingFaceChatModel model = HuggingFaceChatModel.builder()
       .temperature(0.3)
       .build();
+    // end::adocSnippet[]
 
     String completion = model.generate("When was the first Rolling Stones album released?");
 

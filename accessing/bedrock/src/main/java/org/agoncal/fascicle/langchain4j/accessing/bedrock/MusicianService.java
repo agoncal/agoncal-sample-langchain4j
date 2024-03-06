@@ -30,8 +30,10 @@ public class MusicianService {
   public void useBedrockLanguageModelBuilder() {
     System.out.println("### useBedrockLanguageModelBuilder");
 
+    // tag::adocSnippet[]
     BedrockAnthropicChatModel model = BedrockAnthropicChatModel.builder()
       .build();
+    // end::adocSnippet[]
 
     String completion = model.generate(PROMPT);
 

@@ -30,10 +30,12 @@ public class MusicianService {
   public void useVertexAiLanguageModelBuilder() {
     System.out.println("### useVertexAiLanguageModelBuilder");
 
+    // tag::adocSnippet[]
     VertexAiChatModel model = VertexAiChatModel.builder()
       .endpoint(AZURE_OPENAI_ENDPOINT)
       .temperature(0.3)
       .build();
+    // end::adocSnippet[]
 
     String completion = model.generate(PROMPT);
   }

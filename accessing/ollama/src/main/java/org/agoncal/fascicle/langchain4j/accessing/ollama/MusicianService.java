@@ -38,10 +38,12 @@ public class MusicianService {
   public void useOllamaLanguageModel() {
     System.out.println("### useOpenAiLanguageModel");
 
+    // tag::adocSnippet[]
     OllamaLanguageModel model = OllamaLanguageModel.builder()
       .baseUrl("http://localhost:11434")
       .modelName("orca-mini")
       .build();
+    // end::adocSnippet[]
 
     Response<String> completion = model.generate("When was the first Beatles album released?");
 

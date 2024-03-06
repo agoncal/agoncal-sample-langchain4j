@@ -30,9 +30,11 @@ public class MusicianService {
   public void useVertexAiGeminiChatModel() {
     System.out.println("### useAzureOpenAiChatModel");
 
+    // tag::adocSnippet[]
     VertexAiGeminiChatModel model = VertexAiGeminiChatModel.builder()
       .temperature(0.3f)
       .build();
+    // end::adocSnippet[]
 
     String completion = model.generate("When was the first Rolling Stones album released?");
 

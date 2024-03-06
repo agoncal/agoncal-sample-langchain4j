@@ -78,12 +78,14 @@ public class MusicianService {
   public void useOpenAiLanguageModelBuilder() {
     System.out.println("### useOpenAiLanguageModelBuilder");
 
+    // tag::adocSnippet[]
     OpenAiLanguageModel model = OpenAiLanguageModel.builder()
       .apiKey(OPENAI_API_KEY)
       .temperature(0.3)
       .logRequests(true)
       .logResponses(true)
       .build();
+    // end::adocSnippet[]
 
     Response<String> completion = model.generate(PROMPT);
 

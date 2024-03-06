@@ -30,10 +30,12 @@ public class MusicianService {
   public void useMistralAiChatModel() {
     System.out.println("### useMistralAiChatModel");
 
+    // tag::adocSnippet[]
     MistralAiChatModel model = MistralAiChatModel.builder()
       .apiKey(AZURE_OPENAI_KEY)
       .temperature(0.3)
       .build();
+    // end::adocSnippet[]
 
     String completion = model.generate("When was the first Rolling Stones album released?");
 
