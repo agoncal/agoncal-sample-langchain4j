@@ -18,8 +18,17 @@
 
   <modules>
     <module>azure-open-ai</module>
+    <module>bedrock</module>
+    <module>chatglm</module>
+    <module>dashscope</module>
+    <module>hugging-face</module>
+    <module>local-ai</module>
+    <module>mistral-ai</module>
     <module>ollama</module>
     <module>open-ai</module>
+    <module>qianfan</module>
+    <module>vertex-ai</module>
+    <module>vertex-ai-gemini</module>
   </modules>
 
 </project>

@@ -5,9 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.agoncal.fascicle.langchain4j.accessing</groupId>
-  <artifactId>ollama</artifactId>
+  <artifactId>local-ai</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: Accessing Models :: Ollama</name>
+  <name>LangChain4j :: Accessing Models :: Local AI</name>
 
   <parent>
     <groupId>org.agoncal.fascicle.langchain4j</groupId>
@@ -24,7 +24,7 @@
     <!-- tag::adocSnippet[]-->
     <dependency>
       <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-ollama</artifactId>
+      <artifactId>langchain4j-local-ai</artifactId>
     </dependency>
     <!-- end::adocSnippet[]-->
     <!-- Other -->
