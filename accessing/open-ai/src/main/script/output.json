@@ -1,0 +1,23 @@
+{
+  "id": "chatcmpl-90Jhllr4DfnFWYCrXr7NxcQCYtk",
+  "object": "chat.completion",
+  "created": 1709915709,
+  "model": "gpt-3.5-turbo-0125",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "The first Beatles album, \"Please Please Me,\" was released in the United Kingdom on March 22, 1963."
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 15,
+    "completion_tokens": 25,
+    "total_tokens": 40
+  },
+  "system_fingerprint": "fp_2b7fds7ag8c6b35"
+}
