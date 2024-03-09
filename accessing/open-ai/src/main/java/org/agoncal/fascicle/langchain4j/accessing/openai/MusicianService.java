@@ -100,11 +100,13 @@ public class MusicianService {
   public void useOpenAiChatModel() {
     System.out.println("### useOpenAiChatModel");
 
+    // tag::adocSimple[]
     OpenAiChatModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
     String completion = model.generate("When was the first Rolling Stones album released?");
 
     System.out.println(completion);
+    // end::adocSimple[]
   }
 
   public void useOpenAiChatModelBuilder() {
