@@ -1,5 +1,6 @@
 package org.agoncal.fascicle.langchain4j.accessing.azureopenai;
 
+import com.azure.ai.openai.models.AzureChatEnhancementConfiguration;
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
@@ -9,6 +10,8 @@ import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.output.FinishReason;
 import dev.langchain4j.model.output.Response;
 import dev.langchain4j.model.output.TokenUsage;
+
+import java.time.Duration;
 
 // tag::adocSkip[]
 
@@ -105,13 +108,27 @@ public class MusicianService {
   public void useAzureOpenAiChatModelBuilder() {
     System.out.println("### useAzureOpenAiChatModelBuilder");
 
+    AzureChatEnhancementConfiguration enhancementConfiguration = new AzureChatEnhancementConfiguration();
+
+    // tag::adocRequest[]
     AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
       .apiKey(AZURE_OPENAI_KEY)
       .endpoint(AZURE_OPENAI_ENDPOINT)
       .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
+      .serviceVersion("2020-09-03")
+      .maxRetries(3)
+      .frequencyPenalty(0.0d)
+      .presencePenalty(0.0d)
+      .n(1)
+      .enhancements(enhancementConfiguration)
+      .seed(42L)
+      .timeout(Duration.ofSeconds(30))
+      .maxTokens(150)
+      .topP(1.0d)
       .temperature(0.9)
       .logRequestsAndResponses(true)
       .build();
+    // end::adocRequest[]
 
     String completion = model.generate("When was the first Rolling Stones album released?");
 
