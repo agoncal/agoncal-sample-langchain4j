@@ -65,4 +65,5 @@ public class MusicianService {
     String completion = model.generate("When was the first Rolling Stones album released?");
 
     System.out.println(completion);
-  }}
+  }
+}

@@ -1,6 +1,7 @@
 package org.agoncal.fascicle.langchain4j.accessing.bedrock;
 
 import dev.langchain4j.model.bedrock.BedrockAnthropicChatModel;
+import software.amazon.awssdk.regions.Region;
 
 // tag::adocSkip[]
 
@@ -24,9 +25,9 @@ public class MusicianService {
 
   private static final String PROMPT = "When was the first Beatles album released?";
 
-  // ###################################
-  // ### AZURE OPENAI LANGUAGE MODEL ###
-  // ###################################
+  // ##############################
+  // ### BEDROCK LANGUAGE MODEL ###
+  // ##############################
   public void useBedrockLanguageModelBuilder() {
     System.out.println("### useBedrockLanguageModelBuilder");
 
@@ -38,4 +39,30 @@ public class MusicianService {
     String completion = model.generate(PROMPT);
 
   }
+
+  // ##########################
+  // ### BEDROCK CHAT MODEL ###
+  // ##########################
+  public void useBedrockChatModelRequest() {
+    System.out.println("### useBedrockChatModelRequest");
+
+    // tag::adocRequest[]
+    BedrockAnthropicChatModel model = BedrockAnthropicChatModel.builder()
+      .maxRetries(3)
+      .topP(1.0f)
+      .temperature(0.9f)
+      .model(BedrockAnthropicChatModel.Types.AnthropicClaudeV1)
+      .maxTokens(100)
+      .anthropicVersion("v2")
+      .assistantPrompt("assistant prompt")
+      .humanPrompt("human prompt")
+      .region(Region.AF_SOUTH_1)
+      .build();
+    // end::adocRequest[]
+
+    String completion = model.generate("When was the first Rolling Stones album released?");
+
+    System.out.println(completion);
+  }
+
 }

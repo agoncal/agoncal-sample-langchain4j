@@ -2,6 +2,8 @@ package org.agoncal.fascicle.langchain4j.accessing.chatglm;
 
 import dev.langchain4j.model.chatglm.ChatGlmChatModel;
 
+import java.time.Duration;
+
 // tag::adocSkip[]
 
 /**
@@ -35,6 +37,25 @@ public class MusicianService {
       .temperature(0.3)
       .build();
     // end::adocSnippet[]
+
+    String completion = model.generate("When was the first Rolling Stones album released?");
+
+    System.out.println(completion);
+  }
+
+  public void useChatGLMChatModelRequest() {
+    System.out.println("### useChatGLMChatModelRequest");
+
+    // tag::adocRequest[]
+    ChatGlmChatModel model = ChatGlmChatModel.builder()
+      .maxRetries(3)
+      .topP(1.0d)
+      .temperature(0.9d)
+      .timeout(Duration.ofSeconds(10))
+      .topP(0.3d)
+      .maxLength(100)
+      .build();
+    // end::adocRequest[]
 
     String completion = model.generate("When was the first Rolling Stones album released?");
 

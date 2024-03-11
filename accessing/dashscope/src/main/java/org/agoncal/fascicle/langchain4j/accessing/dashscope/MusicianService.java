@@ -41,4 +41,26 @@ public class MusicianService {
 
     System.out.println(completion);
   }
+
+  public void useQwenChatModelRequest() {
+    System.out.println("### useQwenChatModelRequest");
+
+    // tag::adocRequest[]
+    QwenChatModel model = QwenChatModel.builder()
+      .apiKey(AZURE_OPENAI_KEY)
+      .topP(1.0d)
+      .topK(34)
+      .temperature(0.9f)
+      .modelName("model")
+      .maxTokens(100)
+      .enableSearch(true)
+      .seed(3)
+      .repetitionPenalty(0.45f)
+      .build();
+    // end::adocRequest[]
+
+    String completion = model.generate("When was the first Rolling Stones album released?");
+
+    System.out.println(completion);
+  }
 }
