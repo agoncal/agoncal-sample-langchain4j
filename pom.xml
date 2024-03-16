@@ -10,9 +10,10 @@
   <name>LangChain4j</name>
 
   <modules>
-    <module>accessing</module>
+    <module>accessing-models</module>
     <module>advanced</module>
-    <module>context</module>
+    <module>chatting-models</module>
+    <module>embeddings-vector-databases</module>
     <module>first-look</module>
     <module>getting-started</module>
     <module>integrating</module>
