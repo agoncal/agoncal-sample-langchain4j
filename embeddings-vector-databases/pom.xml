@@ -17,6 +17,9 @@
   </parent>
 
   <modules>
+    <module>cassandra</module>
+    <module>chroma</module>
+    <module>infinispan</module>
     <module>qdrant</module>
   </modules>
 
