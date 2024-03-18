@@ -32,11 +32,8 @@ public class MusicianService {
     // tag::adocSnippet[]
     EmbeddingStore<TextSegment> embeddingStore =
       QdrantEmbeddingStore.builder()
-        // Ensure the collection is configured with the appropriate dimensions
-        // of the embedding model.
-        .collectionName("my-collection")
+        .collectionName("langchain4j-collection")
         .host("localhost")
-        // GRPC port of the Qdrant server
         .port(6334)
         .build();
 

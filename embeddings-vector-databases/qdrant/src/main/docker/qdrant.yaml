@@ -6,11 +6,12 @@ services:
       - "6334:6334"
 
 # curl http://localhost:6333/collections
-# curl -X PUT 'http://localhost:6333/collections/test_collection' \
+# curl http://localhost:6333/collections/langchain4j-collection
+# curl -X PUT 'http://localhost:6333/collections/langchain4j-collection' \
 #      -H 'Content-Type: application/json' \
 #      --data-raw '{
 #        "vectors": {
-#          "size": 4,
+#          "size": 384,
 #          "distance": "Dot"
 #        }
 #      }'
