@@ -1,4 +1,4 @@
-package org.agoncal.fascicle.langchain4j.vectordb.qdrant;
+package org.agoncal.fascicle.langchain4j.vectordb.pgvector;
 
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
@@ -6,7 +6,7 @@ import dev.langchain4j.model.embedding.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.store.embedding.EmbeddingMatch;
 import dev.langchain4j.store.embedding.EmbeddingStore;
-import dev.langchain4j.store.embedding.qdrant.QdrantEmbeddingStore;
+import dev.langchain4j.store.embedding.pgvector.PgVectorEmbeddingStore;
 
 import java.util.List;
 
@@ -23,18 +23,18 @@ public class MusicianService {
   public static void main(String[] args) {
     MusicianService musicianService = new MusicianService();
 
-    musicianService.useQdrantToStoreEmbeddingsSimple();
+    musicianService.useQdrantToStoreEmbeddings();
   }
 
-  public void useQdrantToStoreEmbeddingsSimple() {
-    System.out.println("### useQdrantToStoreEmbeddingsSimple");
+  public void useQdrantToStoreEmbeddings() {
+    System.out.println("### useQdrantToStoreEmbeddings");
 
-    // tag::adocSimple[]
+    // tag::adocSnippet[]
     EmbeddingStore<TextSegment> embeddingStore =
-      QdrantEmbeddingStore.builder()
-        .collectionName("langchain4j-collection")
+      PgVectorEmbeddingStore.builder()
+        .host("localhost")
+        .port(6334)
         .build();
-    // end::adocSimple[]
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 

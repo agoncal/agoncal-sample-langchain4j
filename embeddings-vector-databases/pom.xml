@@ -20,6 +20,7 @@
     <module>cassandra</module>
     <module>chroma</module>
     <module>infinispan</module>
+    <module>pgvector</module>
     <module>qdrant</module>
   </modules>
 
