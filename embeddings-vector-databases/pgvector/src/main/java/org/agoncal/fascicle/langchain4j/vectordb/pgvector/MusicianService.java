@@ -23,18 +23,26 @@ public class MusicianService {
   public static void main(String[] args) {
     MusicianService musicianService = new MusicianService();
 
-    musicianService.useQdrantToStoreEmbeddings();
+    musicianService.usePGVectorToStoreEmbeddings();
   }
 
-  public void useQdrantToStoreEmbeddings() {
-    System.out.println("### useQdrantToStoreEmbeddings");
+  public void usePGVectorToStoreEmbeddings() {
+    System.out.println("### usePGVectorToStoreEmbeddings");
 
     // tag::adocSnippet[]
     EmbeddingStore<TextSegment> embeddingStore =
       PgVectorEmbeddingStore.builder()
         .host("localhost")
-        .port(6334)
+        .port(5432)
+        .createTable(true)
+        .dropTableFirst(true)
+        .dimension(384)
+        .table("langchain4j_collection")
+        .user("agoncal")
+        .password("agoncal")
+        .database("agoncal")
         .build();
+    // end::adocSnippet[]
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 
@@ -52,6 +60,5 @@ public class MusicianService {
 
     System.out.println(embeddingMatch.score());
     System.out.println(embeddingMatch.embedded().text());
-    // end::adocSnippet[]
   }
 }
