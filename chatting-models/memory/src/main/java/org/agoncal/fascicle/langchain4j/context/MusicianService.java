@@ -76,29 +76,25 @@ public class MusicianService {
       .logRequestsAndResponses(true)
       .build();
 
+    // tag::adocChain[]
     ConversationalChain chain = ConversationalChain.builder()
       .chatLanguageModel(model)
       .build();
 
-    System.out.println("\n\n################################");
-    System.out.println("# My favourite Rock band is the Rolling Stones #");
-    System.out.println("################################");
-    System.out.println(">>>>" + chain.execute("My favourite Rock band is the Rolling Stones"));
+    System.out.println(chain.execute("My favourite Rock band is the Rolling Stones"));
+    // tag::adocSkip[]
     Thread.sleep(5000);
-    System.out.println("\n\n#####################################################");
-    System.out.println("# When was their first album released? #");
-    System.out.println("#####################################################");
-    System.out.println(">>>>" + chain.execute("When was their first album released?"));
+    // end::adocSkip[]
+    System.out.println(chain.execute("When was their first album released?"));
+    // tag::adocSkip[]
     Thread.sleep(5000);
-    System.out.println("\n\n##################################");
-    System.out.println("# What's the name of the singer? #");
-    System.out.println("##################################");
-    System.out.println(">>>>" + chain.execute("What's the name of the singer?"));
+    // end::adocSkip[]
+    System.out.println(chain.execute("What's the name of the singer?"));
+    // tag::adocSkip[]
     Thread.sleep(5000);
-    System.out.println("\n\n####################");
-    System.out.println("# What is the name of the band? #");
-    System.out.println("####################");
-    System.out.println(">>>>" + chain.execute("What is the name of the band?"));
+    // end::adocSkip[]
+    System.out.println(chain.execute("What is the name of the band?"));
+    // end::adocChain[]
   }
 
 
@@ -116,6 +112,7 @@ public class MusicianService {
       .logRequestsAndResponses(true)
       .build();
 
+    // tag::adocChatMemory[]
     ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(2);
 
     ConversationalChain chain = ConversationalChain.builder()
@@ -123,25 +120,20 @@ public class MusicianService {
       .chatMemory(chatMemory)
       .build();
 
-    System.out.println("\n\n################################");
-    System.out.println("# My favourite Rock band is the Rolling Stones #");
-    System.out.println("################################");
-    System.out.println(">>>>" + chain.execute("My favourite Rock band is the Rolling Stones"));
+    System.out.println(chain.execute("My favourite Rock band is the Rolling Stones"));
+    // tag::adocSkip[]
     Thread.sleep(5000);
-    System.out.println("\n\n#####################################################");
-    System.out.println("# When was their first album released? #");
-    System.out.println("#####################################################");
-    System.out.println(">>>>" + chain.execute("When was their first album released?"));
+    // end::adocSkip[]
+    System.out.println(chain.execute("When was their first album released?"));
+    // tag::adocSkip[]
     Thread.sleep(5000);
-    System.out.println("\n\n##################################");
-    System.out.println("# What's the name of the singer? #");
-    System.out.println("##################################");
-    System.out.println(">>>>" + chain.execute("What's the name of the singer?"));
+    // end::adocSkip[]
+    System.out.println(chain.execute("What's the name of the singer?"));
+    // tag::adocSkip[]
     Thread.sleep(5000);
-    System.out.println("\n\n####################");
-    System.out.println("# What is the name of the band? #");
-    System.out.println("####################");
-    System.out.println(">>>>" + chain.execute("What is the name of the band?"));
+    // end::adocSkip[]
+    System.out.println(chain.execute("What is the name of the band?"));
+    // tag::adocChatMemory[]
   }
 }
 // end::adocSnippet[]
