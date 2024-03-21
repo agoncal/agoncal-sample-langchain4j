@@ -20,8 +20,8 @@ public class MusicianService {
   public static void main(String[] args) throws InterruptedException {
     MusicianService musicianService = new MusicianService();
 
-    musicianService.useNoMemory();
-//    musicianService.useConversationalChain();
+//    musicianService.useNoMemory();
+    musicianService.useConversationalChain();
 //    musicianService.useConversationalChainWithMemory();
   }
 
@@ -46,6 +46,10 @@ public class MusicianService {
       .logRequestsAndResponses(false)
       .build();
 
+    System.out.println(model.generate("My name is Antonio"));
+    // tag::adocSkip[]
+    Thread.sleep(5000);
+    // end::adocSkip[]
     System.out.println(model.generate("My favourite Rock band is the Rolling Stones"));
     // tag::adocSkip[]
     Thread.sleep(5000);
@@ -58,7 +62,7 @@ public class MusicianService {
     // tag::adocSkip[]
     Thread.sleep(5000);
     // end::adocSkip[]
-    System.out.println(model.generate("What is the name of the band?"));
+    System.out.println(model.generate("What's my name?"));
     // end::adocNoMemory[]
   }
 
@@ -81,6 +85,10 @@ public class MusicianService {
       .chatLanguageModel(model)
       .build();
 
+    System.out.println(chain.execute("My name is Antonio"));
+    // tag::adocSkip[]
+    Thread.sleep(5000);
+    // end::adocSkip[]
     System.out.println(chain.execute("My favourite Rock band is the Rolling Stones"));
     // tag::adocSkip[]
     Thread.sleep(5000);
@@ -93,7 +101,7 @@ public class MusicianService {
     // tag::adocSkip[]
     Thread.sleep(5000);
     // end::adocSkip[]
-    System.out.println(chain.execute("What is the name of the band?"));
+    System.out.println(chain.execute("What's my name?"));
     // end::adocChain[]
   }
 
@@ -120,6 +128,10 @@ public class MusicianService {
       .chatMemory(chatMemory)
       .build();
 
+    System.out.println(chain.execute("My name is Antonio"));
+    // tag::adocSkip[]
+    Thread.sleep(5000);
+    // end::adocSkip[]
     System.out.println(chain.execute("My favourite Rock band is the Rolling Stones"));
     // tag::adocSkip[]
     Thread.sleep(5000);
@@ -132,7 +144,7 @@ public class MusicianService {
     // tag::adocSkip[]
     Thread.sleep(5000);
     // end::adocSkip[]
-    System.out.println(chain.execute("What is the name of the band?"));
+    System.out.println(chain.execute("What's my name?"));
     // end::adocChatMemory[]
   }
 }
