@@ -20,8 +20,8 @@ public class MusicianService {
   public static void main(String[] args) throws InterruptedException {
     MusicianService musicianService = new MusicianService();
 
-//    musicianService.useNoMemory();
-    musicianService.useConversationalChain();
+    musicianService.useNoMemory();
+//    musicianService.useConversationalChain();
 //    musicianService.useConversationalChainWithMemory();
   }
 
@@ -37,6 +37,7 @@ public class MusicianService {
   public void useNoMemory() throws InterruptedException {
     System.out.println("### useNoMemory");
 
+    // tag::adocNoMemory[]
     AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
       .apiKey(AZURE_OPENAI_KEY)
       .endpoint(AZURE_OPENAI_ENDPOINT)
@@ -45,13 +46,20 @@ public class MusicianService {
       .logRequestsAndResponses(false)
       .build();
 
-    System.out.println(">>>>" + model.generate("My name is Antonio Goncalves"));
+    System.out.println(model.generate("My favourite Rock band is the Rolling Stones"));
+    // tag::adocSkip[]
     Thread.sleep(5000);
-    System.out.println(">>>>" + model.generate("When was the first Rolling Stones album released?"));
+    // end::adocSkip[]
+    System.out.println(model.generate("When was their first album released?"));
+    // tag::adocSkip[]
     Thread.sleep(5000);
-    System.out.println(">>>>" + model.generate("What's the name of the singer?"));
+    // end::adocSkip[]
+    System.out.println(model.generate("What's the name of the singer?"));
+    // tag::adocSkip[]
     Thread.sleep(5000);
-    System.out.println(">>>>" + model.generate("What is my name?"));
+    // end::adocSkip[]
+    System.out.println(model.generate("What is the name of the band?"));
+    // end::adocNoMemory[]
   }
 
   // ################################
@@ -73,14 +81,14 @@ public class MusicianService {
       .build();
 
     System.out.println("\n\n################################");
-    System.out.println("# My name is Antonio Goncalves #");
+    System.out.println("# My favourite Rock band is the Rolling Stones #");
     System.out.println("################################");
-    System.out.println(">>>>" + chain.execute("My name is Antonio Goncalves"));
+    System.out.println(">>>>" + chain.execute("My favourite Rock band is the Rolling Stones"));
     Thread.sleep(5000);
     System.out.println("\n\n#####################################################");
-    System.out.println("# When was the first Rolling Stones album released? #");
+    System.out.println("# When was their first album released? #");
     System.out.println("#####################################################");
-    System.out.println(">>>>" + chain.execute("When was the first Rolling Stones album released?"));
+    System.out.println(">>>>" + chain.execute("When was their first album released?"));
     Thread.sleep(5000);
     System.out.println("\n\n##################################");
     System.out.println("# What's the name of the singer? #");
@@ -88,9 +96,9 @@ public class MusicianService {
     System.out.println(">>>>" + chain.execute("What's the name of the singer?"));
     Thread.sleep(5000);
     System.out.println("\n\n####################");
-    System.out.println("# What is my name? #");
+    System.out.println("# What is the name of the band? #");
     System.out.println("####################");
-    System.out.println(">>>>" + chain.execute("What is my name?"));
+    System.out.println(">>>>" + chain.execute("What is the name of the band?"));
   }
 
 
@@ -116,14 +124,14 @@ public class MusicianService {
       .build();
 
     System.out.println("\n\n################################");
-    System.out.println("# My name is Antonio Goncalves #");
+    System.out.println("# My favourite Rock band is the Rolling Stones #");
     System.out.println("################################");
-    System.out.println(">>>>" + chain.execute("My name is Antonio Goncalves"));
+    System.out.println(">>>>" + chain.execute("My favourite Rock band is the Rolling Stones"));
     Thread.sleep(5000);
     System.out.println("\n\n#####################################################");
-    System.out.println("# When was the first Rolling Stones album released? #");
+    System.out.println("# When was their first album released? #");
     System.out.println("#####################################################");
-    System.out.println(">>>>" + chain.execute("When was the first Rolling Stones album released?"));
+    System.out.println(">>>>" + chain.execute("When was their first album released?"));
     Thread.sleep(5000);
     System.out.println("\n\n##################################");
     System.out.println("# What's the name of the singer? #");
@@ -131,9 +139,9 @@ public class MusicianService {
     System.out.println(">>>>" + chain.execute("What's the name of the singer?"));
     Thread.sleep(5000);
     System.out.println("\n\n####################");
-    System.out.println("# What is my name? #");
+    System.out.println("# What is the name of the band? #");
     System.out.println("####################");
-    System.out.println(">>>>" + chain.execute("What is my name?"));
+    System.out.println(">>>>" + chain.execute("What is the name of the band?"));
   }
 }
 // end::adocSnippet[]
