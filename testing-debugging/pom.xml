@@ -8,6 +8,7 @@
   <artifactId>testing-debugging</artifactId>
   <version>1.0</version>
   <name>LangChain4j :: Testing and Debugging</name>
+  <packaging>pom</packaging>
 
   <parent>
     <groupId>org.agoncal.fascicle</groupId>
@@ -15,39 +16,8 @@
     <version>1.0</version>
   </parent>
 
-  <dependencies>
-    <!-- LangChain4j -->
-    <dependency>
-      <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-open-ai</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.tinylog</groupId>
-      <artifactId>slf4j-tinylog</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.tinylog</groupId>
-      <artifactId>tinylog-impl</artifactId>
-    </dependency>
+  <modules>
+    <module>logging</module>
+  </modules>
 
-    <!--    <dependency>-->
-    <!--      <groupId>org.slf4j</groupId>-->
-    <!--      <artifactId>slf4j-simple</artifactId>-->
-    <!--      <version>2.0.7</version>-->
-    <!--    </dependency>-->
-    <!-- Test -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.wiremock</groupId>
-      <artifactId>wiremock-standalone</artifactId>
-    </dependency>
-  </dependencies>
 </project>
