@@ -133,7 +133,7 @@ public class MusicianService {
     Thread.sleep(5000);
     // end::adocSkip[]
     System.out.println(chain.execute("What is the name of the band?"));
-    // tag::adocChatMemory[]
+    // end::adocChatMemory[]
   }
 }
 // end::adocSnippet[]
