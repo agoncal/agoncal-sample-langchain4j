@@ -1,4 +1,4 @@
-package org.agoncal.fascicle.langchain4j.context;
+package org.agoncal.fascicle.langchain4j.prompts;
 
 // tag::adocSnippet[]
 
