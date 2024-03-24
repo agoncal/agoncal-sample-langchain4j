@@ -4,6 +4,7 @@ package org.agoncal.fascicle.langchain4j.prompts;
 
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.azure.AzureOpenAiChatModel;
+import dev.langchain4j.model.input.Prompt;
 
 // tag::adocSkip[]
 
@@ -61,7 +62,9 @@ public class MusicianService {
       .build();
 
     // tag::adocPromptAPI[]
-    System.out.println(model.generate("When was the first Rolling Stones album released?"));
+    Prompt prompt = Prompt.from("When was the first Rolling Stones album released?");
+
+    System.out.println(model.generate(prompt.toUserMessage()));
     // end::adocPromptAPI[]
   }
 
