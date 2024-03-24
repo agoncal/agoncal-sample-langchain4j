@@ -18,6 +18,7 @@
 
   <modules>
     <module>memory</module>
+    <module>prompts</module>
   </modules>
 
 </project>
