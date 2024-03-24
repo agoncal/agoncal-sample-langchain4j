@@ -5,6 +5,10 @@ package org.agoncal.fascicle.langchain4j.prompts;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.azure.AzureOpenAiChatModel;
 import dev.langchain4j.model.input.Prompt;
+import dev.langchain4j.model.input.PromptTemplate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 // tag::adocSkip[]
 
@@ -87,5 +91,38 @@ public class MusicianService {
 
     System.out.println(model.generate(userMessage).content().text());
     // end::adocMessageAPI[]
+  }
+
+  // #######################
+  // ### PROMPT TEMPLATE ###
+  // #######################
+  public void usePromptTemplate(){
+    System.out.println("### usePromptTemplate");
+
+    AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
+      .apiKey(AZURE_OPENAI_KEY)
+      .endpoint(AZURE_OPENAI_ENDPOINT)
+      .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
+      .temperature(0.7)
+      .logRequestsAndResponses(false)
+      .build();
+
+    // tag::adocPromptTemplate[]
+    PromptTemplate promptTemplate = PromptTemplate.from(
+      "Based on the user query, determine the most suitable data source(s) " +
+        "to retrieve relevant information from the following options:\n" +
+        "{{options}}\n" +
+        "It is very important that your answer consists of either a single number " +
+        "or multiple numbers separated by commas and nothing else!\n" +
+        "User query: {{query}}");
+
+    Map<String, Object> variables = new HashMap<>();
+    variables.put("query", "query.text()");
+    variables.put("chatMemory", "chatMemory");
+    Prompt prompt = promptTemplate.apply(variables);
+
+
+    System.out.println(model.generate(prompt.text()));
+    // end::adocPromptTemplate[]
   }
 }
