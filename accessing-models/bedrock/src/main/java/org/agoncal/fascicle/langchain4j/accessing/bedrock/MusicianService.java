@@ -1,6 +1,6 @@
 package org.agoncal.fascicle.langchain4j.accessing.bedrock;
 
-import dev.langchain4j.model.bedrock.BedrockAnthropicChatModel;
+import dev.langchain4j.model.bedrock.BedrockAnthropicMessageChatModel;
 import software.amazon.awssdk.regions.Region;
 
 // tag::adocSkip[]
@@ -32,7 +32,7 @@ public class MusicianService {
     System.out.println("### useBedrockLanguageModelBuilder");
 
     // tag::adocSnippet[]
-    BedrockAnthropicChatModel model = BedrockAnthropicChatModel.builder()
+    BedrockAnthropicMessageChatModel model = BedrockAnthropicMessageChatModel.builder()
       .build();
     // end::adocSnippet[]
 
@@ -47,11 +47,11 @@ public class MusicianService {
     System.out.println("### useBedrockChatModelRequest");
 
     // tag::adocRequest[]
-    BedrockAnthropicChatModel model = BedrockAnthropicChatModel.builder()
+    BedrockAnthropicMessageChatModel model = BedrockAnthropicMessageChatModel.builder()
       .maxRetries(3)
       .topP(1.0f)
       .temperature(0.9f)
-      .model(BedrockAnthropicChatModel.Types.AnthropicClaudeV1)
+      .model(BedrockAnthropicMessageChatModel.Types.AnthropicClaudeV2.getValue())
       .maxTokens(100)
       .anthropicVersion("v2")
       .assistantPrompt("assistant prompt")
