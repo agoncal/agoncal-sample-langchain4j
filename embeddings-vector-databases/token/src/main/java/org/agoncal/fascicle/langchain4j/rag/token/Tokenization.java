@@ -22,7 +22,29 @@ public class Tokenization {
 
   public static void main(String[] args) {
     Tokenization tokenization = new Tokenization();
-    tokenization.tokenizeOpenAI();
+    tokenization.tokenizeOpenAIIsaacAsimov();
+//    tokenization.tokenizeOpenAI();
+  }
+
+  private void tokenizeOpenAIIsaacAsimov() {
+    System.out.println("### tokenizeOpenAIIsaacAsimov");
+    OpenAiTokenizer tokenizer = new OpenAiTokenizer(GPT_3_5_TURBO_0301);
+
+    String prompt = "Isaac Asimov is a writer and is a biochemist";
+
+    // Estimate
+    int nbOfTokens = tokenizer.estimateTokenCountInText(prompt);
+    System.out.println("Number of tokens: " + nbOfTokens + "\n");
+
+    // Encode
+    System.out.println("Encoded tokens: " + prompt);
+    List<Integer> tokens = tokenizer.encode(prompt);
+    tokens.forEach(token -> System.out.print(token + " "));
+    System.out.println("\n");
+
+    // Decode
+    prompt = tokenizer.decode(tokens);
+    System.out.println("Decoded tokens: " + prompt);
   }
 
   private void tokenizeOpenAI() {
@@ -34,12 +56,13 @@ public class Tokenization {
     System.out.println("Number of tokens: " + nbOfTokens + "\n");
 
     // Encode
+    System.out.println("Encoded tokens: " + prompt);
     List<Integer> tokens = tokenizer.encode(prompt);
     tokens.forEach(token -> System.out.print(token + " "));
     System.out.println("\n");
 
     // Decode
     String prompt = tokenizer.decode(tokens);
-    System.out.println("Prompt: " + prompt);
+    System.out.println("Decoded tokens: " + prompt);
   }
 }

@@ -17,7 +17,7 @@
   </parent>
 
   <modules>
-    <module>token</module>
+<!--    <module>token</module>-->
   </modules>
 
 </project>
