@@ -1,6 +1,7 @@
 package org.agoncal.fascicle.langchain4j.rag.token;
 
 import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO_0301;
+import static dev.langchain4j.model.openai.OpenAiModelName.GPT_4;
 import dev.langchain4j.model.openai.OpenAiTokenizer;
 
 import java.util.List;
@@ -28,9 +29,9 @@ public class Tokenization {
 
   private void tokenizeOpenAIIsaacAsimov() {
     System.out.println("### tokenizeOpenAIIsaacAsimov");
-    OpenAiTokenizer tokenizer = new OpenAiTokenizer(GPT_3_5_TURBO_0301);
+    OpenAiTokenizer tokenizer = new OpenAiTokenizer(GPT_4);
 
-    String prompt = "Isaac Asimov is a writer and is a biochemist";
+    String prompt = "Isaac Asimov.";
 
     // Estimate
     int nbOfTokens = tokenizer.estimateTokenCountInText(prompt);
