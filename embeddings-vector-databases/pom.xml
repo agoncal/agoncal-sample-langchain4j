@@ -22,6 +22,7 @@
     <module>infinispan</module>
     <module>pgvector</module>
     <module>qdrant</module>
+    <module>token</module>
   </modules>
 
 </project>
