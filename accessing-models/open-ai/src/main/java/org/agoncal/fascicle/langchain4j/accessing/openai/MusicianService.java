@@ -4,9 +4,11 @@ import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.input.Prompt;
+import dev.langchain4j.model.moderation.Moderation;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiLanguageModel;
 import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
+import dev.langchain4j.model.openai.OpenAiModerationModel;
 import dev.langchain4j.model.output.FinishReason;
 import dev.langchain4j.model.output.Response;
 import dev.langchain4j.model.output.TokenUsage;
@@ -24,11 +26,12 @@ public class MusicianService {
   public static void main(String[] args) {
     MusicianService musicianService = new MusicianService();
 
-    musicianService.useOpenAiLanguageModel();
-    musicianService.useOpenAiLanguageModelPrompt();
-    musicianService.useOpenAiLanguageModelBuilder();
-    musicianService.useOpenAiChatModel();
-    musicianService.useOpenAiChatModelBuilder();
+//    musicianService.useOpenAiLanguageModel();
+//    musicianService.useOpenAiLanguageModelPrompt();
+//    musicianService.useOpenAiLanguageModelBuilder();
+//    musicianService.useOpenAiChatModel();
+//    musicianService.useOpenAiChatModelBuilder();
+    musicianService.useOpenAiModerationModel();
   }
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
@@ -135,5 +138,22 @@ public class MusicianService {
     Response<AiMessage> completion = model.generate(sysMsg, userMsg);
 
     System.out.println(completion);
+  }
+
+  // ###############################
+  // ### OPENAI MODERATION MODEL ###
+  // ###############################
+  public void useOpenAiModerationModel() {
+    System.out.println("### useOpenAiModerationModel");
+
+    // tag::adocModeration[]
+    OpenAiModerationModel model = OpenAiModerationModel.withApiKey(OPENAI_API_KEY);
+
+    Response<Moderation> completion = model.moderate("I want to kill all bass players.");
+
+    Moderation content = completion.content();
+
+    System.out.println(content);
+    // end::adocModeration[]
   }
 }
