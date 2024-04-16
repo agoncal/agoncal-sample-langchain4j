@@ -19,38 +19,51 @@
   <!-- end::adocSkip[] -->
 
   <properties>
+    <version.langchain4j>0.29.1</version.langchain4j>
     <maven.compiler.release>17</maven.compiler.release>
+    <version.exec.plugin>3.1.1</version.exec.plugin>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
   <!-- end::adocHeader[] -->
+  <!-- tag::adocDependencyManagement[] -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>dev.langchain4j</groupId>
+        <artifactId>langchain4j-bom</artifactId>
+        <version>${version.langchain4j}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <!-- end::adocDependencyManagement[] -->
   <!-- tag::adocDependencies[] -->
   <dependencies>
-    <!-- end::adocDependencies[] -->
-
-    <!-- Test -->
-    <!-- tag::adocTest[] -->
     <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.9.1</version>
-      <scope>test</scope>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-open-ai</artifactId>
     </dependency>
   </dependencies>
+  <!-- end::adocDependencies[] -->
 
+  <!-- tag::adocBuild[] -->
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M5</version>
-        <!-- tag::adocTestSkip[] -->
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>${version.exec.plugin}</version>
         <configuration>
-          <argLine>-Duser.language=en -Duser.country=EN</argLine>
+          <mainClass>org.agoncal.fascicle.langchain4j.accessing.openai.MusicianService</mainClass>
         </configuration>
-        <!-- end::adocTestSkip[] -->
       </plugin>
     </plugins>
   </build>
+<!-- end::adocBuild[] -->
 </project>
-  <!-- end::adocTest[] -->
