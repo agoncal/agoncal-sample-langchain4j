@@ -19,7 +19,7 @@
   <!-- end::adocSkip[] -->
 
   <properties>
-    <version.langchain4j>0.29.1</version.langchain4j>
+    <version.langchain4j>0.30.0</version.langchain4j>
     <maven.compiler.release>17</maven.compiler.release>
     <version.exec.plugin>3.1.1</version.exec.plugin>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,6 +48,23 @@
     <dependency>
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j-open-ai</artifactId>
+    </dependency>
+    <!-- LangChain4j -->
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-open-ai</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.tinylog</groupId>
+      <artifactId>slf4j-tinylog</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.tinylog</groupId>
+      <artifactId>tinylog-impl</artifactId>
     </dependency>
   </dependencies>
   <!-- end::adocDependencies[] -->

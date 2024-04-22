@@ -1,11 +1,13 @@
 .
 ├─ src
-│  ├─ main
-│  │  └─ java
-│  │      └─ org/agoncal/fascicle/beanvalidation/gettingstarted
-│  │          └─ Artist.java
-│  └─ test
-│     └─ java
-│         └─ org/agoncal/fascicle/beanvalidation/gettingstarted
-│             └─ ArtistTest.java
+│  ├─ main
+│  │  ├─ java
+│  │  │  └─ org/agoncal/fascicle/langchain4j/gettingstarted
+│  │  │       └─ Artist.java
+│  │  └─ resources
+│  │     └─ tinylog.properties
+│  └─ test
+│     └─ java
+│        └─ org/agoncal/fascicle/langchain4j/gettingstarted
+│             └─ ArtistTest.java
 └─ pom.xml
