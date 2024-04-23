@@ -1,9 +1,8 @@
 package org.agoncal.fascicle.langchain4j.gettingstarted;
 
-import dev.langchain4j.model.language.LanguageModel;
-import dev.langchain4j.model.openai.OpenAiLanguageModel;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
 import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
-import dev.langchain4j.model.output.Response;
 import static java.time.Duration.ofSeconds;
 
 // tag::adocSnippet[]
@@ -15,10 +14,13 @@ public class Artist {
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
 
-  // Constructors, getters, setters
+  public static void main(String[] args) {
+    Artist artist = new Artist("Nora", "Jemisin");
+    System.out.println(artist.generateBio());
+  }
 
   public String generateBio() {
-    LanguageModel model = OpenAiLanguageModel.builder()
+    ChatLanguageModel model = OpenAiChatModel.builder()
       .apiKey(OPENAI_API_KEY)
       .modelName(GPT_3_5_TURBO)
       .temperature(0.3)
@@ -27,15 +29,21 @@ public class Artist {
       .logResponses(true)
       .build();
 
-    String prompt = String.format("Write a short biography about {} {}", firstName, lastName);
+    String prompt = String.format("Write a short biography about %s %s", firstName, lastName);
 
-    Response<String> biography = model.generate(prompt);
-
-    this.bio = biography.content();
+    this.bio = model.generate(prompt);
     return bio;
   }
 
+  // Constructors, getters, setters
+
   // tag::adocSkip[]
+
+  public Artist(String firstName, String lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
   public String getFirstName() {
     return firstName;
   }
