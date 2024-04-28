@@ -18,9 +18,7 @@ public class MusicianService {
     musicianService.useHuggingFaceChatModel();
   }
 
-  private static final String AZURE_OPENAI_KEY = System.getenv("AZURE_OPENAI_KEY");
-  private static final String AZURE_OPENAI_ENDPOINT = System.getenv("AZURE_OPENAI_ENDPOINT");
-  private static final String AZURE_OPENAI_DEPLOYMENT_NAME = System.getenv("AZURE_OPENAI_DEPLOYMENT_NAME");
+  private static final String HF_API_KEY = System.getenv("HF_API_KEY");
 
   private static final String PROMPT = "When was the first Beatles album released?";
 
@@ -32,6 +30,7 @@ public class MusicianService {
 
     // tag::adocSnippet[]
     HuggingFaceChatModel model = HuggingFaceChatModel.builder()
+      .accessToken(HF_API_KEY)
       .temperature(0.3)
       .build();
     // end::adocSnippet[]
