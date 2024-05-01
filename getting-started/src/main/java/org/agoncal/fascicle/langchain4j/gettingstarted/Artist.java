@@ -16,10 +16,7 @@ public class Artist {
 
   public static void main(String[] args) {
     Artist artist = new Artist("Nora", "Jemisin");
-    System.out.println(artist.generateBio());
-  }
 
-  public String generateBio() {
     ChatLanguageModel model = OpenAiChatModel.builder()
       .apiKey(OPENAI_API_KEY)
       .modelName(GPT_3_5_TURBO)
@@ -29,7 +26,12 @@ public class Artist {
       .logResponses(true)
       .build();
 
-    String prompt = String.format("Write a short biography about %s %s", firstName, lastName);
+    System.out.println(artist.generateBio(model));
+  }
+
+  public String generateBio(ChatLanguageModel model) {
+
+    String prompt = String.format("Write a one sentence biography about %s %s", firstName, lastName);
 
     this.bio = model.generate(prompt);
     return bio;
