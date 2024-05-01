@@ -10,6 +10,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.time.Duration;
 
+// tag::adocSnippet[]
 @Testcontainers
 public class ArtistTest {
 
@@ -38,3 +39,4 @@ public class ArtistTest {
     assertTrue(bio.contains("Isaac Asimov"));
   }
 }
+// end::adocSnippet[]
