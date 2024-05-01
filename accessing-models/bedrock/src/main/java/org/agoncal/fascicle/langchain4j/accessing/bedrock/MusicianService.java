@@ -1,6 +1,6 @@
 package org.agoncal.fascicle.langchain4j.accessing.bedrock;
 
-import dev.langchain4j.model.bedrock.BedrockAnthropicMessageChatModel;
+import dev.langchain4j.model.bedrock.BedrockTitanChatModel;
 import software.amazon.awssdk.regions.Region;
 
 // tag::adocSkip[]
@@ -32,12 +32,15 @@ public class MusicianService {
     System.out.println("### useBedrockLanguageModelBuilder");
 
     // tag::adocSnippet[]
-    BedrockAnthropicMessageChatModel model = BedrockAnthropicMessageChatModel.builder()
+    BedrockTitanChatModel model = BedrockTitanChatModel.builder()
+      .temperature(0.9f)
+      .model(BedrockTitanChatModel.Types.TitanTextExpressV1.getValue())
       .build();
     // end::adocSnippet[]
 
     String completion = model.generate(PROMPT);
 
+    System.out.println(completion);
   }
 
   // ##########################
@@ -47,13 +50,12 @@ public class MusicianService {
     System.out.println("### useBedrockChatModelRequest");
 
     // tag::adocRequest[]
-    BedrockAnthropicMessageChatModel model = BedrockAnthropicMessageChatModel.builder()
+    BedrockTitanChatModel model = BedrockTitanChatModel.builder()
       .maxRetries(3)
       .topP(1.0f)
       .temperature(0.9f)
-      .model(BedrockAnthropicMessageChatModel.Types.AnthropicClaudeV2.getValue())
+      .model(BedrockTitanChatModel.Types.TitanTextExpressV1.getValue())
       .maxTokens(100)
-      .anthropicVersion("v2")
       .assistantPrompt("assistant prompt")
       .humanPrompt("human prompt")
       .region(Region.AF_SOUTH_1)
