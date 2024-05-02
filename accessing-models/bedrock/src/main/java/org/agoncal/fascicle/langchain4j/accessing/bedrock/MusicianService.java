@@ -1,6 +1,7 @@
 package org.agoncal.fascicle.langchain4j.accessing.bedrock;
 
 import dev.langchain4j.model.bedrock.BedrockTitanChatModel;
+import static dev.langchain4j.model.bedrock.BedrockTitanChatModel.Types.TitanTextExpressV1;
 import software.amazon.awssdk.regions.Region;
 
 // tag::adocSkip[]
@@ -16,7 +17,7 @@ public class MusicianService {
   public static void main(String[] args) {
     MusicianService musicianService = new MusicianService();
 
-    musicianService.useBedrockLanguageModelBuilder();
+    musicianService.useBedrockTitanChatModel();
   }
 
   private static final String AZURE_OPENAI_KEY = System.getenv("AZURE_OPENAI_KEY");
@@ -34,7 +35,7 @@ public class MusicianService {
     // tag::adocSnippet[]
     BedrockTitanChatModel model = BedrockTitanChatModel.builder()
       .temperature(0.9f)
-      .model(BedrockTitanChatModel.Types.TitanTextExpressV1.getValue())
+      .model(TitanTextExpressV1.getValue())
       .build();
     // end::adocSnippet[]
 
@@ -46,19 +47,14 @@ public class MusicianService {
   // ##########################
   // ### BEDROCK CHAT MODEL ###
   // ##########################
-  public void useBedrockChatModelRequest() {
-    System.out.println("### useBedrockChatModelRequest");
+  public void useBedrockTitanChatModel() {
+    System.out.println("### useBedrockTitanChatModel");
 
     // tag::adocRequest[]
     BedrockTitanChatModel model = BedrockTitanChatModel.builder()
-      .maxRetries(3)
-      .topP(1.0f)
       .temperature(0.9f)
-      .model(BedrockTitanChatModel.Types.TitanTextExpressV1.getValue())
-      .maxTokens(100)
-      .assistantPrompt("assistant prompt")
-      .humanPrompt("human prompt")
-      .region(Region.AF_SOUTH_1)
+      .model(TitanTextExpressV1.getValue())
+      .region(Region.US_EAST_1)
       .build();
     // end::adocRequest[]
 
