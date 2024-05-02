@@ -1,6 +1,6 @@
 package org.agoncal.fascicle.langchain4j.accessing.vertexai;
 
-import dev.langchain4j.model.vertexai.VertexAiChatModel;
+import dev.langchain4j.model.vertexai.VertexAiGeminiChatModel;
 
 // tag::adocSkip[]
 
@@ -31,9 +31,11 @@ public class MusicianService {
     System.out.println("### useVertexAiLanguageModelBuilder");
 
     // tag::adocSnippet[]
-    VertexAiChatModel model = VertexAiChatModel.builder()
-      .endpoint(AZURE_OPENAI_ENDPOINT)
-      .temperature(0.3)
+    VertexAiGeminiChatModel model = VertexAiGeminiChatModel.builder()
+      .project("langchain4j-fascicle-project")
+      .location("us-central1")
+      .modelName("gemini-1.0-pro")
+      .temperature(0.3f)
       .build();
     // end::adocSnippet[]
 
