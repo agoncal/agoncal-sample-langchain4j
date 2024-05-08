@@ -35,7 +35,7 @@ class AuthorServiceTest {
 
     AuthorService authorService = new AuthorService();
 
-    String bio = authorService.generateBio(model, 0);
+    String bio = authorService.getAuthorBiography(model, 0);
     assertTrue(bio.contains("Isaac Asimov"));
   }
 }
