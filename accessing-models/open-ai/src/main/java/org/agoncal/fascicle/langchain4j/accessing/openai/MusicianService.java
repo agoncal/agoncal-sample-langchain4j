@@ -10,6 +10,7 @@ import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.language.LanguageModel;
 import dev.langchain4j.model.language.StreamingLanguageModel;
 import dev.langchain4j.model.moderation.Moderation;
+import dev.langchain4j.model.moderation.ModerationModel;
 import dev.langchain4j.model.openai.*;
 
 import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
@@ -39,9 +40,9 @@ public class MusicianService {
 
 //    musicianService.useOpenAiChatTypeOfModel();
 //    musicianService.useOpenAiChatModelBuilder();
-    musicianService.useOpenAiStreamingChatTypeOfModel();
+//    musicianService.useOpenAiStreamingChatTypeOfModel();
 
-//    musicianService.useOpenAiModerationModel();
+    musicianService.useOpenAiModerationTypeOfModel();
   }
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
@@ -57,12 +58,14 @@ public class MusicianService {
     // tag::adocLanguageTypeOfModel[]
     LanguageModel model = OpenAiLanguageModel.withApiKey(OPENAI_API_KEY);
 
-    Response<String> completion = model.generate("When was the first Beatles album released?");
+    Response<String> response = model.generate("When was the first Beatles album released?");
 
-    System.out.println(completion.content());
+    String content = response.content();
+
+    System.out.println(content);
     // end::adocLanguageTypeOfModel[]
-    System.out.println(completion.finishReason());
-    System.out.println(completion.tokenUsage());
+    System.out.println(response.finishReason());
+    System.out.println(response.tokenUsage());
   }
 
   public void useOpenAiLanguageModel() {
@@ -70,11 +73,11 @@ public class MusicianService {
 
     OpenAiLanguageModel model = OpenAiLanguageModel.withApiKey(OPENAI_API_KEY);
 
-    Response<String> completion = model.generate("When was the first Beatles album released?");
+    Response<String> response = model.generate("When was the first Beatles album released?");
 
-    String content = completion.content();
-    FinishReason finishReason = completion.finishReason();
-    TokenUsage tokenUsage = completion.tokenUsage();
+    String content = response.content();
+    FinishReason finishReason = response.finishReason();
+    TokenUsage tokenUsage = response.tokenUsage();
 
     System.out.println(content);
     System.out.println(finishReason.name());
@@ -89,11 +92,11 @@ public class MusicianService {
     OpenAiLanguageModel model = OpenAiLanguageModel.withApiKey(OPENAI_API_KEY);
 
     Prompt prompt = new Prompt("When was the first Beatles album released?");
-    Response<String> completion = model.generate(prompt);
+    Response<String> response = model.generate(prompt);
 
-    String content = completion.content();
-    FinishReason finishReason = completion.finishReason();
-    TokenUsage tokenUsage = completion.tokenUsage();
+    String content = response.content();
+    FinishReason finishReason = response.finishReason();
+    TokenUsage tokenUsage = response.tokenUsage();
 
     System.out.println(content);
     System.out.println(finishReason.name());
@@ -114,11 +117,11 @@ public class MusicianService {
       .build();
     // end::adocSnippet[]
 
-    Response<String> completion = model.generate(PROMPT);
+    Response<String> response = model.generate(PROMPT);
 
-    System.out.println(completion.content());
-    System.out.println(completion.finishReason());
-    System.out.println(completion.tokenUsage());
+    System.out.println(response.content());
+    System.out.println(response.finishReason());
+    System.out.println(response.tokenUsage());
   }
 
   // #######################################
@@ -159,9 +162,9 @@ public class MusicianService {
     // tag::adocChatTypeOfModel[]
     ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
-    String completion = model.generate("What inspired the author to start writing?");
+    String content = model.generate("What inspired the author to start writing?");
 
-    System.out.println(completion);
+    System.out.println(content);
     // end::adocChatTypeOfModel[]
   }
 
@@ -188,9 +191,9 @@ public class MusicianService {
 
     SystemMessage sysMsg = new SystemMessage("You are a music expert.");
     UserMessage userMsg = new UserMessage("When was the first Rolling Stones album released?");
-    Response<AiMessage> completion = model.generate(sysMsg, userMsg);
+    Response<AiMessage> response = model.generate(sysMsg, userMsg);
 
-    System.out.println(completion);
+    System.out.println(response);
   }
 
   // ###################################
@@ -225,17 +228,17 @@ public class MusicianService {
   // ###############################
   // ### OPENAI MODERATION MODEL ###
   // ###############################
-  public void useOpenAiModerationModel() {
-    System.out.println("### useOpenAiModerationModel");
+  public void useOpenAiModerationTypeOfModel() {
+    System.out.println("### useOpenAiModerationTypeOfModel");
 
-    // tag::adocModeration[]
-    OpenAiModerationModel model = OpenAiModerationModel.withApiKey(OPENAI_API_KEY);
+    // tag::adocModerationTypeOfModel[]
+    ModerationModel model = OpenAiModerationModel.withApiKey(OPENAI_API_KEY);
 
-    Response<Moderation> completion = model.moderate("I want to kill all bass players.");
+    Response<Moderation> response = model.moderate("I want to kill all bass players.");
 
-    Moderation content = completion.content();
+    Moderation content = response.content();
 
     System.out.println(content);
-    // end::adocModeration[]
+    // end::adocModerationTypeOfModel[]
   }
 }
