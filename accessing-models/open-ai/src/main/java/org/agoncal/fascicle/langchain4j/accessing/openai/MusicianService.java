@@ -1,11 +1,13 @@
 package org.agoncal.fascicle.langchain4j.accessing.openai;
 
+import dev.langchain4j.data.image.Image;
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.StreamingResponseHandler;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.chat.StreamingChatLanguageModel;
+import dev.langchain4j.model.image.ImageModel;
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.language.LanguageModel;
 import dev.langchain4j.model.language.StreamingLanguageModel;
@@ -42,7 +44,8 @@ public class MusicianService {
 //    musicianService.useOpenAiChatModelBuilder();
 //    musicianService.useOpenAiStreamingChatTypeOfModel();
 
-    musicianService.useOpenAiModerationTypeOfModel();
+//    musicianService.useOpenAiModerationTypeOfModel();
+    musicianService.useOpenAiImageTypeOfModel();
   }
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
@@ -240,5 +243,22 @@ public class MusicianService {
 
     System.out.println(content);
     // end::adocModerationTypeOfModel[]
+  }
+
+  // ##########################
+  // ### OPENAI IMAGE MODEL ###
+  // ##########################
+  public void useOpenAiImageTypeOfModel() {
+    System.out.println("### useOpenAiImageTypeOfModel");
+
+    // tag::adocImageTypeOfModel[]
+    ImageModel model = OpenAiImageModel.withApiKey(OPENAI_API_KEY);
+
+    Response<Image> response = model.generate("Jazz album cover showing all main Jazz artist, à la Sergent Pepper");
+
+    Image content = response.content();
+
+    System.out.println(content.url());
+    // end::adocImageTypeOfModel[]
   }
 }
