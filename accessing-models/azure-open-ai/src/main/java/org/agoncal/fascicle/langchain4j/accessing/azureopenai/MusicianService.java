@@ -135,6 +135,22 @@ public class MusicianService {
     System.out.println(completion);
   }
 
+  public void useAzureOpenAiChatModelSimple() {
+    System.out.println("### useAzureOpenAiChatModelSimple");
+
+    // tag::adocSimple[]
+    AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
+      .apiKey(AZURE_OPENAI_KEY)
+      .endpoint(AZURE_OPENAI_ENDPOINT)
+      .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
+      .build();
+    // end::adocSimple[]
+
+    String completion = model.generate("When was the first Rolling Stones album released?");
+
+    System.out.println(completion);
+  }
+
   public void useAzureOpenAiChatModelAiMessage() {
     System.out.println("### useAzureOpenAiChatModelAiMessage");
 
