@@ -4,6 +4,7 @@ import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.input.Prompt;
+import dev.langchain4j.model.language.LanguageModel;
 import dev.langchain4j.model.moderation.Moderation;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiLanguageModel;
@@ -26,12 +27,13 @@ public class MusicianService {
   public static void main(String[] args) {
     MusicianService musicianService = new MusicianService();
 
+    musicianService.useOpenAiLanguageTypeOfModel();
 //    musicianService.useOpenAiLanguageModel();
 //    musicianService.useOpenAiLanguageModelPrompt();
 //    musicianService.useOpenAiLanguageModelBuilder();
 //    musicianService.useOpenAiChatModel();
 //    musicianService.useOpenAiChatModelBuilder();
-    musicianService.useOpenAiModerationModel();
+//    musicianService.useOpenAiModerationModel();
   }
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
@@ -41,6 +43,23 @@ public class MusicianService {
   // #############################
   // ### OPENAI LANGUAGE MODEL ###
   // #############################
+  public void useOpenAiLanguageTypeOfModel() {
+    System.out.println("### useOpenAiLanguageTypeOfModel");
+
+    // tag::adocTypeOfModel[]
+    LanguageModel model = OpenAiLanguageModel.builder()
+      .apiKey(OPENAI_API_KEY)
+      .temperature(0.3)
+      .build();
+    // end::adocTypeOfModel[]
+
+    Response<String> completion = model.generate(PROMPT);
+
+    System.out.println(completion.content());
+    System.out.println(completion.finishReason());
+    System.out.println(completion.tokenUsage());
+  }
+
   public void useOpenAiLanguageModel() {
     System.out.println("### useOpenAiLanguageModel");
 
