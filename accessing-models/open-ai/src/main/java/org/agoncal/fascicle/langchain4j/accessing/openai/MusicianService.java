@@ -30,7 +30,7 @@ public class MusicianService {
   public static void main(String[] args) {
     MusicianService musicianService = new MusicianService();
 
-//    musicianService.useOpenAiLanguageTypeOfModel();
+    musicianService.useOpenAiLanguageTypeOfModel();
     musicianService.useOpenAiStreamingLanguageTypeOfModel();
 //    musicianService.useOpenAiLanguageModel();
 //    musicianService.useOpenAiLanguageModelPrompt();
@@ -51,10 +51,7 @@ public class MusicianService {
     System.out.println("### useOpenAiLanguageTypeOfModel");
 
     // tag::adocLanguageTypeOfModel[]
-    LanguageModel model = OpenAiLanguageModel.builder()
-      .apiKey(OPENAI_API_KEY)
-      .temperature(0.3)
-      .build();
+    LanguageModel model = OpenAiLanguageModel.withApiKey(OPENAI_API_KEY);
 
     Response<String> completion = model.generate("When was the first Beatles album released?");
 
@@ -127,10 +124,7 @@ public class MusicianService {
     System.out.println("### useOpenAiStreamingLanguageTypeOfModel");
 
     // tag::adocStreamingLanguageTypeOfModel[]
-    StreamingLanguageModel model = OpenAiStreamingLanguageModel.builder()
-      .apiKey(OPENAI_API_KEY)
-      .temperature(0.3)
-      .build();
+    StreamingLanguageModel model = OpenAiStreamingLanguageModel.withApiKey(OPENAI_API_KEY);
 
     model.generate("Who are some influential Jazz musicians?", new StreamingResponseHandler<>() {
 
