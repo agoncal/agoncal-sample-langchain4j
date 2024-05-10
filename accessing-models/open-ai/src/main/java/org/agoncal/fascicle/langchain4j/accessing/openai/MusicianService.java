@@ -3,13 +3,16 @@ package org.agoncal.fascicle.langchain4j.accessing.openai;
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.model.StreamingResponseHandler;
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.language.LanguageModel;
+import dev.langchain4j.model.language.StreamingLanguageModel;
 import dev.langchain4j.model.moderation.Moderation;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiLanguageModel;
 import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
 import dev.langchain4j.model.openai.OpenAiModerationModel;
+import dev.langchain4j.model.openai.OpenAiStreamingLanguageModel;
 import dev.langchain4j.model.output.FinishReason;
 import dev.langchain4j.model.output.Response;
 import dev.langchain4j.model.output.TokenUsage;
@@ -27,7 +30,8 @@ public class MusicianService {
   public static void main(String[] args) {
     MusicianService musicianService = new MusicianService();
 
-    musicianService.useOpenAiLanguageTypeOfModel();
+//    musicianService.useOpenAiLanguageTypeOfModel();
+    musicianService.useOpenAiStreamingLanguageTypeOfModel();
 //    musicianService.useOpenAiLanguageModel();
 //    musicianService.useOpenAiLanguageModelPrompt();
 //    musicianService.useOpenAiLanguageModelBuilder();
@@ -46,16 +50,16 @@ public class MusicianService {
   public void useOpenAiLanguageTypeOfModel() {
     System.out.println("### useOpenAiLanguageTypeOfModel");
 
-    // tag::adocTypeOfModel[]
+    // tag::adocLanguageTypeOfModel[]
     LanguageModel model = OpenAiLanguageModel.builder()
       .apiKey(OPENAI_API_KEY)
       .temperature(0.3)
       .build();
-    // end::adocTypeOfModel[]
 
-    Response<String> completion = model.generate(PROMPT);
+    Response<String> completion = model.generate("When was the first Beatles album released?");
 
     System.out.println(completion.content());
+    // end::adocLanguageTypeOfModel[]
     System.out.println(completion.finishReason());
     System.out.println(completion.tokenUsage());
   }
@@ -114,6 +118,38 @@ public class MusicianService {
     System.out.println(completion.content());
     System.out.println(completion.finishReason());
     System.out.println(completion.tokenUsage());
+  }
+
+  // #######################################
+  // ### OPENAI STREAMING LANGUAGE MODEL ###
+  // #######################################
+  public void useOpenAiStreamingLanguageTypeOfModel() {
+    System.out.println("### useOpenAiStreamingLanguageTypeOfModel");
+
+    // tag::adocStreamingLanguageTypeOfModel[]
+    StreamingLanguageModel model = OpenAiStreamingLanguageModel.builder()
+      .apiKey(OPENAI_API_KEY)
+      .temperature(0.3)
+      .build();
+
+    model.generate("Who are some influential Jazz musicians?", new StreamingResponseHandler<>() {
+
+      @Override
+      public void onNext(String token) {
+        System.out.print(token);
+      }
+
+      @Override
+      public void onComplete(Response<String> response) {
+        System.out.println("Streaming completed: " + response);
+      }
+
+      @Override
+      public void onError(Throwable error) {
+        error.printStackTrace();
+      }
+    });
+    // tag::adocStreamingLanguageTypeOfModel[]
   }
 
   // #########################
