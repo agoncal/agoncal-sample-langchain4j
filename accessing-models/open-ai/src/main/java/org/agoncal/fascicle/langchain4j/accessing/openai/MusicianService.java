@@ -4,15 +4,16 @@ import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.StreamingResponseHandler;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.chat.StreamingChatLanguageModel;
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.language.LanguageModel;
 import dev.langchain4j.model.language.StreamingLanguageModel;
 import dev.langchain4j.model.moderation.Moderation;
-import dev.langchain4j.model.openai.OpenAiChatModel;
-import dev.langchain4j.model.openai.OpenAiLanguageModel;
+import dev.langchain4j.model.openai.*;
+
 import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
-import dev.langchain4j.model.openai.OpenAiModerationModel;
-import dev.langchain4j.model.openai.OpenAiStreamingLanguageModel;
+
 import dev.langchain4j.model.output.FinishReason;
 import dev.langchain4j.model.output.Response;
 import dev.langchain4j.model.output.TokenUsage;
@@ -30,13 +31,16 @@ public class MusicianService {
   public static void main(String[] args) {
     MusicianService musicianService = new MusicianService();
 
-    musicianService.useOpenAiLanguageTypeOfModel();
-    musicianService.useOpenAiStreamingLanguageTypeOfModel();
+//    musicianService.useOpenAiLanguageTypeOfModel();
 //    musicianService.useOpenAiLanguageModel();
 //    musicianService.useOpenAiLanguageModelPrompt();
 //    musicianService.useOpenAiLanguageModelBuilder();
-//    musicianService.useOpenAiChatModel();
+//    musicianService.useOpenAiStreamingLanguageTypeOfModel();
+
+//    musicianService.useOpenAiChatTypeOfModel();
 //    musicianService.useOpenAiChatModelBuilder();
+    musicianService.useOpenAiStreamingChatTypeOfModel();
+
 //    musicianService.useOpenAiModerationModel();
   }
 
@@ -149,16 +153,16 @@ public class MusicianService {
   // #########################
   // ### OPENAI CHAT MODEL ###
   // #########################
-  public void useOpenAiChatModel() {
-    System.out.println("### useOpenAiChatModel");
+  public void useOpenAiChatTypeOfModel() {
+    System.out.println("### useOpenAiChatTypeOfModel");
 
-    // tag::adocSimple[]
-    OpenAiChatModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+    // tag::adocChatTypeOfModel[]
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
-    String completion = model.generate("When was the first Rolling Stones album released?");
+    String completion = model.generate("What inspired the author to start writing?");
 
     System.out.println(completion);
-    // end::adocSimple[]
+    // end::adocChatTypeOfModel[]
   }
 
   public void useOpenAiChatModelBuilder() {
@@ -187,6 +191,35 @@ public class MusicianService {
     Response<AiMessage> completion = model.generate(sysMsg, userMsg);
 
     System.out.println(completion);
+  }
+
+  // ###################################
+  // ### OPENAI STREAMING CHAT MODEL ###
+  // ###################################
+  public void useOpenAiStreamingChatTypeOfModel() {
+    System.out.println("### useOpenAiStreamingChatTypeOfModel");
+
+    // tag::adocStreamingChatTypeOfModel[]
+    StreamingChatLanguageModel model = OpenAiStreamingChatModel.withApiKey(OPENAI_API_KEY);
+
+    model.generate("What are some common formats and sizes of video tapes?", new StreamingResponseHandler<>() {
+
+      @Override
+      public void onNext(String token) {
+        System.out.print(token);
+      }
+
+      @Override
+      public void onComplete(Response<AiMessage> response) {
+        System.out.println("Streaming completed: " + response);
+      }
+
+      @Override
+      public void onError(Throwable error) {
+        error.printStackTrace();
+      }
+    });
+    // end::adocStreamingChatTypeOfModel[]
   }
 
   // ###############################
