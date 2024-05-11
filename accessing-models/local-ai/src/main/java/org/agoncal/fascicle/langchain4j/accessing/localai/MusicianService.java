@@ -32,6 +32,8 @@ public class MusicianService {
 
     // tag::adocSnippet[]
     LocalAiChatModel model = LocalAiChatModel.builder()
+      .baseUrl("http://localhost:8080")
+      .modelName("ggml-gpt4all-j")
       .temperature(0.3)
       .build();
     // end::adocSnippet[]
