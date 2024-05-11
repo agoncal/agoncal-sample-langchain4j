@@ -21,6 +21,8 @@ import dev.langchain4j.model.output.FinishReason;
 import dev.langchain4j.model.output.Response;
 import dev.langchain4j.model.output.TokenUsage;
 
+import java.time.Duration;
+
 // tag::adocSkip[]
 
 /**
@@ -49,7 +51,7 @@ public class MusicianService {
   }
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
-
+  private static final String OPENAI_ORGANIZATION = "Dummy org";
   private static final String PROMPT = "When was the first Beatles album released?";
 
   // #############################
@@ -171,16 +173,37 @@ public class MusicianService {
     // end::adocChatTypeOfModel[]
   }
 
+  public void useOpenAiSimpleConf() {
+    System.out.println("### useOpenAiSimpleConf");
+
+    // tag::adocSimpleConf[]
+    OpenAiChatModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+    // end::adocSimpleConf[]
+
+    String content = model.generate("What inspired the author to start writing?");
+
+    System.out.println(content);
+  }
+
   public void useOpenAiChatModelBuilder() {
     System.out.println("### useOpenAiChatModelBuilder");
 
+    // tag::adocRichConf[]
     OpenAiChatModel model = OpenAiChatModel.builder()
       .apiKey(OPENAI_API_KEY)
+      .organizationId(OPENAI_ORGANIZATION)
       .modelName(GPT_3_5_TURBO)
+      .frequencyPenalty(0.5)
       .temperature(0.9)
+      .maxRetries(3)
+      .maxTokens(150)
+      .topP(1.0)
+      .seed(42)
+      .timeout(Duration.ofSeconds(30))
       .logRequests(true)
       .logResponses(true)
       .build();
+    // end::adocRichConf[]
 
     String completion = model.generate("When was the first Rolling Stones album released?");
 
