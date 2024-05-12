@@ -2,13 +2,14 @@ package org.agoncal.fascicle.langchain4j.rag.token;
 
 import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO_0301;
 import static dev.langchain4j.model.openai.OpenAiModelName.GPT_4;
+
 import dev.langchain4j.model.openai.OpenAiTokenizer;
 
 import java.util.List;
 
 public class Tokenization {
 
-  // tag::adocSnippet[]
+  // tag::adocPrompt[]
   String prompt = """
     Isaac Asimov (1920-1992), a Russian-born American author and biochemist,
     achieved renown as a prolific science fiction writer and science popularizer.
@@ -19,7 +20,7 @@ public class Tokenization {
     and essays that demystified complex scientific concepts for a broad audience,
     leaving an enduring legacy in both literature and science education.
     """;
-  // end::adocSnippet[]
+  // end::adocPrompt[]
 
   public static void main(String[] args) {
     Tokenization tokenization = new Tokenization();
@@ -29,23 +30,31 @@ public class Tokenization {
 
   private void tokenizeOpenAIIsaacAsimov() {
     System.out.println("### tokenizeOpenAIIsaacAsimov");
+    // tag::adocTokenize[]
     OpenAiTokenizer tokenizer = new OpenAiTokenizer(GPT_4);
 
     String prompt = "Isaac Asimov.";
 
     // Estimate
     int nbOfTokens = tokenizer.estimateTokenCountInText(prompt);
+    // tag::adocSkip[]
     System.out.println("Number of tokens: " + nbOfTokens + "\n");
+    // end::adocSkip[]
 
     // Encode
+    // tag::adocSkip[]
     System.out.println("Encoded tokens: " + prompt);
+    // end::adocSkip[]
     List<Integer> tokens = tokenizer.encode(prompt);
     tokens.forEach(token -> System.out.print(token + " "));
+    // tag::adocSkip[]
     System.out.println("\n");
+    // end::adocSkip[]
 
     // Decode
     prompt = tokenizer.decode(tokens);
     System.out.println("Decoded tokens: " + prompt);
+    // end::adocTokenize[]
   }
 
   private void tokenizeOpenAI() {
