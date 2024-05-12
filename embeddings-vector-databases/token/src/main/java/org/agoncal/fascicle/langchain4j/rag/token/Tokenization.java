@@ -53,7 +53,9 @@ public class Tokenization {
 
     // Decode
     prompt = tokenizer.decode(tokens);
+    // tag::adocSkip[]
     System.out.println("Decoded tokens: " + prompt);
+    // end::adocSkip[]
     // end::adocTokenize[]
   }
 
