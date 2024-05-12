@@ -24,7 +24,8 @@ public class Tokenization {
 
   public static void main(String[] args) {
     Tokenization tokenization = new Tokenization();
-    tokenization.tokenizeOpenAIIsaacAsimov();
+//    tokenization.tokenizeOpenAIIsaacAsimov();
+    tokenization.tokenizeOpenAIIsaacAsimovLong();
 //    tokenization.tokenizeOpenAI();
   }
 
@@ -35,13 +36,13 @@ public class Tokenization {
 
     String prompt = "Isaac Asimov.";
 
-    // Estimate
+    // Number of tokens: 6
     int nbOfTokens = tokenizer.estimateTokenCountInText(prompt);
     // tag::adocSkip[]
     System.out.println("Number of tokens: " + nbOfTokens + "\n");
     // end::adocSkip[]
 
-    // Encode
+    // Encoded tokens: 3957 65805 1666 318 869 13
     // tag::adocSkip[]
     System.out.println("Encoded tokens: " + prompt);
     // end::adocSkip[]
@@ -51,12 +52,43 @@ public class Tokenization {
     System.out.println("\n");
     // end::adocSkip[]
 
-    // Decode
+    // Decoded tokens: Isaac Asimov.
     prompt = tokenizer.decode(tokens);
     // tag::adocSkip[]
     System.out.println("Decoded tokens: " + prompt);
     // end::adocSkip[]
     // end::adocTokenize[]
+  }
+
+  private void tokenizeOpenAIIsaacAsimovLong() {
+    System.out.println("### tokenizeOpenAIIsaacAsimovLong");
+    // tag::adocTokenizeLong[]
+    OpenAiTokenizer tokenizer = new OpenAiTokenizer(GPT_4);
+
+    String prompt = "Isaac Asimov is a writer.";
+
+    // Number of tokens: 9
+    int nbOfTokens = tokenizer.estimateTokenCountInText(prompt);
+    // tag::adocSkip[]
+    System.out.println("Number of tokens: " + nbOfTokens + "\n");
+    // end::adocSkip[]
+
+    // Encoded tokens: 3957 65805 1666 318 869 374 264 7061 13
+    // tag::adocSkip[]
+    System.out.println("Encoded tokens: " + prompt);
+    // end::adocSkip[]
+    List<Integer> tokens = tokenizer.encode(prompt);
+    tokens.forEach(token -> System.out.print(token + " "));
+    // tag::adocSkip[]
+    System.out.println("\n");
+    // end::adocSkip[]
+
+    // Decoded tokens: Isaac Asimov is a writer.
+    prompt = tokenizer.decode(tokens);
+    // tag::adocSkip[]
+    System.out.println("Decoded tokens: " + prompt);
+    // end::adocSkip[]
+    // end::adocTokenizeLong[]
   }
 
   private void tokenizeOpenAI() {
