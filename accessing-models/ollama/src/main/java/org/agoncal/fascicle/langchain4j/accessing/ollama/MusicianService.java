@@ -33,7 +33,7 @@ public class MusicianService {
   private static final String PROMPT = "When was the first Beatles album released?";
 
   // #############################
-  // ### OPENAI LANGUAGE MODEL ###
+  // ### OLLAMA LANGUAGE MODEL ###
   // #############################
   public void useOllamaLanguageModel() {
     System.out.println("### useOpenAiLanguageModel");
@@ -95,7 +95,7 @@ public class MusicianService {
   }
 
   // #########################
-  // ### OPENAI CHAT MODEL ###
+  // ### OLLAMA CHAT MODEL ###
   // #########################
   public void useOllamaChatModel() {
     System.out.println("### useOpenAiChatModel");
@@ -110,10 +110,13 @@ public class MusicianService {
   public void useOllamaChatModelBuilder() {
     System.out.println("### useOpenAiChatModelBuilder");
 
+    // tag::adocChatModel[]
     OllamaChatModel model = OllamaChatModel.builder()
-//      .modelName(GPT_3_5_TURBO)
+      .modelName("llama")
       .temperature(0.9)
+      .maxRetries(2)
       .build();
+    // end::adocChatModel[]
 
     String completion = model.generate("When was the first Rolling Stones album released?");
 

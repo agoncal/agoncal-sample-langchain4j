@@ -20,7 +20,6 @@
     <module>azure-open-ai</module>
     <module>bedrock</module>
     <module>hugging-face</module>
-    <module>local-ai</module>
     <module>mistral-ai</module>
     <module>ollama</module>
     <module>open-ai</module>
