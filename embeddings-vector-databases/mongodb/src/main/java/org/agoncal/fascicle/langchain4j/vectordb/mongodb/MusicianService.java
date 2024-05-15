@@ -1,4 +1,4 @@
-package org.agoncal.fascicle.langchain4j.vectordb.redis;
+package org.agoncal.fascicle.langchain4j.vectordb.mongodb;
 
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
