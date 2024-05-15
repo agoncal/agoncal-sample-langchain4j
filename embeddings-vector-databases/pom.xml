@@ -17,11 +17,15 @@
   </parent>
 
   <modules>
+    <module>azure-ai-search</module>
     <module>cassandra</module>
-    <module>chroma</module>
+    <module>elasticsearch</module>
     <module>infinispan</module>
+    <module>mongodb</module>
+    <module>neo4j</module>
     <module>pgvector</module>
     <module>qdrant</module>
+    <module>redis</module>
     <module>token</module>
   </modules>
 

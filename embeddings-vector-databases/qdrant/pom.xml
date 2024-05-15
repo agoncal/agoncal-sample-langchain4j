@@ -26,12 +26,12 @@
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j-qdrant</artifactId>
     </dependency>
+    <!-- end::adocSnippet[] -->
     <dependency>
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
       <version>${version.langchain4j}</version>
     </dependency>
-    <!-- end::adocSnippet[] -->
     <!-- Other -->
     <dependency>
       <groupId>org.tinylog</groupId>
