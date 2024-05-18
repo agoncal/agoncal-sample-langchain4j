@@ -12,12 +12,13 @@
   <modules>
     <module>accessing-models</module>
     <module>advanced</module>
-    <module>chatting-models</module>
     <module>embeddings-vector-databases</module>
     <module>extending-prompts</module>
     <module>first-look</module>
     <module>getting-started</module>
     <module>integrating</module>
+    <module>invoking-models</module>
+    <module>processing-documents</module>
     <module>putting-together</module>
     <module>rag</module>
     <module>testing-debugging</module>

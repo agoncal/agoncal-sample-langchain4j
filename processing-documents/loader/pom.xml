@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.agoncal.fascicle.langchain4j.chatting-models</groupId>
-  <artifactId>memory</artifactId>
+  <groupId>org.agoncal.fascicle.langchain4j.processing-documents</groupId>
+  <artifactId>loader</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: Chatting with Models :: Memory</name>
+  <name>LangChain4j :: Processing Documents :: Loader</name>
 
   <parent>
     <groupId>org.agoncal.fascicle.langchain4j</groupId>
-    <artifactId>chatting-models</artifactId>
+    <artifactId>processing-documents</artifactId>
     <version>1.0</version>
   </parent>
 

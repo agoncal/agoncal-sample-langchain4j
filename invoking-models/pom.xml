@@ -5,9 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.agoncal.fascicle.langchain4j</groupId>
-  <artifactId>chatting-models</artifactId>
+  <artifactId>invoking-models</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: Chatting with Models</name>
+  <name>LangChain4j :: Invoking Models</name>
   <packaging>pom</packaging>
 
   <parent>
