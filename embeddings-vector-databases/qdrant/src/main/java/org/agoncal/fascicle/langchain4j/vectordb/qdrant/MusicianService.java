@@ -53,7 +53,6 @@ public class MusicianService {
 
     System.out.println(embeddingMatch.score());
     System.out.println(embeddingMatch.embedded().text());
-    // end::adocSnippet[]
   }
 
   public void useQdrantToStoreEmbeddingsComplex() {
