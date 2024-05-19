@@ -19,6 +19,7 @@
   <modules>
     <module>loader</module>
     <module>parser</module>
+    <module>transformer</module>
   </modules>
 
 </project>
