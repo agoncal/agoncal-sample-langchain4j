@@ -25,11 +25,18 @@
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j-azure-open-ai</artifactId>
     </dependency>
-    <!-- Other -->
-<!--    <dependency>-->
-<!--      <groupId>com.squareup.okhttp3</groupId>-->
-<!--      <artifactId>okhttp</artifactId>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-document-parser-apache-pdfbox</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-document-parser-apache-tika</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-document-parser-apache-poi</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.tinylog</groupId>
       <artifactId>slf4j-tinylog</artifactId>
