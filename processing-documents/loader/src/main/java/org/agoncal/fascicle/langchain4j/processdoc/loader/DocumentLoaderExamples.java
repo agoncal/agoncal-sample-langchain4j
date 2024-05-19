@@ -4,11 +4,11 @@ import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.DocumentLoader;
 import dev.langchain4j.data.document.loader.FileSystemDocumentLoader;
 import dev.langchain4j.data.document.loader.UrlDocumentLoader;
-import dev.langchain4j.data.document.parser.apache.tika.ApacheTikaDocumentParser;
+import dev.langchain4j.data.document.loader.azure.storage.blob.AzureBlobStorageDocumentLoader;
+import dev.langchain4j.data.document.parser.TextDocumentParser;
 import dev.langchain4j.data.document.source.FileSystemSource;
 import dev.langchain4j.data.document.source.UrlSource;
 import dev.langchain4j.data.document.source.azure.storage.blob.AzureBlobStorageSource;
-import dev.langchain4j.data.document.loader.azure.storage.blob.AzureBlobStorageDocumentLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,10 +23,10 @@ public class DocumentLoaderExamples {
   private static final Logger log = LoggerFactory.getLogger(DocumentLoaderExamples.class);
 
   public static void main(String[] args) throws MalformedURLException {
-//    loadFromDocumentLoaderFile();
-//    loadFromDocumentLoaderURL();
+    loadFromDocumentLoaderFile();
+    loadFromDocumentLoaderURL();
 //    loadFromDocumentLoaderAzure();
-//    loadFromFileSystemDocumentLoader();
+    loadFromFileSystemDocumentLoader();
     loadFromUrlDocumentLoader();
 //    loadFromAzureDocumentLoader();
   }
@@ -35,7 +35,7 @@ public class DocumentLoaderExamples {
     // tag::adocLoadFromDocumentLoaderFile[]
     Path documentPath = toPath("data/bio-ella-fitzgerald.txt");
 
-    Document document = DocumentLoader.load(new FileSystemSource(documentPath), new ApacheTikaDocumentParser());
+    Document document = DocumentLoader.load(new FileSystemSource(documentPath), new TextDocumentParser());
 
     log.info(document.metadata(Document.FILE_NAME));
     log.info(document.metadata(Document.ABSOLUTE_DIRECTORY_PATH));
@@ -47,7 +47,7 @@ public class DocumentLoaderExamples {
     // tag::adocLoadFromDocumentLoaderURL[]
     URL documentUrl = new URL("https://raw.githubusercontent.com/agoncal/agoncal-sample-langchain4j/main/processing-documents/loader/src/main/resources/data/bio-duke-ellington.txt");
 
-    Document document = DocumentLoader.load(new UrlSource(documentUrl), new ApacheTikaDocumentParser());
+    Document document = DocumentLoader.load(new UrlSource(documentUrl), new TextDocumentParser());
 
     log.info(document.metadata(Document.URL));
     log.info(document.text().trim().substring(0, 50));
@@ -56,7 +56,7 @@ public class DocumentLoaderExamples {
 
   private static void loadFromDocumentLoaderAzure() {
     // tag::adocLoadFromDocumentLoaderAzure[]
-    Document document = DocumentLoader.load(new AzureBlobStorageSource(null, null, null, null, null), new ApacheTikaDocumentParser());
+    Document document = DocumentLoader.load(new AzureBlobStorageSource(null, null, null, null, null), new TextDocumentParser());
 
     log.info(document.metadata("source"));
     log.info(document.metadata("azure_storage_blob_creation_time"));
@@ -70,7 +70,7 @@ public class DocumentLoaderExamples {
     // tag::adocLoadFromFileSystemDocumentLoader[]
     Path documentPath = toPath("data/bio-ella-fitzgerald.txt");
 
-    Document document = FileSystemDocumentLoader.loadDocument(documentPath, new ApacheTikaDocumentParser());
+    Document document = FileSystemDocumentLoader.loadDocument(documentPath, new TextDocumentParser());
 
     log.info(document.metadata(Document.FILE_NAME));
     log.info(document.metadata(Document.ABSOLUTE_DIRECTORY_PATH));
@@ -82,7 +82,7 @@ public class DocumentLoaderExamples {
     // tag::loadFromUrlDocumentLoader[]
     URL documentUrl = new URL("https://raw.githubusercontent.com/agoncal/agoncal-sample-langchain4j/main/processing-documents/loader/src/main/resources/data/bio-duke-ellington.txt");
 
-    Document document = UrlDocumentLoader.load(documentUrl, new ApacheTikaDocumentParser());
+    Document document = UrlDocumentLoader.load(documentUrl, new TextDocumentParser());
 
     log.info(document.metadata(Document.URL));
     log.info(document.text().trim().substring(0, 50));
@@ -93,7 +93,7 @@ public class DocumentLoaderExamples {
     // tag::loadFromAzureDocumentLoader[]
     URL documentUrl = new URL("https://en.wikipedia.org/wiki/Ella_Fitzgerald");
 
-    Document document = new AzureBlobStorageDocumentLoader(null).loadDocument(null, null, new ApacheTikaDocumentParser());
+    Document document = new AzureBlobStorageDocumentLoader(null).loadDocument(null, null, new TextDocumentParser());
 
     log.info(document.metadata("source"));
     log.info(document.metadata("azure_storage_blob_creation_time"));
