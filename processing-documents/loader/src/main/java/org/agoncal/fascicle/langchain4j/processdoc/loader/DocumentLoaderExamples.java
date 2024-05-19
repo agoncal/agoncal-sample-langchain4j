@@ -22,13 +22,13 @@ public class DocumentLoaderExamples {
 
   private static final Logger log = LoggerFactory.getLogger(DocumentLoaderExamples.class);
 
-  public static void main(String[] args) {
-    loadFromDocumentLoaderFile();
-    loadFromFileSystemDocumentLoader();
-//    loadMultipleDocuments();
-//    loadMultipleDocumentsWithGlob();
-//    loadMultipleDocumentsRecursively();
-//    loadUsingParserFromSPI();
+  public static void main(String[] args) throws MalformedURLException {
+//    loadFromDocumentLoaderFile();
+//    loadFromDocumentLoaderURL();
+//    loadFromDocumentLoaderAzure();
+//    loadFromFileSystemDocumentLoader();
+    loadFromUrlDocumentLoader();
+//    loadFromAzureDocumentLoader();
   }
 
   private static void loadFromDocumentLoaderFile() {
@@ -44,11 +44,10 @@ public class DocumentLoaderExamples {
 
   private static void loadFromDocumentLoaderURL() throws MalformedURLException {
     // tag::adocLoadFromDocumentLoaderURL[]
-    URL documentUrl = new URL("https://en.wikipedia.org/wiki/Ella_Fitzgerald");
+    URL documentUrl = new URL("https://raw.githubusercontent.com/agoncal/agoncal-sample-langchain4j/main/processing-documents/loader/src/main/resources/data/bio-duke-ellington.txt");
     Document document = DocumentLoader.load(new UrlSource(documentUrl), new ApacheTikaDocumentParser());
 
-    log.info(document.metadata(Document.FILE_NAME));
-    log.info(document.metadata(Document.ABSOLUTE_DIRECTORY_PATH));
+    log.info(document.metadata(Document.URL));
     log.info(document.text().trim().substring(0, 50));
     // end::adocLoadFromDocumentLoaderURL[]
   }
@@ -57,8 +56,10 @@ public class DocumentLoaderExamples {
     // tag::adocLoadFromDocumentLoaderAzure[]
     Document document = DocumentLoader.load(new AzureBlobStorageSource(null, null, null, null, null), new ApacheTikaDocumentParser());
 
-    log.info(document.metadata(Document.FILE_NAME));
-    log.info(document.metadata(Document.ABSOLUTE_DIRECTORY_PATH));
+    log.info(document.metadata("source"));
+    log.info(document.metadata("azure_storage_blob_creation_time"));
+    log.info(document.metadata("azure_storage_blob_last_modified"));
+    log.info(document.metadata("azure_storage_blob_content_length"));
     log.info(document.text().trim().substring(0, 50));
     // end::adocLoadFromDocumentLoaderAzure[]
   }
@@ -76,11 +77,10 @@ public class DocumentLoaderExamples {
 
   private static void loadFromUrlDocumentLoader() throws MalformedURLException {
     // tag::loadFromUrlDocumentLoader[]
-    URL documentUrl = new URL("https://en.wikipedia.org/wiki/Ella_Fitzgerald");
+    URL documentUrl = new URL("https://raw.githubusercontent.com/agoncal/agoncal-sample-langchain4j/main/processing-documents/loader/src/main/resources/data/bio-duke-ellington.txt");
     Document document = UrlDocumentLoader.load(documentUrl, new ApacheTikaDocumentParser());
 
-    log.info(document.metadata(Document.FILE_NAME));
-    log.info(document.metadata(Document.ABSOLUTE_DIRECTORY_PATH));
+    log.info(document.metadata(Document.URL));
     log.info(document.text().trim().substring(0, 50));
     // end::loadFromUrlDocumentLoader[]
   }
@@ -90,8 +90,10 @@ public class DocumentLoaderExamples {
     URL documentUrl = new URL("https://en.wikipedia.org/wiki/Ella_Fitzgerald");
     Document document = new AzureBlobStorageDocumentLoader(null).loadDocument(null, null, new ApacheTikaDocumentParser());
 
-    log.info(document.metadata(Document.FILE_NAME));
-    log.info(document.metadata(Document.ABSOLUTE_DIRECTORY_PATH));
+    log.info(document.metadata("source"));
+    log.info(document.metadata("azure_storage_blob_creation_time"));
+    log.info(document.metadata("azure_storage_blob_last_modified"));
+    log.info(document.metadata("azure_storage_blob_content_length"));
     log.info(document.text().trim().substring(0, 50));
     // end::loadFromAzureDocumentLoader[]
   }
