@@ -1,4 +1,4 @@
-package org.agoncal.fascicle.langchain4j.processdoc.paser;
+package org.agoncal.fascicle.langchain4j.processdoc.parser;
 
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.parser.TextDocumentParser;
