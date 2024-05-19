@@ -34,6 +34,7 @@ public class DocumentLoaderExamples {
   private static void loadFromDocumentLoaderFile() {
     // tag::adocLoadFromDocumentLoaderFile[]
     Path documentPath = toPath("data/bio-ella-fitzgerald.txt");
+
     Document document = DocumentLoader.load(new FileSystemSource(documentPath), new ApacheTikaDocumentParser());
 
     log.info(document.metadata(Document.FILE_NAME));
@@ -45,6 +46,7 @@ public class DocumentLoaderExamples {
   private static void loadFromDocumentLoaderURL() throws MalformedURLException {
     // tag::adocLoadFromDocumentLoaderURL[]
     URL documentUrl = new URL("https://raw.githubusercontent.com/agoncal/agoncal-sample-langchain4j/main/processing-documents/loader/src/main/resources/data/bio-duke-ellington.txt");
+
     Document document = DocumentLoader.load(new UrlSource(documentUrl), new ApacheTikaDocumentParser());
 
     log.info(document.metadata(Document.URL));
@@ -67,6 +69,7 @@ public class DocumentLoaderExamples {
   private static void loadFromFileSystemDocumentLoader() {
     // tag::adocLoadFromFileSystemDocumentLoader[]
     Path documentPath = toPath("data/bio-ella-fitzgerald.txt");
+
     Document document = FileSystemDocumentLoader.loadDocument(documentPath, new ApacheTikaDocumentParser());
 
     log.info(document.metadata(Document.FILE_NAME));
@@ -78,6 +81,7 @@ public class DocumentLoaderExamples {
   private static void loadFromUrlDocumentLoader() throws MalformedURLException {
     // tag::loadFromUrlDocumentLoader[]
     URL documentUrl = new URL("https://raw.githubusercontent.com/agoncal/agoncal-sample-langchain4j/main/processing-documents/loader/src/main/resources/data/bio-duke-ellington.txt");
+
     Document document = UrlDocumentLoader.load(documentUrl, new ApacheTikaDocumentParser());
 
     log.info(document.metadata(Document.URL));
@@ -88,6 +92,7 @@ public class DocumentLoaderExamples {
   private static void loadFromAzureDocumentLoader() throws MalformedURLException {
     // tag::loadFromAzureDocumentLoader[]
     URL documentUrl = new URL("https://en.wikipedia.org/wiki/Ella_Fitzgerald");
+
     Document document = new AzureBlobStorageDocumentLoader(null).loadDocument(null, null, new ApacheTikaDocumentParser());
 
     log.info(document.metadata("source"));
