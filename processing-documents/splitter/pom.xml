@@ -5,9 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.agoncal.fascicle.langchain4j.processing-documents</groupId>
-  <artifactId>parser</artifactId>
+  <artifactId>splitter</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: Processing Documents :: Parser</name>
+  <name>LangChain4j :: Processing Documents :: Splitter</name>
 
   <parent>
     <groupId>org.agoncal.fascicle.langchain4j</groupId>
@@ -20,18 +20,6 @@
     <dependency>
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-document-parser-apache-pdfbox</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-document-parser-apache-tika</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-document-parser-apache-poi</artifactId>
     </dependency>
     <dependency>
       <groupId>org.tinylog</groupId>
