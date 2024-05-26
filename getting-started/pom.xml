@@ -19,7 +19,7 @@
   <!-- end::adocSkip[] -->
 
   <properties>
-    <version.langchain4j>0.30.0</version.langchain4j>
+    <version.langchain4j>0.31.0</version.langchain4j>
     <version.testcontainers>1.19.7</version.testcontainers>
     <maven.compiler.release>17</maven.compiler.release>
     <version.exec.plugin>3.1.1</version.exec.plugin>

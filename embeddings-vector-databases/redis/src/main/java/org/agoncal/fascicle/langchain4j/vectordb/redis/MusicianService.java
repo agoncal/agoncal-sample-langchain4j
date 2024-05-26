@@ -6,7 +6,7 @@ import dev.langchain4j.model.embedding.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.store.embedding.EmbeddingMatch;
 import dev.langchain4j.store.embedding.EmbeddingStore;
-import dev.langchain4j.store.embedding.cassandra.CassandraEmbeddingStore;
+import dev.langchain4j.store.embedding.redis.RedisEmbeddingStore;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class MusicianService {
 
     // tag::adocSnippet[]
     EmbeddingStore<TextSegment> embeddingStore =
-      CassandraEmbeddingStore.builder()
+      RedisEmbeddingStore.builder()
         .port(6334)
         .build();
 
