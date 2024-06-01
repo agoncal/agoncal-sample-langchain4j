@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.agoncal.fascicle.langchain4j.chatting-models</groupId>
+  <groupId>org.agoncal.fascicle.langchain4j.ai-models.invoking-models</groupId>
   <artifactId>memory</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: Invoking Models :: Memory</name>
+  <name>LangChain4j :: AI Models :: Invoking Models :: Memory</name>
 
   <parent>
-    <groupId>org.agoncal.fascicle.langchain4j</groupId>
-    <artifactId>ai-models-invoking-models</artifactId>
+    <groupId>org.agoncal.fascicle.langchain4j.ai-models</groupId>
+    <artifactId>invoking-models</artifactId>
     <version>1.0</version>
   </parent>
 

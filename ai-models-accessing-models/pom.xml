@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.agoncal.fascicle.langchain4j</groupId>
-  <artifactId>ai-models-accessing-models</artifactId>
+  <groupId>org.agoncal.fascicle.langchain4j.ai-models</groupId>
+  <artifactId>accessing-models</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: Accessing Models</name>
+  <name>LangChain4j :: AI Models :: Accessing Models</name>
   <packaging>pom</packaging>
 
   <parent>
@@ -18,7 +18,7 @@
 
   <modules>
     <module>azure-open-ai</module>
-    <module>bedrock</module>
+    <module>amazon-bedrock</module>
     <module>hugging-face</module>
     <module>mistral-ai</module>
     <module>ollama</module>
