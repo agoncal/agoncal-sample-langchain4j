@@ -11,7 +11,7 @@
 
   <parent>
     <groupId>org.agoncal.fascicle.langchain4j</groupId>
-    <artifactId>accessing-models</artifactId>
+    <artifactId>ai-models-accessing-models</artifactId>
     <version>1.0</version>
   </parent>
 

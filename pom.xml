@@ -10,14 +10,14 @@
   <name>LangChain4j</name>
 
   <modules>
-    <module>accessing-models</module>
+    <module>ai-models-accessing-models</module>
     <module>advanced</module>
     <module>embeddings-vector-databases</module>
-    <module>extending-prompts</module>
+    <module>ai-models-extending-models</module>
     <module>first-look</module>
     <module>getting-started</module>
     <module>integrating</module>
-    <module>invoking-models</module>
+    <module>ai-models-invoking-models</module>
     <module>processing-documents</module>
     <module>putting-together</module>
     <module>rag</module>

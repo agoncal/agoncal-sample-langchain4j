@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.agoncal.fascicle.langchain4j.accessing</groupId>
-  <artifactId>hugging-face</artifactId>
+  <groupId>org.agoncal.fascicle.langchain4j.extending-prompts</groupId>
+  <artifactId>aiservice</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: Accessing Models :: Hugging Face</name>
+  <name>LangChain4j :: Extending Prompts :: AI Services</name>
 
   <parent>
     <groupId>org.agoncal.fascicle.langchain4j</groupId>
-    <artifactId>accessing-models</artifactId>
+    <artifactId>ai-models-extending-models</artifactId>
     <version>1.0</version>
   </parent>
 
@@ -21,13 +21,15 @@
       <groupId>dev.langchain4j</groupId>
       <artifactId>langchain4j</artifactId>
     </dependency>
-    <!-- tag::adocSnippet[] -->
     <dependency>
       <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-hugging-face</artifactId>
+      <artifactId>langchain4j-azure-open-ai</artifactId>
     </dependency>
-    <!-- end::adocSnippet[] -->
     <!-- Other -->
+<!--    <dependency>-->
+<!--      <groupId>com.squareup.okhttp3</groupId>-->
+<!--      <artifactId>okhttp</artifactId>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>org.tinylog</groupId>
       <artifactId>slf4j-tinylog</artifactId>
@@ -40,6 +42,13 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.wiremock</groupId>
+      <artifactId>wiremock-standalone</artifactId>
+      <version>${version.wiremock}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -49,7 +58,7 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <configuration>
-          <mainClass>org.agoncal.fascicle.langchain4j.accessing.openai.MusicianService</mainClass>
+          <mainClass>org.agoncal.fascicle.langchain4j.firstlook.AuthorService</mainClass>
         </configuration>
       </plugin>
     </plugins>

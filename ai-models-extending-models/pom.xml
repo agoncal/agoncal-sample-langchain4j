@@ -5,9 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.agoncal.fascicle.langchain4j</groupId>
-  <artifactId>accessing-models</artifactId>
+  <artifactId>ai-models-extending-models</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: Accessing Models</name>
+  <name>LangChain4j :: Extending Prompts</name>
   <packaging>pom</packaging>
 
   <parent>
@@ -17,14 +17,8 @@
   </parent>
 
   <modules>
-    <module>azure-open-ai</module>
-    <module>bedrock</module>
-    <module>hugging-face</module>
-    <module>mistral-ai</module>
-    <module>ollama</module>
-    <module>open-ai</module>
-    <module>vertex-ai</module>
-    <module>vertex-ai-gemini</module>
+    <module>aiservice</module>
+    <module>tools</module>
   </modules>
 
 </project>

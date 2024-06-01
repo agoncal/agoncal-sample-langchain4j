@@ -5,9 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.agoncal.fascicle.langchain4j</groupId>
-  <artifactId>extending-prompts</artifactId>
+  <artifactId>ai-models-invoking-models</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: Extending Prompts</name>
+  <name>LangChain4j :: Invoking Models</name>
   <packaging>pom</packaging>
 
   <parent>
@@ -17,8 +17,8 @@
   </parent>
 
   <modules>
-    <module>aiservice</module>
-    <module>tools</module>
+    <module>memory</module>
+    <module>prompts</module>
   </modules>
 
 </project>

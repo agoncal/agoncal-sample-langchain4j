@@ -5,13 +5,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.agoncal.fascicle.langchain4j.accessing</groupId>
-  <artifactId>mistral-ai</artifactId>
+  <artifactId>bedrock</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: Accessing Models :: Mistral AI</name>
+  <name>LangChain4j :: Accessing Models :: Amazon Bedrock</name>
 
   <parent>
     <groupId>org.agoncal.fascicle.langchain4j</groupId>
-    <artifactId>accessing-models</artifactId>
+    <artifactId>ai-models-accessing-models</artifactId>
     <version>1.0</version>
   </parent>
 
@@ -24,7 +24,7 @@
     <!-- tag::adocSnippet[] -->
     <dependency>
       <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-mistral-ai</artifactId>
+      <artifactId>langchain4j-bedrock</artifactId>
     </dependency>
     <!-- end::adocSnippet[] -->
     <!-- Other -->
