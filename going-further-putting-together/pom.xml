@@ -5,11 +5,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.agoncal.fascicle.langchain4j</groupId>
-  <artifactId>going-further-putting-together</artifactId>
+  <groupId>org.agoncal.fascicle.langchain4j.going-further</groupId>
+  <artifactId>putting-together</artifactId>
   <version>1.0</version>
   <!-- tag::adocSkip[] -->
-  <name>LangChain4j :: Putting It All Together</name>
+  <name>LangChain4j :: Going Further :: Putting It All Together</name>
 
   <parent>
     <groupId>org.agoncal.fascicle</groupId>

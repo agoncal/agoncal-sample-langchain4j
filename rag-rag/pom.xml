@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.agoncal.fascicle.langchain4j</groupId>
-  <artifactId>rag-rag</artifactId>
+  <groupId>org.agoncal.fascicle.langchain4j.rag</groupId>
+  <artifactId>rag</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: RAG</name>
+  <name>LangChain4j :: RAG :: RAG</name>
   <packaging>pom</packaging>
 
   <parent>

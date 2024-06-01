@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.agoncal.fascicle.langchain4j</groupId>
-  <artifactId>going-further-testing-debugging</artifactId>
+  <groupId>org.agoncal.fascicle.langchain4j.going-further</groupId>
+  <artifactId>testing-debugging</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: Testing and Debugging</name>
+  <name>LangChain4j :: Going Further :: Testing and Debugging</name>
   <packaging>pom</packaging>
 
   <parent>

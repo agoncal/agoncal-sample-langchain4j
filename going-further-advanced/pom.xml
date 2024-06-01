@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.agoncal.fascicle.langchain4j</groupId>
-  <artifactId>going-further-advanced</artifactId>
+  <groupId>org.agoncal.fascicle.langchain4j.going-further</groupId>
+  <artifactId>advanced</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
-  <name>LangChain4j :: Advanced</name>
+  <name>LangChain4j :: Going Further :: Advanced</name>
 
   <parent>
     <groupId>org.agoncal.fascicle</groupId>

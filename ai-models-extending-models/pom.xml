@@ -7,7 +7,7 @@
   <groupId>org.agoncal.fascicle.langchain4j.ai-models</groupId>
   <artifactId>extending-models</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: AI Models :: Extending Prompts</name>
+  <name>LangChain4j :: AI Models :: Extending Models</name>
   <packaging>pom</packaging>
 
   <parent>

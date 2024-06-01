@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.agoncal.fascicle.langchain4j.integrating</groupId>
+  <groupId>org.agoncal.fascicle.langchain4j.going-further.integrating</groupId>
   <artifactId>quarkus</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: Integrating other Technologies :: Quarkus</name>
+  <name>LangChain4j :: Going Further :: Integrating other Technologies :: Quarkus</name>
 
   <parent>
-    <groupId>org.agoncal.fascicle.langchain4j</groupId>
-    <artifactId>going-further-integrating</artifactId>
+    <groupId>org.agoncal.fascicle.langchain4j.going-further</groupId>
+    <artifactId>integrating</artifactId>
     <version>1.0</version>
   </parent>
 

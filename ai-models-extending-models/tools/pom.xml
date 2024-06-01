@@ -7,7 +7,7 @@
   <groupId>org.agoncal.fascicle.langchain4j.ai-models.extending-models</groupId>
   <artifactId>tools</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: AI Models :: Extending Prompts :: Tools</name>
+  <name>LangChain4j :: AI Models :: Extending Models :: Tools</name>
 
   <parent>
     <groupId>org.agoncal.fascicle.langchain4j.ai-models</groupId>

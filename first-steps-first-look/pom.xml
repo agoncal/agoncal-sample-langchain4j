@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.agoncal.fascicle.langchain4j</groupId>
-  <artifactId>first-steps-first-look</artifactId>
+  <groupId>org.agoncal.fascicle.langchain4j.first-steps</groupId>
+  <artifactId>first-look</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: First Look</name>
+  <name>LangChain4j :: First Steps :: First Look</name>
 
   <parent>
     <groupId>org.agoncal.fascicle</groupId>
