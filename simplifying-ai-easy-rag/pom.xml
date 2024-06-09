@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.agoncal.fascicle.langchain4j.simpleai</groupId>
-  <artifactId>ai-services</artifactId>
+  <artifactId>easyrag</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
-  <name>LangChain4j :: Simplifying AI :: AI Services</name>
+  <name>LangChain4j :: Simplifying AI :: Easy RAG</name>
 
   <parent>
     <groupId>org.agoncal.fascicle</groupId>
