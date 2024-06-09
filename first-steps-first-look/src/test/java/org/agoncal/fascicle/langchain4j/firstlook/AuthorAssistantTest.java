@@ -12,7 +12,7 @@ import java.time.Duration;
 
 // tag::adocSnippet[]
 @Testcontainers
-class AuthorServiceTest {
+class AuthorAssistantTest {
 
   static String MODEL_NAME = "tinyllama";
 
@@ -33,9 +33,9 @@ class AuthorServiceTest {
       .timeout(Duration.ofMinutes(5))
       .build();
 
-    AuthorService authorService = new AuthorService();
+    AuthorAssistant authorAssistant = new AuthorAssistant();
 
-    String bio = authorService.getAuthorBiography(model, 0);
+    String bio = authorAssistant.getAuthorBiography(model, 0);
     assertTrue(bio.contains("Isaac Asimov"));
   }
 }

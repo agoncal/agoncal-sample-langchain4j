@@ -15,14 +15,14 @@ import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
  * --
  */
 // end::adocSkip[]
-public class AuthorService {
+public class AuthorAssistant {
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
 
   private String[] scifiAuthors = {"Isaac Asimov", "Nora Jemisin", "Douglas Adams"};
 
   public static void main(String[] args) {
-    AuthorService authorService = new AuthorService();
+    AuthorAssistant authorAssistant = new AuthorAssistant();
 
     ChatLanguageModel model = OpenAiChatModel.builder()
       .apiKey(OPENAI_API_KEY)
@@ -30,7 +30,7 @@ public class AuthorService {
       .temperature(0.3)
       .build();
 
-    System.out.println(authorService.getAuthorBiography(model, 1));
+    System.out.println(authorAssistant.getAuthorBiography(model, 1));
   }
   // end::adocSnippet[]
 
