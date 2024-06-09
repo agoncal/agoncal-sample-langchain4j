@@ -11,17 +11,17 @@
 
   <modules>
     <module>ai-models-accessing-models</module>
-    <module>going-further-advanced</module>
-    <module>rag-storing-embeddings</module>
     <module>ai-models-extending-models</module>
+    <module>ai-models-invoking-models</module>
     <module>first-steps-first-look</module>
     <module>first-steps-getting-started</module>
+    <module>going-further-advanced</module>
     <module>going-further-integrating</module>
-    <module>ai-models-invoking-models</module>
-    <module>rag-processing-documents</module>
     <module>going-further-putting-together</module>
-    <module>rag-rag</module>
     <module>going-further-testing-debugging</module>
+    <module>rag-processing-documents</module>
+    <module>rag-rag</module>
+    <module>rag-storing-embeddings</module>
   </modules>
 
   <properties>
