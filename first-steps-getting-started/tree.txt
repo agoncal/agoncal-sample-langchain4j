@@ -3,11 +3,12 @@
 │  ├─ main
 │  │  ├─ java
 │  │  │  └─ org/agoncal/fascicle/langchain4j/gettingstarted
-│  │  │       └─ Artist.java
+│  │  │       ├─ Musician.java
+│  │  │       └─ MusicianService.java
 │  │  └─ resources
 │  │     └─ tinylog.properties
 │  └─ test
 │     └─ java
 │        └─ org/agoncal/fascicle/langchain4j/gettingstarted
-│             └─ ArtistTest.java
+│             └─ MusicianTest.java
 └─ pom.xml

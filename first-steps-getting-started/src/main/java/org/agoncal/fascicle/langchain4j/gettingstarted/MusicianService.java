@@ -19,7 +19,6 @@ public class MusicianService {
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
 
   public static void main(String[] args) {
-    Musician musician = new Musician(args[0], args[1]);
 
     ChatLanguageModel model = OpenAiChatModel.builder()
       .apiKey(OPENAI_API_KEY)
@@ -31,10 +30,11 @@ public class MusicianService {
       .build();
 
     SystemMessage systemMessage = SystemMessage.from("You are an expert in music history.");
-    UserMessage userMessage = UserMessage.from(String.format("Write a one sentence biography about %s %s", musician.getFirstName(), musician.getLastName()));
+    UserMessage userMessage = UserMessage.from(String.format("Write a one sentence biography about %s %s", args[0], args[1]));
     List<ChatMessage> messages = List.of(systemMessage, userMessage);
     Response<AiMessage> bio = model.generate(messages);
-    musician.setBio(bio.content().text());
+
+    Musician musician = new Musician(args[0], args[1], bio.content().text());
 
     System.out.println(musician);
     exit(0);
