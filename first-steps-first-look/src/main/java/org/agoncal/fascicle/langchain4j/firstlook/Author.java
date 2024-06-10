@@ -6,6 +6,7 @@ import dev.langchain4j.model.openai.OpenAiChatModel;
 import static dev.langchain4j.model.openai.OpenAiChatModelName.GPT_4_O;
 import dev.langchain4j.service.AiServices;
 import static java.lang.System.exit;
+
 // tag::adocSkip[]
 
 /**
