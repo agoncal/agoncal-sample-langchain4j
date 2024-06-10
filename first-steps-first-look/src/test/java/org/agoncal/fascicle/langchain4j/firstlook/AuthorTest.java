@@ -2,6 +2,7 @@ package org.agoncal.fascicle.langchain4j.firstlook;
 
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
+import dev.langchain4j.service.AiServices;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
@@ -10,7 +11,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.time.Duration;
 
-// tag::adocSnippet[]
 @Testcontainers
 class AuthorTest {
 
@@ -33,9 +33,10 @@ class AuthorTest {
       .timeout(Duration.ofMinutes(5))
       .build();
 
-    Author author = new Author();
+    AuthorAssistant assistant = AiServices.create(AuthorAssistant.class, model);
 
-    String bio = author.getAuthorBiography(model, 0);
-    assertTrue(bio.contains("Isaac Asimov"));
+    String answer = assistant.getAuthorBiography("Isaac Asimov");
+
+    assertTrue(answer.contains("Isaac Asimov"));
   }
 }

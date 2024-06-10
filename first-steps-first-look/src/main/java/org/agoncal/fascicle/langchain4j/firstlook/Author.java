@@ -27,7 +27,7 @@ public class Author {
 
     AuthorAssistant assistant = AiServices.create(AuthorAssistant.class, model);
 
-    String answer = assistant.getAuthorBiography("Write a short biography about the book author " + args[0]);
+    String answer = assistant.getAuthorBiography(args[0]);
     System.out.println(answer);
     // tag::adocSkip[]
     exit(0);
