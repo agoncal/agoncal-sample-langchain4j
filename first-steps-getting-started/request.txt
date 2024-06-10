@@ -6,11 +6,11 @@
   "messages": [
     {
       "role": "system",
-      "content": "You are an expert in music history."
+      "content": "You are an expert in Jazz music."
     },
     {
       "role": "user",
-      "content": "Write a one sentence biography about Miles Davis"
+      "content": "List the top 3 albums of Miles Davis as bullet points."
     }
   ],
   "temperature": 0.3

@@ -29,8 +29,8 @@ public class MusicianService {
       .logResponses(true)
       .build();
 
-    SystemMessage systemMessage = SystemMessage.from("You are an expert in music history.");
-    UserMessage userMessage = UserMessage.from(String.format("Write a one sentence biography about %s %s", args[0], args[1]));
+    SystemMessage systemMessage = SystemMessage.from("You are an expert in Jazz music.");
+    UserMessage userMessage = UserMessage.from(String.format("List the top 3 albums of %s %s as bullet points. ", args[0], args[1]));
     List<ChatMessage> messages = List.of(systemMessage, userMessage);
     Response<AiMessage> bio = model.generate(messages);
 

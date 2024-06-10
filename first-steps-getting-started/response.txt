@@ -10,7 +10,7 @@
       "index": 0,
       "message": {
         "role": "assistant",
-        "content": "Miles Davis was a groundbreaking American jazz trumpeter, bandleader, and composer whose innovative work in the mid-20th century profoundly influenced the development of jazz and popular music."
+        "content": "Certainly! Here are three of John Coltrane's most acclaimed albums:\n\n- **A Love Supreme** (1965)\n- **Giant Steps** (1960)\n- **Blue Train** (1958)\n\nThese albums are considered essential listening for anyone interested in jazz and showcase Coltrane's innovative approach to the genre."
       },
       "logprobs": null,
       "finish_reason": "stop"
