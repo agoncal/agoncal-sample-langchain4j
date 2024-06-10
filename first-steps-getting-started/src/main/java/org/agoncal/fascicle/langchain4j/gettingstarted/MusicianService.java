@@ -29,15 +29,20 @@ public class MusicianService {
       .logResponses(true)
       .build();
 
-    SystemMessage systemMessage = SystemMessage.from("You are an expert in Jazz music.");
-    UserMessage userMessage = UserMessage.from(String.format("List the top 3 albums of %s %s as bullet points. ", args[0], args[1]));
-    List<ChatMessage> messages = List.of(systemMessage, userMessage);
-    Response<AiMessage> bio = model.generate(messages);
-
-    Musician musician = new Musician(args[0], args[1], bio.content().text());
+    Musician musician = new MusicianService().generateTopThreeAlbums(model, args[0], args[1]);
 
     System.out.println(musician);
     exit(0);
+  }
+
+  Musician generateTopThreeAlbums(ChatLanguageModel model, String firstName, String lastName) {
+    SystemMessage systemMessage = SystemMessage.from("You are an expert in Jazz music.");
+    UserMessage userMessage = UserMessage.from(String.format("List the top 3 albums of %s %s as bullet points. ", firstName, lastName));
+    List<ChatMessage> messages = List.of(systemMessage, userMessage);
+
+    Response<AiMessage> bio = model.generate(messages);
+
+    return new Musician(firstName, lastName, bio.content().text());
   }
 }
 // end::adocSnippet[]

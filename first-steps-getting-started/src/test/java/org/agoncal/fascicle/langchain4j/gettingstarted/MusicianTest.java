@@ -25,7 +25,7 @@ public class MusicianTest {
   }
 
   @Test
-  public void shouldGenerateArtistBio() {
+  public void shouldGenerateMusicianTopThreeAlbums() {
 
     ChatLanguageModel model = OllamaChatModel.builder()
       .baseUrl(baseUrl())
@@ -33,10 +33,9 @@ public class MusicianTest {
       .timeout(Duration.ofMinutes(5))
       .build();
 
-    Musician musician = new Musician("Isaac", "Asimov");
+    Musician musician = new MusicianService().generateTopThreeAlbums(model, "Miles", "Davis");
 
-    String bio = musician.generateBio(model);
-    assertTrue(bio.contains("Isaac Asimov"));
+    assertTrue(musician.albums().contains("Kind of Blue"));
   }
 }
 // end::adocSnippet[]
