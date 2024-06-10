@@ -22,6 +22,8 @@
     <module>rag-processing-documents</module>
     <module>rag-rag</module>
     <module>rag-storing-embeddings</module>
+    <module>simplifying-ai-ai-services</module>
+    <module>simplifying-ai-easy-rag</module>
   </modules>
 
   <properties>
