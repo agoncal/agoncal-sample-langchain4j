@@ -89,7 +89,11 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>${version.exec.plugin}</version>
         <configuration>
-          <mainClass>org.agoncal.fascicle.langchain4j.accessing.openai.MusicianService</mainClass>
+          <mainClass>org.agoncal.fascicle.langchain4j.gettingstarted.MusicianService</mainClass>
+          <arguments>
+            <argument>Miles</argument>
+            <argument>Davis</argument>
+          </arguments>
         </configuration>
       </plugin>
     </plugins>

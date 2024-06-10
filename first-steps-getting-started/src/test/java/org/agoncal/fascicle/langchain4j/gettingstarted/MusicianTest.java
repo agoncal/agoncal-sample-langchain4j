@@ -12,7 +12,7 @@ import java.time.Duration;
 
 // tag::adocSnippet[]
 @Testcontainers
-public class ArtistTest {
+public class MusicianTest {
 
   static String MODEL_NAME = "tinyllama";
 
@@ -33,9 +33,9 @@ public class ArtistTest {
       .timeout(Duration.ofMinutes(5))
       .build();
 
-    Artist artist = new Artist("Isaac", "Asimov");
+    Musician musician = new Musician("Isaac", "Asimov");
 
-    String bio = artist.generateBio(model);
+    String bio = musician.generateBio(model);
     assertTrue(bio.contains("Isaac Asimov"));
   }
 }
