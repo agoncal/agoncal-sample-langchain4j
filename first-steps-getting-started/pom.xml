@@ -19,10 +19,17 @@
   <!-- end::adocSkip[] -->
 
   <properties>
-    <version.langchain4j>0.31.0</version.langchain4j>
-    <version.testcontainers>1.19.7</version.testcontainers>
+    <!-- Java -->
     <maven.compiler.release>17</maven.compiler.release>
+    <!-- Langchain4j -->
+    <version.langchain4j>0.31.0</version.langchain4j>
+    <version.tinylog>2.6.2</version.tinylog>
+    <!-- Test -->
+    <version.testcontainers>1.19.8</version.testcontainers>
+    <version.junit>5.10.1</version.junit>
+    <!-- Maven Plugins -->
     <version.exec.plugin>3.1.1</version.exec.plugin>
+    <!-- Project -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
@@ -55,10 +62,12 @@
     <dependency>
       <groupId>org.tinylog</groupId>
       <artifactId>slf4j-tinylog</artifactId>
+      <version>${version.tinylog}</version>
     </dependency>
     <dependency>
       <groupId>org.tinylog</groupId>
       <artifactId>tinylog-impl</artifactId>
+      <version>${version.tinylog}</version>
     </dependency>
     <!-- end::adocDependencies[] -->
     <!-- tag::adocDependenciesTest[] -->
