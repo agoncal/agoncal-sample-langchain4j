@@ -24,7 +24,7 @@ public class MusicianServiceTest {
   static String baseUrl() {
     return String.format("http://%s:%d", ollamaContainer.getHost(), ollamaContainer.getFirstMappedPort());
   }
-  // end::adocSnippet[]
+  // end::adocHeader[]
 
   // tag::adocTest[]
   @Test
@@ -40,5 +40,5 @@ public class MusicianServiceTest {
 
     assertTrue(musician.albums().contains("Kind of Blue"));
   }
+  // end::adocTest[]
 }
-// end::adocTest[]
