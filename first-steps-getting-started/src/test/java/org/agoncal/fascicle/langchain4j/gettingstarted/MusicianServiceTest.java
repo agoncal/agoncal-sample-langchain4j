@@ -13,7 +13,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import java.time.Duration;
 
 @Testcontainers
-public class MusicianTest {
+public class MusicianServiceTest {
 
   static String MODEL_NAME = "tinyllama";
 
