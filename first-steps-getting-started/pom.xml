@@ -10,12 +10,6 @@
   <version>1.0</version>
   <!-- tag::adocSkip[] -->
   <name>LangChain4j :: First Steps :: Getting Started</name>
-
-  <parent>
-    <groupId>org.agoncal.fascicle</groupId>
-    <artifactId>langchain4j</artifactId>
-    <version>1.0</version>
-  </parent>
   <!-- end::adocSkip[] -->
 
   <properties>
@@ -108,5 +102,5 @@
       </plugin>
     </plugins>
   </build>
-<!-- end::adocBuild[] -->
+  <!-- end::adocBuild[] -->
 </project>

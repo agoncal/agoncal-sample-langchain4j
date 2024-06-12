@@ -1,5 +1,7 @@
 package org.agoncal.fascicle.langchain4j.gettingstarted;
 
+// tag::adocHeader[]
+
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,7 +12,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.time.Duration;
 
-// tag::adocSnippet[]
 @Testcontainers
 public class MusicianTest {
 
@@ -23,7 +24,9 @@ public class MusicianTest {
   static String baseUrl() {
     return String.format("http://%s:%d", ollamaContainer.getHost(), ollamaContainer.getFirstMappedPort());
   }
+  // end::adocSnippet[]
 
+  // tag::adocTest[]
   @Test
   public void shouldGenerateMusicianTopThreeAlbums() {
 
@@ -38,4 +41,4 @@ public class MusicianTest {
     assertTrue(musician.albums().contains("Kind of Blue"));
   }
 }
-// end::adocSnippet[]
+// end::adocTest[]
