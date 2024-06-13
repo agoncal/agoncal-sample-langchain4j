@@ -13,10 +13,13 @@ import dev.langchain4j.model.language.LanguageModel;
 import dev.langchain4j.model.language.StreamingLanguageModel;
 import dev.langchain4j.model.moderation.Moderation;
 import dev.langchain4j.model.moderation.ModerationModel;
-import dev.langchain4j.model.openai.*;
-
-import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
-
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import static dev.langchain4j.model.openai.OpenAiChatModelName.GPT_4_O;
+import dev.langchain4j.model.openai.OpenAiImageModel;
+import dev.langchain4j.model.openai.OpenAiLanguageModel;
+import dev.langchain4j.model.openai.OpenAiModerationModel;
+import dev.langchain4j.model.openai.OpenAiStreamingChatModel;
+import dev.langchain4j.model.openai.OpenAiStreamingLanguageModel;
 import dev.langchain4j.model.output.FinishReason;
 import dev.langchain4j.model.output.Response;
 import dev.langchain4j.model.output.TokenUsage;
@@ -31,10 +34,10 @@ import java.time.Duration;
  * --
  */
 // end::adocSkip[]
-public class MusicianService {
+public class MusicianAssistant {
 
   public static void main(String[] args) {
-    MusicianService musicianService = new MusicianService();
+    MusicianAssistant musicianAssistant = new MusicianAssistant();
 
 //    musicianService.useOpenAiLanguageTypeOfModel();
 //    musicianService.useOpenAiLanguageModel();
@@ -43,15 +46,15 @@ public class MusicianService {
 //    musicianService.useOpenAiStreamingLanguageTypeOfModel();
 
 //    musicianService.useOpenAiChatTypeOfModel();
-//    musicianService.useOpenAiChatModelBuilder();
+    musicianAssistant.useOpenAiChatModelBuilder();
 //    musicianService.useOpenAiStreamingChatTypeOfModel();
 
 //    musicianService.useOpenAiModerationTypeOfModel();
-    musicianService.useOpenAiImageTypeOfModel();
+//    musicianService.useOpenAiImageTypeOfModel();
   }
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
-  private static final String OPENAI_ORGANIZATION = "Dummy org";
+  private static final String OPENAI_ORGANIZATION = System.getenv("OPENAI_ORGANIZATION");
   private static final String PROMPT = "When was the first Beatles album released?";
 
   // #############################
@@ -192,7 +195,7 @@ public class MusicianService {
     OpenAiChatModel model = OpenAiChatModel.builder()
       .apiKey(OPENAI_API_KEY)
       .organizationId(OPENAI_ORGANIZATION)
-      .modelName(GPT_3_5_TURBO)
+      .modelName(GPT_4_O)
       .frequencyPenalty(0.5)
       .temperature(0.9)
       .maxRetries(3)

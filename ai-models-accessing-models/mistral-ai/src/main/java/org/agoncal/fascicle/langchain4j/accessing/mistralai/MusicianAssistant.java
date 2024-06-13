@@ -10,12 +10,12 @@ import dev.langchain4j.model.mistralai.MistralAiChatModel;
  * --
  */
 // end::adocSkip[]
-public class MusicianService {
+public class MusicianAssistant {
 
   public static void main(String[] args) {
-    MusicianService musicianService = new MusicianService();
+    MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianService.useMistralAiChatModel();
+    musicianAssistant.useMistralAiChatModel();
   }
 
   private static final String MISTRAL_AI_API_KEY = System.getenv("MISTRAL_AI_API_KEY");

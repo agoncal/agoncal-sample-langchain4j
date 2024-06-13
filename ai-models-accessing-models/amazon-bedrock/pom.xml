@@ -49,7 +49,7 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <configuration>
-          <mainClass>org.agoncal.fascicle.langchain4j.accessing.openai.MusicianService</mainClass>
+          <mainClass>org.agoncal.fascicle.langchain4j.accessing.openai.MusicianAssistant</mainClass>
         </configuration>
       </plugin>
     </plugins>

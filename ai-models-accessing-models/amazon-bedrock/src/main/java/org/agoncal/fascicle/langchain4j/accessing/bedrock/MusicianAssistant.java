@@ -12,12 +12,12 @@ import software.amazon.awssdk.regions.Region;
  * --
  */
 // end::adocSkip[]
-public class MusicianService {
+public class MusicianAssistant {
 
   public static void main(String[] args) {
-    MusicianService musicianService = new MusicianService();
+    MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianService.useBedrockTitanChatModel();
+    musicianAssistant.useBedrockTitanChatModel();
   }
 
   private static final String AZURE_OPENAI_KEY = System.getenv("AZURE_OPENAI_KEY");

@@ -10,12 +10,12 @@ import dev.langchain4j.model.vertexai.VertexAiGeminiChatModel;
  * --
  */
 // end::adocSkip[]
-public class MusicianService {
+public class MusicianAssistant {
 
   public static void main(String[] args) {
-    MusicianService musicianService = new MusicianService();
+    MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianService.useVertexAiLanguageModelBuilder();
+    musicianAssistant.useVertexAiLanguageModelBuilder();
   }
 
   private static final String AZURE_OPENAI_KEY = System.getenv("AZURE_OPENAI_KEY");

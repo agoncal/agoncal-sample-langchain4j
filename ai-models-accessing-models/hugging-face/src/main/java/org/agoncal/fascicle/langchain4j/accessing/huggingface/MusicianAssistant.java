@@ -10,12 +10,12 @@ import dev.langchain4j.model.huggingface.HuggingFaceChatModel;
  * --
  */
 // end::adocSkip[]
-public class MusicianService {
+public class MusicianAssistant {
 
   public static void main(String[] args) {
-    MusicianService musicianService = new MusicianService();
+    MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianService.useHuggingFaceChatModel();
+    musicianAssistant.useHuggingFaceChatModel();
   }
 
   private static final String HF_API_KEY = System.getenv("HF_API_KEY");

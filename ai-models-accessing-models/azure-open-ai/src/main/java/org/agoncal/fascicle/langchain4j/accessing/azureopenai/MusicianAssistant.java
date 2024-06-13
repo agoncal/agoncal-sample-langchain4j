@@ -21,15 +21,15 @@ import java.time.Duration;
  * --
  */
 // end::adocSkip[]
-public class MusicianService {
+public class MusicianAssistant {
 
   public static void main(String[] args) {
-    MusicianService musicianService = new MusicianService();
+    MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianService.useAzureOpenAiLanguageModelBuilder();
-    musicianService.useAzureOpenAiLanguageModelPrompt();
-    musicianService.useAzureOpenAiChatModel();
-    musicianService.useAzureOpenAiChatModelBuilder();
+    musicianAssistant.useAzureOpenAiLanguageModelBuilder();
+    musicianAssistant.useAzureOpenAiLanguageModelPrompt();
+    musicianAssistant.useAzureOpenAiChatModel();
+    musicianAssistant.useAzureOpenAiChatModelBuilder();
   }
 
   private static final String AZURE_OPENAI_KEY = System.getenv("AZURE_OPENAI_KEY");

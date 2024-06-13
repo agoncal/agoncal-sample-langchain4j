@@ -18,16 +18,16 @@ import dev.langchain4j.model.output.TokenUsage;
  * --
  */
 // end::adocSkip[]
-public class MusicianService {
+public class MusicianAssistant {
 
   public static void main(String[] args) {
-    MusicianService musicianService = new MusicianService();
+    MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianService.useOllamaLanguageModel();
+//    musicianService.useOllamaLanguageModel();
 //    musicianService.useOllamaLanguageModelPrompt();
 //    musicianService.useOllamaLanguageModelBuilder();
 //    musicianService.useOllamaChatModel();
-//    musicianService.useOllamaChatModelBuilder();
+    musicianAssistant.useOllamaChatModelBuilder();
   }
 
   private static final String PROMPT = "When was the first Beatles album released?";
@@ -112,7 +112,8 @@ public class MusicianService {
 
     // tag::adocChatModel[]
     OllamaChatModel model = OllamaChatModel.builder()
-      .modelName("llama")
+      .baseUrl("http://localhost:11434")
+      .modelName("llama3")
       .temperature(0.9)
       .maxRetries(2)
       .build();
