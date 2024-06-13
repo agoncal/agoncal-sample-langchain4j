@@ -23,11 +23,11 @@ public class MusicianService {
   public static void main(String[] args) {
     MusicianService musicianService = new MusicianService();
 
-    musicianService.useQdrantToStoreEmbeddings();
+    musicianService.useInfinispanToStoreEmbeddings();
   }
 
-  public void useQdrantToStoreEmbeddings() {
-    System.out.println("### useQdrantToStoreEmbeddings");
+  public void useInfinispanToStoreEmbeddings() {
+    System.out.println("### useInfinispanToStoreEmbeddings");
 
     // tag::adocSnippet[]
     EmbeddingStore<TextSegment> embeddingStore =

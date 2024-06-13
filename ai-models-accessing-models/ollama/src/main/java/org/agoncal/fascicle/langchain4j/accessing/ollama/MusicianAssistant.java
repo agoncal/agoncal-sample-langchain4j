@@ -108,7 +108,7 @@ public class MusicianAssistant {
   }
 
   public void useOllamaChatModelBuilder() {
-    System.out.println("### useOpenAiChatModelBuilder");
+    System.out.println("### useOllamaChatModelBuilder");
 
     // tag::adocChatModel[]
     OllamaChatModel model = OllamaChatModel.builder()
