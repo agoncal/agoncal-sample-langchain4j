@@ -15,7 +15,7 @@ import static java.time.Duration.ofSeconds;
 
 import java.util.List;
 
-public class MusicianService {
+public class MusicianAssistant {
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
 
@@ -30,7 +30,7 @@ public class MusicianService {
       .logResponses(true)
       .build();
 
-    Musician musician = new MusicianService().generateTopThreeAlbums(model, args[0], args[1]);
+    Musician musician = new MusicianAssistant().generateTopThreeAlbums(model, args[0], args[1]);
 
     System.out.println(musician);
     exit(0);
