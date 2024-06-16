@@ -1,7 +1,7 @@
 - status code: 200
-- headers: [content-type: application/json], [openai-processing-ms: 1135], [openai-version: 2020-10-01]
+- headers: [content-type: application/json], [openai-version: 2020-10-01]
 - body: {
-  "id": "chatcmpl-9YVbGfh7CwBh8inGJMYNT9IdF9rNU",
+  "id": "chatcmpl-9YVbGfh7CwB9IdF9rNU",
   "object": "chat.completion",
   "created": 1718011650,
   "model": "gpt-4o-2024-05-13",
@@ -12,7 +12,6 @@
         "role": "assistant",
         "content": "Certainly! Here are three of the most acclaimed albums by Miles Davis:\n\n- **\"Kind of Blue\" (1959)**\n- **\"Bitches Brew\" (1970)**\n- **\"Sketches of Spain\" (1960)**"
       },
-      "logprobs": null,
       "finish_reason": "stop"
     }
   ],
