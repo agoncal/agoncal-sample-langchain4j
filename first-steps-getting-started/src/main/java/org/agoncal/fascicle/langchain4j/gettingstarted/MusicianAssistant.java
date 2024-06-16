@@ -39,13 +39,15 @@ public class MusicianAssistant {
 
   // tag::adocMethod[]
   Musician generateTopThreeAlbums(ChatLanguageModel model, String firstName, String lastName) {
-    SystemMessage systemMessage = SystemMessage.from("You are an expert in Jazz music.");
-    UserMessage userMessage = UserMessage.from(String.format("List the top 3 albums of %s %s as bullet points. ", firstName, lastName));
-    List<ChatMessage> messages = List.of(systemMessage, userMessage);
+    SystemMessage systemMsg = SystemMessage.from("You are an expert in Jazz music");
+    UserMessage userMsg = UserMessage.from(
+      String.format("List the top 3 albums of %s %s as bullet points", firstName, lastName)
+    );
+    List<ChatMessage> messages = List.of(systemMsg, userMsg);
 
-    Response<AiMessage> bio = model.generate(messages);
+    Response<AiMessage> albums = model.generate(messages);
 
-    return new Musician(firstName, lastName, bio.content().text());
+    return new Musician(firstName, lastName, albums.content().text());
   }
   // end::adocMethod[]
 }
