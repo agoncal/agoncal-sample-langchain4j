@@ -33,6 +33,7 @@ public class MusicianAssistantTest {
     ChatLanguageModel model = OllamaChatModel.builder()
       .baseUrl(baseUrl())
       .modelName(MODEL_NAME)
+      .temperature(0.1)
       .timeout(Duration.ofMinutes(5))
       .build();
 
