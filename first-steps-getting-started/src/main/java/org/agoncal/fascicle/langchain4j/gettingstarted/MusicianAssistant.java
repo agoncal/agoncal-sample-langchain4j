@@ -46,8 +46,9 @@ public class MusicianAssistant {
     List<ChatMessage> messages = List.of(systemMsg, userMsg);
 
     Response<AiMessage> albums = model.generate(messages);
+    String topThreeAlbums = albums.content().text();
 
-    return new Musician(firstName, lastName, albums.content().text());
+    return new Musician(firstName, lastName, topThreeAlbums);
   }
   // end::adocMethod[]
 }
