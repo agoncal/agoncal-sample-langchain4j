@@ -26,9 +26,11 @@ public class MusicianAssistant {
       .modelName(GPT_4_O)
       .temperature(0.3)
       .timeout(ofSeconds(60))
+      // tag::adocLogs[]
       .logRequests(true)
       .logResponses(true)
       .build();
+    // end::adocLogs[]
 
     Musician musician = new MusicianAssistant().generateTopThreeAlbums(model, args[0], args[1]);
 
