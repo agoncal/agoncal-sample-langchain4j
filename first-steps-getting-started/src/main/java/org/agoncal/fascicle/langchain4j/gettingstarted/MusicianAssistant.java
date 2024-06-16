@@ -17,7 +17,9 @@ import java.util.List;
 
 public class MusicianAssistant {
 
+  // tag::adocOpenAIKey[]
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
+  // end::adocOpenAIKey[]
 
   public static void main(String[] args) {
 
