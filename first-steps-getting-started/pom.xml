@@ -93,7 +93,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>${version.exec.plugin}</version>
         <configuration>
-          <mainClass>org.agoncal.fascicle.langchain4j.gettingstarted.MusicianService</mainClass>
+          <mainClass>org.agoncal.fascicle.langchain4j.gettingstarted.MusicianAssistant</mainClass>
           <arguments>
             <argument>Miles</argument>
             <argument>Davis</argument>

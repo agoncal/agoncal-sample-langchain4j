@@ -13,7 +13,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import java.time.Duration;
 
 @Testcontainers
-public class MusicianServiceTest {
+public class MusicianAssistantTest {
 
   static String MODEL_NAME = "tinyllama";
 
@@ -33,10 +33,11 @@ public class MusicianServiceTest {
     ChatLanguageModel model = OllamaChatModel.builder()
       .baseUrl(baseUrl())
       .modelName(MODEL_NAME)
+      .temperature(0.1)
       .timeout(Duration.ofMinutes(5))
       .build();
 
-    Musician musician = new MusicianService().generateTopThreeAlbums(model, "Miles", "Davis");
+    Musician musician = new MusicianAssistant().generateTopThreeAlbums(model, "Miles", "Davis");
 
     assertTrue(musician.albums().contains("Kind of Blue"));
   }

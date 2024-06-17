@@ -1,7 +1,7 @@
 - status code: 200
-- headers: [content-type: application/json], [openai-processing-ms: 1135], [openai-version: 2020-10-01]
+- headers: [content-type: application/json], [openai-version: 2020-10-01]
 - body: {
-  "id": "chatcmpl-9YVbGfh7CwBh8inGJMYNT9IdF9rNU",
+  "id": "chatcmpl-9YVbGfh7CwB9IdF9rNU",
   "object": "chat.completion",
   "created": 1718011650,
   "model": "gpt-4o-2024-05-13",
@@ -10,16 +10,15 @@
       "index": 0,
       "message": {
         "role": "assistant",
-        "content": "Certainly! Here are three of John Coltrane's most acclaimed albums:\n\n- **A Love Supreme** (1965)\n- **Giant Steps** (1960)\n- **Blue Train** (1958)\n\nThese albums are considered essential listening for anyone interested in jazz and showcase Coltrane's innovative approach to the genre."
+        "content": "Certainly! Here are three of the most acclaimed albums by Miles Davis:\n\n- **\"Kind of Blue\" (1959)**\n- **\"Bitches Brew\" (1970)**\n- **\"Sketches of Spain\" (1960)**"
       },
-      "logprobs": null,
       "finish_reason": "stop"
     }
   ],
   "usage": {
-    "prompt_tokens": 27,
-    "completion_tokens": 35,
-    "total_tokens": 62
+    "prompt_tokens": 30,
+    "completion_tokens": 50,
+    "total_tokens": 80
   },
   "system_fingerprint": "fp_319be4768e"
 }

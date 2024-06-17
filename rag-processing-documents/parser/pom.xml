@@ -55,7 +55,7 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <configuration>
-          <mainClass>org.agoncal.fascicle.langchain4j.firstlook.Author</mainClass>
+          <mainClass>org.agoncal.fascicle.langchain4j.firstlook.AuthorService</mainClass>
         </configuration>
       </plugin>
     </plugins>

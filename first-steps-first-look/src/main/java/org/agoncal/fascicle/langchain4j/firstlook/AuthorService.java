@@ -15,7 +15,7 @@ import static java.lang.System.exit;
  * --
  */
 // end::adocSkip[]
-public class Author {
+public class AuthorService {
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
 

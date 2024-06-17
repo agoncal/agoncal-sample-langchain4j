@@ -15,9 +15,11 @@ import static java.time.Duration.ofSeconds;
 
 import java.util.List;
 
-public class MusicianService {
+public class MusicianAssistant {
 
+  // tag::adocOpenAIKey[]
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
+  // end::adocOpenAIKey[]
 
   public static void main(String[] args) {
 
@@ -26,11 +28,13 @@ public class MusicianService {
       .modelName(GPT_4_O)
       .temperature(0.3)
       .timeout(ofSeconds(60))
+      // tag::adocLogs[]
       .logRequests(true)
       .logResponses(true)
       .build();
+    // end::adocLogs[]
 
-    Musician musician = new MusicianService().generateTopThreeAlbums(model, args[0], args[1]);
+    Musician musician = new MusicianAssistant().generateTopThreeAlbums(model, args[0], args[1]);
 
     System.out.println(musician);
     exit(0);
@@ -39,13 +43,16 @@ public class MusicianService {
 
   // tag::adocMethod[]
   Musician generateTopThreeAlbums(ChatLanguageModel model, String firstName, String lastName) {
-    SystemMessage systemMessage = SystemMessage.from("You are an expert in Jazz music.");
-    UserMessage userMessage = UserMessage.from(String.format("List the top 3 albums of %s %s as bullet points. ", firstName, lastName));
-    List<ChatMessage> messages = List.of(systemMessage, userMessage);
+    SystemMessage systemMsg = SystemMessage.from("You are an expert in Jazz music");
+    UserMessage userMsg = UserMessage.from(
+      String.format("List the top 3 albums of %s %s as bullet points", firstName, lastName)
+    );
+    List<ChatMessage> messages = List.of(systemMsg, userMsg);
 
-    Response<AiMessage> bio = model.generate(messages);
+    Response<AiMessage> albums = model.generate(messages);
+    String topThreeAlbums = albums.content().text();
 
-    return new Musician(firstName, lastName, bio.content().text());
+    return new Musician(firstName, lastName, topThreeAlbums);
   }
   // end::adocMethod[]
 }
