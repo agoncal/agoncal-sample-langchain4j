@@ -29,3 +29,4 @@ projectFilesBackup*
 create.sql
 drop.sql
 .env
+.qdrant
