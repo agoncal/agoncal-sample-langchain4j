@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+
+// tag::adocMain[]
 public class DocumentIngestor {
 
   private static final Logger log = LoggerFactory.getLogger(DocumentIngestor.class);
@@ -44,6 +46,7 @@ public class DocumentIngestor {
       ingest(path);
     }
   }
+// end::adocMain[]
 
   public static void ingest(Path pdfFile) throws Exception {
 
