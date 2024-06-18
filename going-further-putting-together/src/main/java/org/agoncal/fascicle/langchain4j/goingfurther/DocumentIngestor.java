@@ -30,18 +30,22 @@ public class DocumentIngestor {
   private static final Logger log = LoggerFactory.getLogger(DocumentIngestor.class);
   private static final String INDEX_NAME = "VintageStoreIndex";
   private static final String QDRANT_URL = "http://localhost:6334";
-  private EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
+
+  private static EmbeddingModel embeddingModel;
+  private static EmbeddingStore<TextSegment> embeddingStore;
 
   public static void main(String[] args) throws Exception {
 
-    DocumentIngestor documentIngestor = new DocumentIngestor();
+    embeddingStore = embeddingStore();
+    embeddingModel = new AllMiniLmL6V2EmbeddingModel();
+
     List<Path> pdfFiles = getPdfFiles();
     for (Path path : pdfFiles) {
-      documentIngestor.ingest(path);
+      ingest(path);
     }
   }
 
-  public void ingest(Path pdfFile) throws Exception {
+  public static void ingest(Path pdfFile) throws Exception {
 
     log.info("### Load file {}", pdfFile.getFileName());
     ApachePdfBoxDocumentParser pdfParser = new ApachePdfBoxDocumentParser();
@@ -63,10 +67,10 @@ public class DocumentIngestor {
     log.debug("# Vector length: {}", embeddings.get(0).vector().length);
 
     log.info("### Store embeddings into Qdrant store for further search / retrieval");
-    embeddingStore().addAll(embeddings, segments);
+    embeddingStore.addAll(embeddings, segments);
   }
 
-  public EmbeddingStore<TextSegment> embeddingStore() throws Exception {
+  private static EmbeddingStore<TextSegment> embeddingStore() throws Exception {
     String qdrantHostname = new URI(QDRANT_URL).getHost();
     int qdrantPort = new URI(QDRANT_URL).getPort();
 
