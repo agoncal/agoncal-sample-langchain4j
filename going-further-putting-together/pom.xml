@@ -83,11 +83,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>${version.exec.plugin}</version>
         <configuration>
-          <mainClass>org.agoncal.fascicle.langchain4j.gettingstarted.MusicianAssistant</mainClass>
-          <arguments>
-            <argument>Miles</argument>
-            <argument>Davis</argument>
-          </arguments>
+          <mainClass>org.agoncal.fascicle.langchain4j.goingfurther.ChatService</mainClass>
         </configuration>
       </plugin>
     </plugins>
