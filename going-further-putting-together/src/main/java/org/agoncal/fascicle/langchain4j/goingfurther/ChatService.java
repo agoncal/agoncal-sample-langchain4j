@@ -92,7 +92,7 @@ public class ChatService {
       .chatLanguageModel(model)
       .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
       .contentRetriever(contentRetriever)
-      .tools(new VintageStoreTools())
+      .tools(new ChatTools())
       .build();
 
     return assistant;

@@ -58,26 +58,21 @@ public class DocumentIngestor {
   // tag::adocIngest[]
   private static void ingest(Path pdfFile) throws Exception {
 
-    log.info("### Load file {}", pdfFile.getFileName());
+    // Load PDF file and parse it into a Document
     ApachePdfBoxDocumentParser pdfParser = new ApachePdfBoxDocumentParser();
     Document document = pdfParser.parse(Files.newInputStream(pdfFile));
-    log.debug("# PDF size: {}", document.text().length());
 
-    log.info("### Split document into segments 100 tokens each");
+    // Split document into segments
     DocumentSplitter splitter = DocumentSplitters.recursive(2000, 200);
     List<TextSegment> segments = splitter.split(document);
     for (TextSegment segment : segments) {
-      log.debug("# Segment size: {}", segment.text().length());
       segment.metadata().add("filename", pdfFile.getFileName());
     }
-    log.debug("# Number of segments: {}", segments.size());
 
-    log.info("### Embed segments (convert them into vectors that represent the meaning) using embedding model");
+    // Convert segments into embeddings
     List<Embedding> embeddings = embeddingModel.embedAll(segments).content();
-    log.debug("# Number of embeddings: {}", embeddings.size());
-    log.debug("# Vector length: {}", embeddings.get(0).vector().length);
 
-    log.info("### Store embeddings into Qdrant store for further search / retrieval");
+    // Store embeddings into Qdrant
     embeddingStore.addAll(embeddings, segments);
   }
   // end::adocIngest[]
@@ -98,7 +93,7 @@ public class DocumentIngestor {
           .build()
       ).get();
     } catch (Exception e) {
-      log.info("Collection already exists, skipping creation. Error: {}", e.getMessage());
+      log.info("Collection already exists, skipping creation.");
     }
 
     return QdrantEmbeddingStore.builder()

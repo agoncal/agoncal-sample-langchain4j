@@ -5,7 +5,7 @@ import dev.langchain4j.agent.tool.Tool;
 import java.time.LocalDate;
 
 // tag::adocSnippet[]
-public class VintageStoreTools {
+public class ChatTools {
 
   @Tool("The last time the ACCEPTABLE USE POLICY document was updated")
   LocalDate lastUpdateAcceptableUsePolicy() {
