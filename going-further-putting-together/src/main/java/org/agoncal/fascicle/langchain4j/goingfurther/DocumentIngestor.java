@@ -13,6 +13,7 @@ import dev.langchain4j.store.embedding.qdrant.QdrantEmbeddingStore;
 import io.qdrant.client.QdrantClient;
 import io.qdrant.client.QdrantGrpcClient;
 import io.qdrant.client.grpc.Collections;
+import static java.lang.System.exit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +27,11 @@ import java.util.List;
 import java.util.stream.Stream;
 
 
+/**
+ * @author Antonio Goncalves
+ * http://www.antoniogoncalves.org
+ * --
+ */
 // tag::adocMain[]
 public class DocumentIngestor {
 
@@ -33,22 +39,24 @@ public class DocumentIngestor {
   private static final String INDEX_NAME = "VintageStoreIndex";
   private static final String QDRANT_URL = "http://localhost:6334";
 
-  private static EmbeddingModel embeddingModel;
+  private static final EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
   private static EmbeddingStore<TextSegment> embeddingStore;
 
   public static void main(String[] args) throws Exception {
 
     embeddingStore = embeddingStore();
-    embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 
     List<Path> pdfFiles = getPdfFiles();
     for (Path path : pdfFiles) {
       ingest(path);
     }
+
+    exit(0);
   }
 // end::adocMain[]
 
-  public static void ingest(Path pdfFile) throws Exception {
+  // tag::adocIngest[]
+  private static void ingest(Path pdfFile) throws Exception {
 
     log.info("### Load file {}", pdfFile.getFileName());
     ApachePdfBoxDocumentParser pdfParser = new ApachePdfBoxDocumentParser();
@@ -72,7 +80,9 @@ public class DocumentIngestor {
     log.info("### Store embeddings into Qdrant store for further search / retrieval");
     embeddingStore.addAll(embeddings, segments);
   }
+  // end::adocIngest[]
 
+  // tag::adocStore[]
   private static EmbeddingStore<TextSegment> embeddingStore() throws Exception {
     String qdrantHostname = new URI(QDRANT_URL).getHost();
     int qdrantPort = new URI(QDRANT_URL).getPort();
@@ -96,6 +106,7 @@ public class DocumentIngestor {
       .collectionName(INDEX_NAME)
       .build();
   }
+  // end::adocStore[]
 
   private static List<Path> getPdfFiles() throws IOException {
     List<Path> pdfFiles = new ArrayList<>();
