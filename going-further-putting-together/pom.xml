@@ -91,6 +91,7 @@
   <!-- end::adocBuild[] -->
 
   <profiles>
+    <!-- tag::adocProfile[] -->
     <profile>
       <id>ingest</id>
       <build>
@@ -105,7 +106,7 @@
           </plugin>
         </plugins>
       </build>
-
     </profile>
+    <!-- end::adocProfile[] -->
   </profiles>
 </project>
