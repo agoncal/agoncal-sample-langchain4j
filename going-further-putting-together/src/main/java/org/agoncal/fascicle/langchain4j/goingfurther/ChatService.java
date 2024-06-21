@@ -35,17 +35,11 @@ public class ChatService {
   private static final String QDRANT_URL = "http://localhost:6334";
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
 
-  private static final EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
-
-  private static EmbeddingStore<TextSegment> embeddingStore;
-  private static ChatLanguageModel model;
-  private static ChatAssistant assistant;
-
   public static void main(String[] args) throws Exception {
 
-    embeddingStore = embeddingStore();
-    model = model();
-    assistant = assistant();
+    EmbeddingStore<TextSegment> embeddingStore = embeddingStore();
+    ChatLanguageModel model = model();
+    ChatAssistant assistant = assistant(embeddingStore, model);
 
     Scanner scanner = new Scanner(System.in);
     String question;
@@ -85,7 +79,8 @@ public class ChatService {
   // end::adocModel[]
 
   // tag::adocAssistant[]
-  private static ChatAssistant assistant() {
+  private static ChatAssistant assistant(EmbeddingStore<TextSegment> embeddingStore, ChatLanguageModel model) {
+    EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
     ContentRetriever contentRetriever = new EmbeddingStoreContentRetriever(embeddingStore, embeddingModel);
 
     ChatAssistant assistant = AiServices.builder(ChatAssistant.class)
