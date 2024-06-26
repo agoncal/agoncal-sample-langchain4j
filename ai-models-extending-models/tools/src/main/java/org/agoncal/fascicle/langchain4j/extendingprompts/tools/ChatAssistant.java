@@ -42,40 +42,44 @@ public class ChatAssistant {
     System.out.println("####################################");
     System.out.println("STEP 1: User specify tools and query");
     // Tools
-    List<ToolSpecification> toolSpecifications = ToolSpecifications.toolSpecificationsFrom(WeatherTools.class);
+    TermsAndConditionTools tools = new TermsAndConditionTools();
+    List<ToolSpecification> toolSpecifications = ToolSpecifications.toolSpecificationsFrom(tools.getClass());
     // User query
     List<ChatMessage> chatMessages = new ArrayList<>();
-    UserMessage userMessage = UserMessage.from("What will the weather be like in London tomorrow?");
-    chatMessages.add(userMessage);
+    UserMessage userQuery = UserMessage.from("When was the PRIVACY document updated?");
+    chatMessages.add(userQuery);
 
     // STEP 2: Model generate function arguments
     System.out.println("#########################################");
     System.out.println("STEP 2: Model generate function arguments");
-    // Tool_choice: With multiple tools it's set to "auto" by default.
-    AiMessage aiMessage = model.generate(singletonList(userMessage), toolSpecifications).content();
-    aiMessage.toolExecutionRequests().forEach(toolSpec -> { // return all tools to call to answer the user query
-      System.out.println("Function name: " + toolSpec.name());
-      System.out.println("Function args:" + toolSpec.arguments());
+    AiMessage aiMessage = model.generate(singletonList(userQuery), toolSpecifications).content();
+    List<ToolExecutionRequest> toolExecutionRequests = aiMessage.toolExecutionRequests();
+    toolExecutionRequests.forEach(toolExecutionRequest -> { // return all tools to call to answer the user query
+      System.out.println("Function name: " + toolExecutionRequest.name());
+      System.out.println("Function args:" + toolExecutionRequest.arguments());
     });
     chatMessages.add(aiMessage);
 
     // STEP 3: User execute function to obtain tool results
     System.out.println("####################################################");
     System.out.println("STEP 3: User execute function to obtain tool results");
-    WeatherTools tools = new WeatherTools();
-    ToolExecutor toolExecutor = new DefaultToolExecutor(tools, tools.getClass().getDeclaredMethod("getWeather", String.class));
-    ToolExecutionRequest toolExecutionRequest = aiMessage.toolExecutionRequests().get(0);
-    String result = toolExecutor.execute(toolExecutionRequest, UUID.randomUUID().toString());
-    ToolExecutionResultMessage toolExecutionResultMessages = ToolExecutionResultMessage.from(toolExecutionRequest, result);
-    chatMessages.addAll(List.of(toolExecutionResultMessages));
+    toolExecutionRequests.forEach(toolExecutionRequest -> { // return all tools to call to answer the user query
+      ToolExecutor toolExecutor = null;
+      try {
+        toolExecutor = new DefaultToolExecutor(tools, tools.getClass().getDeclaredMethod(toolExecutionRequest.name()));
+      } catch (NoSuchMethodException e) {
+        throw new RuntimeException(e);
+      }
+      String result = toolExecutor.execute(toolExecutionRequest, UUID.randomUUID().toString());
+      ToolExecutionResultMessage toolExecutionResultMessages = ToolExecutionResultMessage.from(toolExecutionRequest, result);
+      chatMessages.add(toolExecutionResultMessages);
+    });
 
     // STEP 4: Model generate final response
     System.out.println("#####################################");
     System.out.println("STEP 4: Model generate final response");
     AiMessage finalResponse = model.generate(chatMessages).content();
-    System.out.println(finalResponse.text()); //According to the payment data, the payment status of transaction T1005 is Pending.
-
-
+    System.out.println(finalResponse.text());
   }
   // end::adocMethod[]
 
