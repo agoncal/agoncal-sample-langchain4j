@@ -26,6 +26,7 @@ public class ChatAssistant {
 
   public static void main(String[] args) throws Exception {
 
+    // tag::adocStepOne[]
     ChatLanguageModel model = OpenAiChatModel.builder()
       .apiKey(System.getenv("OPENAI_API_KEY"))
       .modelName(GPT_4_O)
@@ -48,21 +49,25 @@ public class ChatAssistant {
     List<ChatMessage> chatMessages = new ArrayList<>();
     UserMessage userQuery = UserMessage.from("When was the PRIVACY document updated?");
     chatMessages.add(userQuery);
+    // end::adocStepOne[]
 
     // STEP 2: Model generate function arguments
     System.out.println("#########################################");
     System.out.println("STEP 2: Model generate function arguments");
+    // tag::adocStepTwo[]
     AiMessage aiMessage = model.generate(singletonList(userQuery), toolSpecifications).content();
     List<ToolExecutionRequest> toolExecutionRequests = aiMessage.toolExecutionRequests();
+    chatMessages.add(aiMessage);
+    // end::adocStepTwo[]
     toolExecutionRequests.forEach(toolExecutionRequest -> { // return all tools to call to answer the user query
       System.out.println("Function name: " + toolExecutionRequest.name());
       System.out.println("Function args:" + toolExecutionRequest.arguments());
     });
-    chatMessages.add(aiMessage);
 
     // STEP 3: User execute function to obtain tool results
     System.out.println("####################################################");
     System.out.println("STEP 3: User execute function to obtain tool results");
+    // tag::adocStepThree[]
     toolExecutionRequests.forEach(toolExecutionRequest -> { // return all tools to call to answer the user query
       ToolExecutor toolExecutor = null;
       try {
@@ -74,12 +79,15 @@ public class ChatAssistant {
       ToolExecutionResultMessage toolExecutionResultMessages = ToolExecutionResultMessage.from(toolExecutionRequest, result);
       chatMessages.add(toolExecutionResultMessages);
     });
+    // end::adocStepThree[]
 
     // STEP 4: Model generate final response
     System.out.println("#####################################");
     System.out.println("STEP 4: Model generate final response");
+    // tag::adocStepFour[]
     AiMessage finalResponse = model.generate(chatMessages).content();
     System.out.println(finalResponse.text());
+    // end::adocStepFour[]
   }
   // end::adocMethod[]
 

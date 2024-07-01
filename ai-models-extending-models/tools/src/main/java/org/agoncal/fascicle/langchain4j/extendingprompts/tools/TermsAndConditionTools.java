@@ -16,5 +16,10 @@ public class TermsAndConditionTools {
   public LocalDate lastUpdateTerms() {
     return LocalDate.of(2014, 6, 19);
   }
+
+  @Tool("The last time the END USER LICENSE AGREEMENT document was updated")
+  public LocalDate lastEndUserLicenseAgreement() {
+    return LocalDate.of(2021, 11, 23);
+  }
 }
 // end::adocSnippet[]
