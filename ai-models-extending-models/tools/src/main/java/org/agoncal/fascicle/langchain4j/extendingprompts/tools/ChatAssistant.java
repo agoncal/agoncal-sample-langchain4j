@@ -39,9 +39,11 @@ public class ChatAssistant {
       .build();
 
 
+    // tag::adocSkip[]
     // STEP 1: User specify tools and query
     System.out.println("####################################");
     System.out.println("STEP 1: User specify tools and query");
+    // end::adocSkip[]
     // Tools
     TermsAndConditionTools tools = new TermsAndConditionTools();
     List<ToolSpecification> toolSpecifications = ToolSpecifications.toolSpecificationsFrom(tools.getClass());
@@ -59,7 +61,7 @@ public class ChatAssistant {
     List<ToolExecutionRequest> toolExecutionRequests = aiMessage.toolExecutionRequests();
     chatMessages.add(aiMessage);
     // end::adocStepTwo[]
-    toolExecutionRequests.forEach(toolExecutionRequest -> { // return all tools to call to answer the user query
+    toolExecutionRequests.forEach(toolExecutionRequest -> {
       System.out.println("Function name: " + toolExecutionRequest.name());
       System.out.println("Function args:" + toolExecutionRequest.arguments());
     });
@@ -68,7 +70,7 @@ public class ChatAssistant {
     System.out.println("####################################################");
     System.out.println("STEP 3: User execute function to obtain tool results");
     // tag::adocStepThree[]
-    toolExecutionRequests.forEach(toolExecutionRequest -> { // return all tools to call to answer the user query
+    toolExecutionRequests.forEach(toolExecutionRequest -> {
       ToolExecutor toolExecutor = null;
       try {
         toolExecutor = new DefaultToolExecutor(tools, tools.getClass().getDeclaredMethod(toolExecutionRequest.name()));
