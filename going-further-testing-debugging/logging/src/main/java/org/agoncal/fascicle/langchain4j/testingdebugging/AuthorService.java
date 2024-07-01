@@ -2,7 +2,7 @@ package org.agoncal.fascicle.langchain4j.testingdebugging;
 
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
-import static dev.langchain4j.model.openai.OpenAiModelName.GPT_3_5_TURBO;
+import static dev.langchain4j.model.openai.OpenAiChatModelName.GPT_3_5_TURBO;
 import static java.time.Duration.ofSeconds;
 
 // tag::adocSkip[]

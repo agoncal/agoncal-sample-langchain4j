@@ -66,7 +66,7 @@ public class DocumentIngestor {
     DocumentSplitter splitter = DocumentSplitters.recursive(2000, 200);
     List<TextSegment> segments = splitter.split(document);
     for (TextSegment segment : segments) {
-      segment.metadata().add("filename", pdfFile.getFileName());
+      segment.metadata().put("filename", pdfFile.getFileName().toString());
     }
 
     // Convert segments into embeddings

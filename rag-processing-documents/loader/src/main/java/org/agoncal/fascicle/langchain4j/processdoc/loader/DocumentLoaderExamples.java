@@ -37,8 +37,8 @@ public class DocumentLoaderExamples {
 
     Document document = DocumentLoader.load(new FileSystemSource(documentPath), new TextDocumentParser());
 
-    log.info(document.metadata(Document.FILE_NAME));
-    log.info(document.metadata(Document.ABSOLUTE_DIRECTORY_PATH));
+    log.info(document.metadata().getString(Document.FILE_NAME));
+    log.info(document.metadata().getString(Document.ABSOLUTE_DIRECTORY_PATH));
     log.info(document.text().trim().substring(0, 50));
     // end::adocLoadFromDocumentLoaderFile[]
   }
@@ -49,7 +49,7 @@ public class DocumentLoaderExamples {
 
     Document document = DocumentLoader.load(new UrlSource(documentUrl), new TextDocumentParser());
 
-    log.info(document.metadata(Document.URL));
+    log.info(document.metadata().getString(Document.URL));
     log.info(document.text().trim().substring(0, 50));
     // end::adocLoadFromDocumentLoaderURL[]
   }
@@ -58,10 +58,10 @@ public class DocumentLoaderExamples {
     // tag::adocLoadFromDocumentLoaderAzure[]
     Document document = DocumentLoader.load(new AzureBlobStorageSource(null, null, null, null, null), new TextDocumentParser());
 
-    log.info(document.metadata("source"));
-    log.info(document.metadata("azure_storage_blob_creation_time"));
-    log.info(document.metadata("azure_storage_blob_last_modified"));
-    log.info(document.metadata("azure_storage_blob_content_length"));
+    log.info(document.metadata().getString("source"));
+    log.info(document.metadata().getString("azure_storage_blob_creation_time"));
+    log.info(document.metadata().getString("azure_storage_blob_last_modified"));
+    log.info(document.metadata().getString("azure_storage_blob_content_length"));
     log.info(document.text().trim().substring(0, 50));
     // end::adocLoadFromDocumentLoaderAzure[]
   }
@@ -72,8 +72,8 @@ public class DocumentLoaderExamples {
 
     Document document = FileSystemDocumentLoader.loadDocument(documentPath, new TextDocumentParser());
 
-    log.info(document.metadata(Document.FILE_NAME));
-    log.info(document.metadata(Document.ABSOLUTE_DIRECTORY_PATH));
+    log.info(document.metadata().getString(Document.FILE_NAME));
+    log.info(document.metadata().getString(Document.ABSOLUTE_DIRECTORY_PATH));
     log.info(document.text().trim().substring(0, 50));
     // end::adocLoadFromFileSystemDocumentLoader[]
   }
@@ -84,7 +84,7 @@ public class DocumentLoaderExamples {
 
     Document document = UrlDocumentLoader.load(documentUrl, new TextDocumentParser());
 
-    log.info(document.metadata(Document.URL));
+    log.info(document.metadata().getString(Document.URL));
     log.info(document.text().trim().substring(0, 50));
     // end::loadFromUrlDocumentLoader[]
   }
@@ -95,10 +95,10 @@ public class DocumentLoaderExamples {
 
     Document document = new AzureBlobStorageDocumentLoader(null).loadDocument(null, null, new TextDocumentParser());
 
-    log.info(document.metadata("source"));
-    log.info(document.metadata("azure_storage_blob_creation_time"));
-    log.info(document.metadata("azure_storage_blob_last_modified"));
-    log.info(document.metadata("azure_storage_blob_content_length"));
+    log.info(document.metadata().getString("source"));
+    log.info(document.metadata().getString("azure_storage_blob_creation_time"));
+    log.info(document.metadata().getString("azure_storage_blob_last_modified"));
+    log.info(document.metadata().getString("azure_storage_blob_content_length"));
     log.info(document.text().trim().substring(0, 50));
     // end::loadFromAzureDocumentLoader[]
   }
