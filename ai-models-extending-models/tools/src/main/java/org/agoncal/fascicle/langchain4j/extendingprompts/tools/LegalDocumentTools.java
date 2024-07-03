@@ -5,7 +5,7 @@ import dev.langchain4j.agent.tool.Tool;
 import java.time.LocalDate;
 
 // tag::adocSnippet[]
-public class TermsAndConditionTools {
+public class LegalDocumentTools {
 
   @Tool("The last time the PRIVACY document was updated")
   public LocalDate lastUpdatePrivacy() {

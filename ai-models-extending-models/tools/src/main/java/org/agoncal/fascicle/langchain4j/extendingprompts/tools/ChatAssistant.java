@@ -45,7 +45,7 @@ public class ChatAssistant {
     System.out.println("STEP 1: User specify tools and query");
     // end::adocSkip[]
     // Tools
-    TermsAndConditionTools tools = new TermsAndConditionTools();
+    LegalDocumentTools tools = new LegalDocumentTools();
     List<ToolSpecification> toolSpecifications = ToolSpecifications.toolSpecificationsFrom(tools.getClass());
     // User query
     List<ChatMessage> chatMessages = new ArrayList<>();
