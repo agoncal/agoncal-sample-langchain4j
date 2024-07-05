@@ -8,7 +8,7 @@ curl https://api.openai.com/v1/chat/completions \
           "messages": [
             {
               "role": "user",
-              "content": "When was the first Beatles album released?."
+              "content": "When was the first Beatles album released?"
             }
           ]
          }'

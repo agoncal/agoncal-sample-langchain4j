@@ -158,23 +158,24 @@ public class MusicianAssistant {
     // tag::adocStreamingLanguageTypeOfModel[]
     StreamingLanguageModel model = OpenAiStreamingLanguageModel.withApiKey(OPENAI_API_KEY);
 
-    model.generate("Who are some influential Jazz musicians?", new StreamingResponseHandler<>() {
+    model.generate("Who are some influential Jazz musicians?",
+      new StreamingResponseHandler<>() {
 
-      @Override
-      public void onNext(String token) {
-        System.out.print(token);
-      }
+        @Override
+        public void onNext(String token) {
+          System.out.print(token);
+        }
 
-      @Override
-      public void onComplete(Response<String> response) {
-        System.out.println("Streaming completed: " + response);
-      }
+        @Override
+        public void onComplete(Response<String> response) {
+          System.out.println("Streaming completed: " + response);
+        }
 
-      @Override
-      public void onError(Throwable error) {
-        error.printStackTrace();
-      }
-    });
+        @Override
+        public void onError(Throwable error) {
+          error.printStackTrace();
+        }
+      });
     // end::adocStreamingLanguageTypeOfModel[]
   }
 
@@ -251,23 +252,24 @@ public class MusicianAssistant {
     // tag::adocStreamingChatTypeOfModel[]
     StreamingChatLanguageModel model = OpenAiStreamingChatModel.withApiKey(OPENAI_API_KEY);
 
-    model.generate("What are some common formats and sizes of video tapes?", new StreamingResponseHandler<>() {
+    model.generate("What are some common formats and sizes of video tapes?",
+      new StreamingResponseHandler<>() {
 
-      @Override
-      public void onNext(String token) {
-        System.out.print(token);
-      }
+        @Override
+        public void onNext(String token) {
+          System.out.print(token);
+        }
 
-      @Override
-      public void onComplete(Response<AiMessage> response) {
-        System.out.println("Streaming completed: " + response);
-      }
+        @Override
+        public void onComplete(Response<AiMessage> response) {
+          System.out.println("Streaming completed: " + response);
+        }
 
-      @Override
-      public void onError(Throwable error) {
-        error.printStackTrace();
-      }
-    });
+        @Override
+        public void onError(Throwable error) {
+          error.printStackTrace();
+        }
+      });
     // end::adocStreamingChatTypeOfModel[]
   }
 
