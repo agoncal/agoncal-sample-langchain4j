@@ -39,14 +39,14 @@ public class MusicianAssistant {
   public static void main(String[] args) {
     MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianAssistant.useLangChain4jInsteadSDK();
+//    musicianAssistant.useLangChain4jInsteadSDK();
 //    musicianAssistant.useOpenAiLanguageTypeOfModel();
 //    musicianAssistant.useOpenAiLanguageModel();
 //    musicianAssistant.useOpenAiLanguageModelPrompt();
 //    musicianAssistant.useOpenAiLanguageModelBuilder();
 //    musicianAssistant.useOpenAiStreamingLanguageTypeOfModel();
 
-//    musicianAssistant.useOpenAiChatTypeOfModel();
+    musicianAssistant.useOpenAiChatTypeOfModel();
 //    musicianAssistant.useOpenAiChatModelBuilder();
 //    musicianAssistant.useOpenAiStreamingChatTypeOfModel();
 
@@ -188,9 +188,10 @@ public class MusicianAssistant {
     // tag::adocChatTypeOfModel[]
     ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
-    String content = model.generate("What inspired the author to start writing?");
+    UserMessage userMessage = new UserMessage("Who composed the Moonlight Sonata?");
+    Response<AiMessage> reponse = model.generate(userMessage);
 
-    System.out.println(content);
+    System.out.println(reponse.content());
     // end::adocChatTypeOfModel[]
   }
 
