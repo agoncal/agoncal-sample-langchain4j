@@ -71,12 +71,7 @@ public class ChatAssistant {
     System.out.println("STEP 3: User execute function to obtain tool results");
     // tag::adocStepThree[]
     toolExecutionRequests.forEach(toolExecutionRequest -> {
-      ToolExecutor toolExecutor = null;
-      try {
-        toolExecutor = new DefaultToolExecutor(tools, tools.getClass().getDeclaredMethod(toolExecutionRequest.name()));
-      } catch (NoSuchMethodException e) {
-        throw new RuntimeException(e);
-      }
+      ToolExecutor toolExecutor = new DefaultToolExecutor(tools, toolExecutionRequest);
       String result = toolExecutor.execute(toolExecutionRequest, UUID.randomUUID().toString());
       ToolExecutionResultMessage toolExecutionResultMessages = ToolExecutionResultMessage.from(toolExecutionRequest, result);
       chatMessages.add(toolExecutionResultMessages);
