@@ -39,18 +39,19 @@ public class MusicianAssistant {
   public static void main(String[] args) {
     MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-//    musicianService.useOpenAiLanguageTypeOfModel();
-//    musicianService.useOpenAiLanguageModel();
-//    musicianService.useOpenAiLanguageModelPrompt();
-//    musicianService.useOpenAiLanguageModelBuilder();
-//    musicianService.useOpenAiStreamingLanguageTypeOfModel();
+    musicianAssistant.useLangChain4jInsteadSDK();
+//    musicianAssistant.useOpenAiLanguageTypeOfModel();
+//    musicianAssistant.useOpenAiLanguageModel();
+//    musicianAssistant.useOpenAiLanguageModelPrompt();
+//    musicianAssistant.useOpenAiLanguageModelBuilder();
+//    musicianAssistant.useOpenAiStreamingLanguageTypeOfModel();
 
-//    musicianService.useOpenAiChatTypeOfModel();
-    musicianAssistant.useOpenAiChatModelBuilder();
-//    musicianService.useOpenAiStreamingChatTypeOfModel();
+//    musicianAssistant.useOpenAiChatTypeOfModel();
+//    musicianAssistant.useOpenAiChatModelBuilder();
+//    musicianAssistant.useOpenAiStreamingChatTypeOfModel();
 
-//    musicianService.useOpenAiModerationTypeOfModel();
-//    musicianService.useOpenAiImageTypeOfModel();
+//    musicianAssistant.useOpenAiModerationTypeOfModel();
+//    musicianAssistant.useOpenAiImageTypeOfModel();
   }
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
@@ -60,6 +61,22 @@ public class MusicianAssistant {
   // #############################
   // ### OPENAI LANGUAGE MODEL ###
   // #############################
+  public void useLangChain4jInsteadSDK() {
+    System.out.println("### useLangChain4jInsteadSDK");
+
+    // tag::adocUseLangChain4jInsteadSDK[]
+    LanguageModel model = OpenAiLanguageModel.withApiKey(OPENAI_API_KEY);
+
+    Response<String> response = model.generate("When was the first Beatles album released?");
+
+    String content = response.content();
+
+    System.out.println(content);
+    // end::adocUseLangChain4jInsteadSDK[]
+    System.out.println(response.finishReason());
+    System.out.println(response.tokenUsage());
+  }
+
   public void useOpenAiLanguageTypeOfModel() {
     System.out.println("### useOpenAiLanguageTypeOfModel");
 
