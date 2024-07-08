@@ -83,11 +83,9 @@ public class MusicianAssistant {
     // tag::adocLanguageTypeOfModel[]
     LanguageModel model = OpenAiLanguageModel.withApiKey(OPENAI_API_KEY);
 
-    Response<String> response = model.generate("When was the first Beatles album released?");
+    Response<String> response = model.generate("What is the history of jazz music?");
 
-    String content = response.content();
-
-    System.out.println(content);
+    System.out.println(response.content());
     // end::adocLanguageTypeOfModel[]
     System.out.println(response.finishReason());
     System.out.println(response.tokenUsage());
