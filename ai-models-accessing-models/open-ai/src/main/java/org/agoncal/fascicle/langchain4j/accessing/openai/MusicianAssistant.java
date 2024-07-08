@@ -283,9 +283,7 @@ public class MusicianAssistant {
 
     Response<Moderation> response = model.moderate("I want to kill all bass players.");
 
-    Moderation content = response.content();
-
-    System.out.println(content);
+    System.out.println(response.content());
     // end::adocModerationTypeOfModel[]
   }
 
@@ -303,6 +301,7 @@ public class MusicianAssistant {
     Image content = response.content();
 
     System.out.println(content.url());
+    System.out.println(content.mimeType());
     // end::adocImageTypeOfModel[]
   }
 }
