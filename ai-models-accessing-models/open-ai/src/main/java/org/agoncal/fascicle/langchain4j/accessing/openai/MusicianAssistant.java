@@ -1,5 +1,6 @@
 package org.agoncal.fascicle.langchain4j.accessing.openai;
 
+import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.image.Image;
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.data.message.SystemMessage;
@@ -15,6 +16,7 @@ import dev.langchain4j.model.moderation.Moderation;
 import dev.langchain4j.model.moderation.ModerationModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import static dev.langchain4j.model.openai.OpenAiChatModelName.GPT_4_O;
+import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
 import dev.langchain4j.model.openai.OpenAiImageModel;
 import dev.langchain4j.model.openai.OpenAiLanguageModel;
 import dev.langchain4j.model.openai.OpenAiModerationModel;
@@ -47,8 +49,12 @@ public class MusicianAssistant {
 //    musicianAssistant.useOpenAiStreamingLanguageTypeOfModel();
 
 //    musicianAssistant.useOpenAiChatTypeOfModel();
-    musicianAssistant.useOpenAiChatModelTemperatureOne();
-    musicianAssistant.useOpenAiChatModelTemperatureZero();
+//    musicianAssistant.useOpenAiChatModelTemperatureOne();
+//    musicianAssistant.useOpenAiChatModelTemperatureZero();
+    musicianAssistant.useTypedUntypedResponseString();
+    musicianAssistant.useTypedUntypedResponseUserMessage();
+    musicianAssistant.useTypedUntypedResponseImage();
+    musicianAssistant.useTypedUntypedResponseEmbedding();
 //    musicianAssistant.useOpenAiChatModelBuilder();
 //    musicianAssistant.useOpenAiStreamingChatTypeOfModel();
 
@@ -337,5 +343,65 @@ public class MusicianAssistant {
     System.out.println(content.url());
     System.out.println(content.mimeType());
     // end::adocImageTypeOfModel[]
+  }
+
+  // ##################################
+  // ### TYPED AND UNTYPED RESPONSE ###
+  // ##################################
+  public void useTypedUntypedResponseString() {
+    System.out.println("### useTypedUntypedResponseString");
+
+    OpenAiChatModel chatModel = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+
+    // tag::adocTypedUntypedResponse[]
+    // The response is a String
+    String response = chatModel.generate("Who is the author of 1984?");
+    System.out.println(response);
+
+    // end::adocTypedUntypedResponse[]
+  }
+
+  public void useTypedUntypedResponseUserMessage() {
+    System.out.println("### useTypedUntypedResponseUserMessage");
+
+    OpenAiChatModel chatModel = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+
+    // tag::adocTypedUntypedResponse[]
+    // The response is a Response<AiMessage>
+    UserMessage message = new UserMessage("Who are the main characters in Moby Dick?");
+    Response<AiMessage> response = chatModel.generate(message);
+    System.out.println(response.content().text());
+    System.out.println(response.tokenUsage());
+    System.out.println(response.finishReason());
+
+    // end::adocTypedUntypedResponse[]
+  }
+
+  public void useTypedUntypedResponseImage() {
+    System.out.println("### useTypedUntypedResponseImage");
+
+    OpenAiImageModel imageModel = OpenAiImageModel.withApiKey(OPENAI_API_KEY);
+
+    // tag::adocTypedUntypedResponse[]
+    // The response is a Response<Image>
+    Response<Image> response = imageModel.generate("Draw Moby Dick");
+    System.out.println(response.content().url());
+    System.out.println(response.content().base64Data());
+
+    // end::adocTypedUntypedResponse[]
+  }
+
+  public void useTypedUntypedResponseEmbedding() {
+    System.out.println("### useTypedUntypedResponseEmbedding");
+
+    OpenAiEmbeddingModel embeddingModel = OpenAiEmbeddingModel.withApiKey(OPENAI_API_KEY);
+
+    // tag::adocTypedUntypedResponse[]
+    // The response is a Response<Embedding>
+    Response<Embedding> response = embeddingModel.embed("Moby Dick is a novel by Herman Melville about Captain Ahab’s obsessive quest to hunt the giant white whale Moby Dick");
+    System.out.println(response.content().dimension());
+    System.out.println(response.content().vectorAsList());
+
+    // end::adocTypedUntypedResponse[]
   }
 }
