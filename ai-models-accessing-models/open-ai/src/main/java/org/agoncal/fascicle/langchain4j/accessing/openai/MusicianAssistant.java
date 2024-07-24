@@ -46,7 +46,9 @@ public class MusicianAssistant {
 //    musicianAssistant.useOpenAiLanguageModelBuilder();
 //    musicianAssistant.useOpenAiStreamingLanguageTypeOfModel();
 
-    musicianAssistant.useOpenAiChatTypeOfModel();
+//    musicianAssistant.useOpenAiChatTypeOfModel();
+    musicianAssistant.useOpenAiChatModelTemperatureOne();
+    musicianAssistant.useOpenAiChatModelTemperatureZero();
 //    musicianAssistant.useOpenAiChatModelBuilder();
 //    musicianAssistant.useOpenAiStreamingChatTypeOfModel();
 
@@ -226,6 +228,38 @@ public class MusicianAssistant {
     // end::adocRichConf[]
 
     String completion = model.generate("When was the first Rolling Stones album released?");
+
+    System.out.println(completion);
+  }
+
+  public void useOpenAiChatModelTemperatureOne() {
+    System.out.println("### useOpenAiChatModelTemperatureOne");
+
+    // tag::adocOpenAiChatModelTemperatureOne[]
+    OpenAiChatModel model = OpenAiChatModel.builder()
+      .apiKey(OPENAI_API_KEY)
+      .modelName(GPT_4_O)
+      .frequencyPenalty(1.0)
+      .build();
+
+    String completion = model.generate("What are the main differences between rock and pop music?");
+    // end::adocOpenAiChatModelTemperatureOne[]
+
+    System.out.println(completion);
+  }
+
+  public void useOpenAiChatModelTemperatureZero() {
+    System.out.println("### useOpenAiChatModelTemperatureZero");
+
+    // tag::adocOpenAiChatModelTemperatureZero[]
+    OpenAiChatModel model = OpenAiChatModel.builder()
+      .apiKey(OPENAI_API_KEY)
+      .modelName(GPT_4_O)
+      .frequencyPenalty(0.0)
+      .build();
+
+    String completion = model.generate("What are the main differences between rock and pop music?");
+    // end::adocOpenAiChatModelTemperatureZero[]
 
     System.out.println(completion);
   }
