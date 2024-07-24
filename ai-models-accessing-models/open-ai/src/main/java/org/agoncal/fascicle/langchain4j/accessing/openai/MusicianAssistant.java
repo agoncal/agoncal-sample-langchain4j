@@ -242,7 +242,7 @@ public class MusicianAssistant {
       .frequencyPenalty(1.0)
       .build();
 
-    String completion = model.generate("What are the main differences between rock and pop music?");
+    String completion = model.generate("In one single sentence, tell me what is the significance of the Beatles in music history?");
     // end::adocOpenAiChatModelTemperatureOne[]
 
     System.out.println(completion);
@@ -258,7 +258,7 @@ public class MusicianAssistant {
       .frequencyPenalty(0.0)
       .build();
 
-    String completion = model.generate("What are the main differences between rock and pop music?");
+    String completion = model.generate("In one single sentence, tell me what is the significance of the Beatles in music history?");
     // end::adocOpenAiChatModelTemperatureZero[]
 
     System.out.println(completion);
