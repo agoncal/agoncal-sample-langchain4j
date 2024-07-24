@@ -398,7 +398,7 @@ public class MusicianAssistant {
 
     // tag::adocTypedUntypedResponse[]
     // The response is a Response<Embedding>
-    Response<Embedding> response = embeddingModel.embed("Moby Dick is a novel by Herman Melville about Captain Ahab’s obsessive quest to hunt the giant white whale Moby Dick");
+    Response<Embedding> response = embeddingModel.embed("Moby Dick is a novel by Herman Melville about Captain Ahab's quest to hunt a giant white whale");
     System.out.println(response.content().dimension());
     System.out.println(response.content().vectorAsList());
 
