@@ -353,12 +353,10 @@ public class MusicianAssistant {
 
     OpenAiChatModel chatModel = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
-    // tag::adocTypedUntypedResponse[]
-    // The response is a String
+    // tag::adocTypedUntypedResponseString[]
     String response = chatModel.generate("Who is the author of 1984?");
     System.out.println(response);
-
-    // end::adocTypedUntypedResponse[]
+    // end::adocTypedUntypedResponseString[]
   }
 
   public void useTypedUntypedResponseUserMessage() {
@@ -366,15 +364,13 @@ public class MusicianAssistant {
 
     OpenAiChatModel chatModel = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
-    // tag::adocTypedUntypedResponse[]
-    // The response is a Response<AiMessage>
+    // tag::adocTypedUntypedResponseUserMessage[]
     UserMessage message = new UserMessage("Who are the main characters in Moby Dick?");
     Response<AiMessage> response = chatModel.generate(message);
     System.out.println(response.content().text());
     System.out.println(response.tokenUsage());
     System.out.println(response.finishReason());
-
-    // end::adocTypedUntypedResponse[]
+    // end::adocTypedUntypedResponseUserMessage[]
   }
 
   public void useTypedUntypedResponseImage() {
@@ -382,13 +378,11 @@ public class MusicianAssistant {
 
     OpenAiImageModel imageModel = OpenAiImageModel.withApiKey(OPENAI_API_KEY);
 
-    // tag::adocTypedUntypedResponse[]
-    // The response is a Response<Image>
+    // tag::adocTypedUntypedResponseImage[]
     Response<Image> response = imageModel.generate("Draw Moby Dick");
     System.out.println(response.content().url());
     System.out.println(response.content().base64Data());
-
-    // end::adocTypedUntypedResponse[]
+    // end::adocTypedUntypedResponseImage[]
   }
 
   public void useTypedUntypedResponseEmbedding() {
@@ -396,12 +390,10 @@ public class MusicianAssistant {
 
     OpenAiEmbeddingModel embeddingModel = OpenAiEmbeddingModel.withApiKey(OPENAI_API_KEY);
 
-    // tag::adocTypedUntypedResponse[]
-    // The response is a Response<Embedding>
+    // tag::adocTypedUntypedResponseEmbedding[]
     Response<Embedding> response = embeddingModel.embed("Moby Dick is a novel by Herman Melville about Captain Ahab's quest to hunt a giant white whale");
     System.out.println(response.content().dimension());
     System.out.println(response.content().vectorAsList());
-
-    // end::adocTypedUntypedResponse[]
+    // end::adocTypedUntypedResponseEmbedding[]
   }
 }
