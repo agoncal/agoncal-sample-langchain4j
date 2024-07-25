@@ -2,9 +2,9 @@ package org.agoncal.fascicle.langchain4j.extendingprompts.tools;
 
 // tag::adocHeader[]
 
-import dev.langchain4j.agent.tool.DefaultToolExecutor;
+import dev.langchain4j.service.tool.DefaultToolExecutor;
 import dev.langchain4j.agent.tool.ToolExecutionRequest;
-import dev.langchain4j.agent.tool.ToolExecutor;
+import dev.langchain4j.service.tool.ToolExecutor;
 import dev.langchain4j.agent.tool.ToolSpecification;
 import dev.langchain4j.agent.tool.ToolSpecifications;
 import dev.langchain4j.data.message.AiMessage;
