@@ -51,10 +51,11 @@ public class MusicianAssistant {
 //    musicianAssistant.useOpenAiChatTypeOfModel();
 //    musicianAssistant.useOpenAiChatModelTemperatureOne();
 //    musicianAssistant.useOpenAiChatModelTemperatureZero();
-    musicianAssistant.useTypedUntypedResponseString();
-    musicianAssistant.useTypedUntypedResponseUserMessage();
-    musicianAssistant.useTypedUntypedResponseImage();
-    musicianAssistant.useTypedUntypedResponseEmbedding();
+//    musicianAssistant.useTypedUntypedResponseString();
+//    musicianAssistant.useTypedUntypedResponseUserMessage();
+//    musicianAssistant.useTypedUntypedResponseImage();
+//    musicianAssistant.useTypedUntypedResponseEmbedding();
+    musicianAssistant.useOpenAiStreaming();
 //    musicianAssistant.useOpenAiChatModelBuilder();
 //    musicianAssistant.useOpenAiStreamingChatTypeOfModel();
 
@@ -310,6 +311,33 @@ public class MusicianAssistant {
         }
       });
     // end::adocStreamingChatTypeOfModel[]
+  }
+
+  public void useOpenAiStreaming() {
+    System.out.println("### useOpenAiStreaming");
+
+    // tag::adocStreaming[]
+    StreamingChatLanguageModel model = OpenAiStreamingChatModel.withApiKey(OPENAI_API_KEY);
+
+    model.generate("Who are some influential female musicians?",
+      new StreamingResponseHandler<>() {
+
+        @Override
+        public void onNext(String token) {
+          System.out.print(token);
+        }
+
+        @Override
+        public void onComplete(Response<AiMessage> response) {
+          System.out.println("Streaming completed: " + response);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+          error.printStackTrace();
+        }
+      });
+    // end::adocStreaming[]
   }
 
   // ###############################
