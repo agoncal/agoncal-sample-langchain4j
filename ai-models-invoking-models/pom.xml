@@ -18,8 +18,9 @@
 
   <modules>
     <module>memory</module>
-    <module>prompts</module>
-    <module>token</module>
+    <module>messages</module>
+    <module>templates</module>
+    <module>tokens</module>
   </modules>
 
 </project>

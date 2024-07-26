@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.agoncal.fascicle.langchain4j.ai-models.invoking-models</groupId>
-  <artifactId>memory</artifactId>
+  <groupId>org.agoncal.fascicle.langchain4j.rag.storing-embeddings</groupId>
+  <artifactId>tokens</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: AI Models :: Invoking Models :: Memory</name>
+  <name>LangChain4j :: AI Models :: Invoking Models :: Tokens</name>
 
   <parent>
     <groupId>org.agoncal.fascicle.langchain4j.ai-models</groupId>
@@ -42,7 +42,7 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <configuration>
-          <mainClass>org.agoncal.fascicle.langchain4j.firstlook.AuthorService</mainClass>
+          <mainClass>org.agoncal.fascicle.langchain4j.accessing.openai.MusicianAssistant</mainClass>
         </configuration>
       </plugin>
     </plugins>

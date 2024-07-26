@@ -5,9 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.agoncal.fascicle.langchain4j.ai-models.invoking-models</groupId>
-  <artifactId>memory</artifactId>
+  <artifactId>messages</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: AI Models :: Invoking Models :: Memory</name>
+  <name>LangChain4j :: AI Models :: Invoking Models :: Messages</name>
 
   <parent>
     <groupId>org.agoncal.fascicle.langchain4j.ai-models</groupId>

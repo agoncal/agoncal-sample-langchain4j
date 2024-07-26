@@ -5,9 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.agoncal.fascicle.langchain4j.ai-models.invoking-models</groupId>
-  <artifactId>memory</artifactId>
+  <artifactId>templates</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: AI Models :: Invoking Models :: Memory</name>
+  <name>LangChain4j :: AI Models :: Invoking Models :: Prompt Templates</name>
 
   <parent>
     <groupId>org.agoncal.fascicle.langchain4j.ai-models</groupId>
@@ -23,7 +23,7 @@
     </dependency>
     <dependency>
       <groupId>dev.langchain4j</groupId>
-      <artifactId>langchain4j-open-ai</artifactId>
+      <artifactId>langchain4j-azure-open-ai</artifactId>
     </dependency>
     <!-- Other -->
     <dependency>
