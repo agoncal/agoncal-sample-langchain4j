@@ -7,11 +7,11 @@
   <groupId>org.agoncal.fascicle.langchain4j.rag.storing-embeddings</groupId>
   <artifactId>token</artifactId>
   <version>1.0</version>
-  <name>LangChain4j :: RAG :: Storing Embeddings :: Tokens</name>
+  <name>LangChain4j :: AI Models :: Invoking Models :: Tokens</name>
 
   <parent>
-    <groupId>org.agoncal.fascicle.langchain4j.rag</groupId>
-    <artifactId>storing-embeddings</artifactId>
+    <groupId>org.agoncal.fascicle.langchain4j.ai-models</groupId>
+    <artifactId>invoking-models</artifactId>
     <version>1.0</version>
   </parent>
 

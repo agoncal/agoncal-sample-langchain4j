@@ -19,6 +19,7 @@
   <modules>
     <module>memory</module>
     <module>prompts</module>
+    <module>token</module>
   </modules>
 
 </project>

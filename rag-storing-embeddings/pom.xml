@@ -26,7 +26,6 @@
     <module>pgvector</module>
     <module>qdrant</module>
     <module>redis</module>
-    <module>token</module>
   </modules>
 
 </project>
