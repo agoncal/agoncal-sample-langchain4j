@@ -6,7 +6,8 @@ import dev.langchain4j.chain.ConversationalChain;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
-import dev.langchain4j.model.azure.AzureOpenAiChatModel;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
 
 // tag::adocSkip[]
 
@@ -27,11 +28,7 @@ public class MusicianAssistant {
 //    musicianAssistant.useConversationalChainWithMemory();
   }
 
-  private static final String AZURE_OPENAI_KEY = System.getenv("AZURE_OPENAI_KEY");
-  private static final String AZURE_OPENAI_ENDPOINT = System.getenv("AZURE_OPENAI_ENDPOINT");
-  private static final String AZURE_OPENAI_DEPLOYMENT_NAME = System.getenv("AZURE_OPENAI_DEPLOYMENT_NAME");
-
-  private static final String PROMPT = "When was the first Beatles album released?";
+  private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
 
   // #################
   // ### NO MEMORY ###
@@ -40,13 +37,7 @@ public class MusicianAssistant {
     System.out.println("### useNoMemory");
 
     // tag::adocNoMemory[]
-    AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
-      .apiKey(AZURE_OPENAI_KEY)
-      .endpoint(AZURE_OPENAI_ENDPOINT)
-      .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
-      .temperature(0.7)
-      .logRequestsAndResponses(false)
-      .build();
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
     System.out.println(model.generate("My name is Antonio"));
     // tag::adocSkip[]
@@ -74,13 +65,7 @@ public class MusicianAssistant {
   public void sendingMultipleMessages() throws InterruptedException {
     System.out.println("### sendingMultipleMessages");
 
-    AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
-      .apiKey(AZURE_OPENAI_KEY)
-      .endpoint(AZURE_OPENAI_ENDPOINT)
-      .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
-      .temperature(0.7)
-      .logRequestsAndResponses(false)
-      .build();
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
     // tag::adocMultipleMessages[]
     UserMessage firstMessage = UserMessage.from("My name is Antonio");
@@ -116,13 +101,7 @@ public class MusicianAssistant {
   public void useConversationalChain() throws InterruptedException {
     System.out.println("### useConversationalChain");
 
-    AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
-      .apiKey(AZURE_OPENAI_KEY)
-      .endpoint(AZURE_OPENAI_ENDPOINT)
-      .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
-      .temperature(0.7)
-      .logRequestsAndResponses(true)
-      .build();
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
     // tag::adocChain[]
     ConversationalChain chain = ConversationalChain.builder()
@@ -156,13 +135,7 @@ public class MusicianAssistant {
   public void useConversationalChainWithMemory() throws InterruptedException {
     System.out.println("### useConversationalChainWithMemory");
 
-    AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
-      .apiKey(AZURE_OPENAI_KEY)
-      .endpoint(AZURE_OPENAI_ENDPOINT)
-      .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
-      .temperature(0.7)
-      .logRequestsAndResponses(true)
-      .build();
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
     // tag::adocChatMemory[]
     ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(2);

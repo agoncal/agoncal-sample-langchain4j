@@ -1,13 +1,20 @@
 package org.agoncal.fascicle.langchain4j.invoking.tokens;
 
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.openai.OpenAiChatModel;
 import static dev.langchain4j.model.openai.OpenAiChatModelName.GPT_3_5_TURBO;
 import static dev.langchain4j.model.openai.OpenAiChatModelName.GPT_4_O;
-
 import dev.langchain4j.model.openai.OpenAiTokenizer;
+import dev.langchain4j.model.output.Response;
+import dev.langchain4j.model.output.TokenUsage;
 
 import java.util.List;
 
 public class Tokenization {
+
+  private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
 
   // tag::adocPrompt[]
   String prompt = """
@@ -25,8 +32,9 @@ public class Tokenization {
   public static void main(String[] args) {
     Tokenization tokenization = new Tokenization();
 //    tokenization.tokenizeOpenAIIsaacAsimov();
-    tokenization.tokenizeOpenAIIsaacAsimovLong();
+//    tokenization.tokenizeOpenAIIsaacAsimovLong();
 //    tokenization.tokenizeOpenAI();
+    tokenization.tokenUsage();
   }
 
   private void tokenizeOpenAIIsaacAsimov() {
@@ -108,5 +116,23 @@ public class Tokenization {
     // Decode
     String prompt = tokenizer.decode(tokens);
     System.out.println("Decoded tokens: " + prompt);
+  }
+
+  public void tokenUsage() {
+    System.out.println("### tokenUsage");
+
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+
+    // tag::adocTokenUsage[]
+    Response<AiMessage> response = model.generate(new UserMessage("In one sentence, how does Jane Eyre end?"));
+
+    System.out.println(response.content().text());  // Jane Eyre ends with Jane and Mr. Rochester reuniting and getting married.
+
+    TokenUsage tokenUsage = response.tokenUsage();
+
+    System.out.println(tokenUsage.inputTokenCount());  // 18
+    System.out.println(tokenUsage.outputTokenCount()); // 17
+    System.out.println(tokenUsage.totalTokenCount());  // 35
+    // end::adocTokenUsage[]
   }
 }
