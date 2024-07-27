@@ -2,7 +2,9 @@ package org.agoncal.fascicle.langchain4j.invoking.messages;
 
 // tag::adocSnippet[]
 
+import dev.langchain4j.data.image.Image;
 import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.data.message.ImageContent;
 import dev.langchain4j.data.message.PdfFileContent;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.TextContent;
@@ -32,7 +34,10 @@ public class AuthorAssistant {
 //    authorAssistant.useUserMessageFrom();
 //    authorAssistant.useSystemMessage();
 //    authorAssistant.useUserMessageContent();
+//    authorAssistant.useUserMessagesPdfContent();
     authorAssistant.useUserMessagePdfContent();
+//    authorAssistant.useUserMessagesImageContent();
+//    authorAssistant.useUserMessageImageContent();
   }
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
@@ -102,18 +107,24 @@ public class AuthorAssistant {
       .build();
     PdfFileContent pdfFileContent = new PdfFileContent(urlPdfFile);
 
-    UserMessage userMessage = UserMessage.from("Summarize the following PDF file");
-    UserMessage pdfMessage = UserMessage.from(pdfFileContent);
-    Response<AiMessage> reponse = model.generate(userMessage, pdfMessage);
+    UserMessage userMessage = UserMessage.from(
+      TextContent.from("Summarize the following PDF file"),
+      pdfFileContent
+    );
+    Response<AiMessage> reponse = model.generate(userMessage);
     // end::adocUserMessagesPdfContent[]
 
     System.out.println(reponse.content().text());
   }
 
-  public void useUserMessagePdfContent() throws URISyntaxException {
+  public void useUserMessagePdfContent() {
     System.out.println("### useUserMessagePdfContent");
 
-    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+    ChatLanguageModel model = OpenAiChatModel.builder()
+      .apiKey(OPENAI_API_KEY)
+      .logRequests(true)
+      .logResponses(true)
+      .build();
 
     // tag::adocUserMessagePdfContent[]
     UserMessage userMessage = UserMessage.from(
@@ -122,6 +133,43 @@ public class AuthorAssistant {
     );
     Response<AiMessage> reponse = model.generate(userMessage);
     // end::adocUserMessagePdfContent[]
+
+    System.out.println(reponse.content().text());
+  }
+
+  public void useUserMessagesImageContent() {
+    System.out.println("### useUserMessagesImageContent");
+
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+
+    // tag::adocUserMessagesImageContent[]
+    Image image = Image.builder()
+      .url("src/main/resources/brave_new_world_chapter_I.pdf")
+      .build();
+    ImageContent imageContent = new ImageContent(image);
+
+    UserMessage userMessage = UserMessage.from(
+      TextContent.from("Tell me more about this book cover"),
+      imageContent
+    );
+    Response<AiMessage> reponse = model.generate(userMessage);
+    // end::adocUserMessagesImageContent[]
+
+    System.out.println(reponse.content().text());
+  }
+
+  public void useUserMessageImageContent() {
+    System.out.println("### useUserMessageImageContent");
+
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+
+    // tag::adocUserMessageImageContent[]
+    UserMessage userMessage = UserMessage.from(
+      TextContent.from("Tell me more about this book cover"),
+      ImageContent.from(Paths.get("src/main/resources/brave_new_world.jpg").toUri())
+    );
+    Response<AiMessage> reponse = model.generate(userMessage);
+    // end::adocUserMessageImageContent[]
 
     System.out.println(reponse.content().text());
   }
