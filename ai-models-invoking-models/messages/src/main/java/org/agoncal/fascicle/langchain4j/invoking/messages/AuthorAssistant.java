@@ -3,12 +3,17 @@ package org.agoncal.fascicle.langchain4j.invoking.messages;
 // tag::adocSnippet[]
 
 import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.data.message.PdfFileContent;
 import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.TextContent;
 import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.data.pdf.PdfFile;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.output.Response;
+
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 
 // tag::adocSkip[]
 
@@ -20,13 +25,14 @@ import dev.langchain4j.model.output.Response;
 // end::adocSkip[]
 public class AuthorAssistant {
 
-  public static void main(String[] args) throws InterruptedException {
+  public static void main(String[] args) throws Exception {
     AuthorAssistant authorAssistant = new AuthorAssistant();
 
 //    authorAssistant.useUserMessage();
 //    authorAssistant.useUserMessageFrom();
+//    authorAssistant.useSystemMessage();
 //    authorAssistant.useUserMessageContent();
-    authorAssistant.useSystemMessage();
+    authorAssistant.useUserMessagePdfContent();
   }
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
@@ -81,6 +87,41 @@ public class AuthorAssistant {
     UserMessage userMessage = UserMessage.from(textContent);
     Response<AiMessage> reponse = model.generate(userMessage);
     // end::adocUserMessageContent[]
+
+    System.out.println(reponse.content().text());
+  }
+
+  public void useUserMessagesPdfContent() throws URISyntaxException {
+    System.out.println("### useUserMessagePdfContent");
+
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+
+    // tag::adocUserMessagesPdfContent[]
+    PdfFile urlPdfFile = PdfFile.builder()
+      .url("src/main/resources/brave_new_world_chapter_I.pdf")
+      .build();
+    PdfFileContent pdfFileContent = new PdfFileContent(urlPdfFile);
+
+    UserMessage userMessage = UserMessage.from("Summarize the following PDF file");
+    UserMessage pdfMessage = UserMessage.from(pdfFileContent);
+    Response<AiMessage> reponse = model.generate(userMessage, pdfMessage);
+    // end::adocUserMessagesPdfContent[]
+
+    System.out.println(reponse.content().text());
+  }
+
+  public void useUserMessagePdfContent() throws URISyntaxException {
+    System.out.println("### useUserMessagePdfContent");
+
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+
+    // tag::adocUserMessagePdfContent[]
+    UserMessage userMessage = UserMessage.from(
+      TextContent.from("Summarize the following PDF file"),
+      PdfFileContent.from(Paths.get("src/main/resources/brave_new_world_chapter_I.pdf").toUri())
+    );
+    Response<AiMessage> reponse = model.generate(userMessage);
+    // end::adocUserMessagePdfContent[]
 
     System.out.println(reponse.content().text());
   }
