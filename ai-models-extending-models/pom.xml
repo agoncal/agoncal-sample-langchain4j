@@ -17,6 +17,7 @@
   </parent>
 
   <modules>
+    <module>chains</module>
     <module>tools</module>
   </modules>
 

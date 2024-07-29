@@ -1,4 +1,4 @@
-package org.agoncal.fascicle.langchain4j.extendingprompts.tools;
+package org.agoncal.fascicle.langchain4j.extending.tools;
 
 // tag::adocHeader[]
 
