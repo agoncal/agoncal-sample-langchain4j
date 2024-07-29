@@ -89,28 +89,4 @@ public class MusicianAssistant {
     System.out.println(response.content().text());
     // end::adocPromptTemplateCurrentDate[]
   }
-
-  public void usePromptTemplateLong() {
-    System.out.println("### usePromptTemplate");
-
-    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
-
-    // tag::adocPromptTemplate[]
-    PromptTemplate promptTemplate = PromptTemplate.from(
-      "Based on the user query, determine the most suitable data source(s) " +
-        "to retrieve relevant information from the following options:\n" +
-        "{{options}}\n" +
-        "It is very important that your answer consists of either a single number " +
-        "or multiple numbers separated by commas and nothing else!\n" +
-        "User query: {{query}}");
-
-    Map<String, Object> variables = new HashMap<>();
-    variables.put("query", "query.text()");
-    variables.put("chatMemory", "chatMemory");
-    Prompt prompt = promptTemplate.apply(variables);
-
-
-    System.out.println(model.generate(prompt.text()));
-    // end::adocPromptTemplate[]
-  }
 }
