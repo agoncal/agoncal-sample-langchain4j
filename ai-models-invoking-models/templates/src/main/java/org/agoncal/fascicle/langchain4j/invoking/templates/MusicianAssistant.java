@@ -2,10 +2,13 @@ package org.agoncal.fascicle.langchain4j.invoking.templates;
 
 // tag::adocSnippet[]
 
-import dev.langchain4j.data.message.UserMessage;
-import dev.langchain4j.model.azure.AzureOpenAiChatModel;
+import dev.langchain4j.data.message.AiMessage;
+import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.input.PromptTemplate;
+import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.output.Response;
+import static java.util.Collections.singletonMap;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,92 +23,77 @@ import java.util.Map;
 // end::adocSkip[]
 public class MusicianAssistant {
 
+  private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
+
   public static void main(String[] args) throws InterruptedException {
     MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianAssistant.useTextPrompt();
-  }
-
-  private static final String AZURE_OPENAI_KEY = System.getenv("AZURE_OPENAI_KEY");
-  private static final String AZURE_OPENAI_ENDPOINT = System.getenv("AZURE_OPENAI_ENDPOINT");
-  private static final String AZURE_OPENAI_DEPLOYMENT_NAME = System.getenv("AZURE_OPENAI_DEPLOYMENT_NAME");
-
-  private static final String PROMPT = "When was the first Beatles album released?";
-
-  // ###################
-  // ### TEXT PROMPT ###
-  // ###################
-  public void useTextPrompt() {
-    System.out.println("### useTextPrompt");
-
-    // tag::adocTextPrompt[]
-    AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
-      .apiKey(AZURE_OPENAI_KEY)
-      .endpoint(AZURE_OPENAI_ENDPOINT)
-      .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
-      .temperature(0.7)
-      .logRequestsAndResponses(false)
-      .build();
-
-    System.out.println(model.generate("When was the first Rolling Stones album released?"));
-    // end::adocTextPrompt[]
-  }
-
-  // ##################
-  // ### PROMPT API ###
-  // ##################
-  public void usePromptAPI(){
-    System.out.println("### usePromptAPI");
-
-    AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
-      .apiKey(AZURE_OPENAI_KEY)
-      .endpoint(AZURE_OPENAI_ENDPOINT)
-      .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
-      .temperature(0.7)
-      .logRequestsAndResponses(false)
-      .build();
-
-    // tag::adocPromptAPI[]
-    Prompt prompt = Prompt.from("When was the first Rolling Stones album released?");
-
-    System.out.println(model.generate(prompt.toUserMessage()));
-    // end::adocPromptAPI[]
-  }
-
-  // ###################
-  // ### MESSAGE API ###
-  // ###################
-  public void useMessageAPI(){
-    System.out.println("### useMessageAPI");
-
-    AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
-      .apiKey(AZURE_OPENAI_KEY)
-      .endpoint(AZURE_OPENAI_ENDPOINT)
-      .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
-      .temperature(0.7)
-      .logRequestsAndResponses(false)
-      .build();
-
-    // tag::adocMessageAPI[]
-    UserMessage userMessage = UserMessage.from("When was the first Rolling Stones album released?");
-
-    System.out.println(model.generate(userMessage).content().text());
-    // end::adocMessageAPI[]
+    musicianAssistant.usePromptTemplate();
+    musicianAssistant.useMultiplePromptTemplate();
+    musicianAssistant.usePromptTemplateCurrentDate();
   }
 
   // #######################
   // ### PROMPT TEMPLATE ###
   // #######################
-  public void usePromptTemplate(){
+
+  public void usePromptTemplate() {
     System.out.println("### usePromptTemplate");
 
-    AzureOpenAiChatModel model = AzureOpenAiChatModel.builder()
-      .apiKey(AZURE_OPENAI_KEY)
-      .endpoint(AZURE_OPENAI_ENDPOINT)
-      .deploymentName(AZURE_OPENAI_DEPLOYMENT_NAME)
-      .temperature(0.7)
-      .logRequestsAndResponses(false)
-      .build();
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+
+    // tag::adocPromptTemplate[]
+    PromptTemplate promptTemplate = PromptTemplate.from("When was the first {{band}} album released?");
+
+    Map<String, Object> variables = singletonMap("band", "Miles Davis");
+
+    Prompt prompt = promptTemplate.apply(variables);
+
+    Response<AiMessage> response = model.generate(prompt.toUserMessage());
+    System.out.println(response.content().text());
+    // end::adocPromptTemplate[]
+  }
+
+  public void useMultiplePromptTemplate() {
+    System.out.println("### useMultiplePromptTemplate");
+
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+
+    // tag::adocMultiplePromptTemplate[]
+    PromptTemplate promptTemplate = PromptTemplate.from("Give me the titles of the album {{album}} of {{band}}");
+
+    Map<String, Object> variables = new HashMap<>();
+    variables.put("album", "Kind of Blue");
+    variables.put("band", "Miles Davis");
+
+    Prompt prompt = promptTemplate.apply(variables);
+
+    Response<AiMessage> response = model.generate(prompt.toUserMessage());
+    System.out.println(response.content().text());
+    // end::adocMultiplePromptTemplate[]
+  }
+
+  public void usePromptTemplateCurrentDate() {
+    System.out.println("### usePromptTemplateCurrentDate");
+
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
+
+    // tag::adocPromptTemplateCurrentDate[]
+    PromptTemplate promptTemplate = PromptTemplate.from("Today is {{current_date}}. How many years since {{album}} was released?");
+
+    Map<String, Object> variables = singletonMap("album", "Sgt. Pepper's Lonely Hearts Club Band");
+
+    Prompt prompt = promptTemplate.apply(variables);
+
+    Response<AiMessage> response = model.generate(prompt.toUserMessage());
+    System.out.println(response.content().text());
+    // end::adocPromptTemplateCurrentDate[]
+  }
+
+  public void usePromptTemplateLong() {
+    System.out.println("### usePromptTemplate");
+
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
     // tag::adocPromptTemplate[]
     PromptTemplate promptTemplate = PromptTemplate.from(

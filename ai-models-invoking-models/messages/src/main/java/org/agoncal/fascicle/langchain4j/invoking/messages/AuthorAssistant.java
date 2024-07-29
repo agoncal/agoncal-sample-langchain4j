@@ -33,9 +33,9 @@ public class AuthorAssistant {
 //    authorAssistant.useUserMessage();
 //    authorAssistant.useUserMessageFrom();
 //    authorAssistant.useSystemMessage();
-//    authorAssistant.useUserMessageContent();
+    authorAssistant.useUserMessageContent();
 //    authorAssistant.useUserMessagesPdfContent();
-    authorAssistant.useUserMessagePdfContent();
+//    authorAssistant.useUserMessagePdfContent();
 //    authorAssistant.useUserMessagesImageContent();
 //    authorAssistant.useUserMessageImageContent();
   }
@@ -74,7 +74,7 @@ public class AuthorAssistant {
     ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
     // tag::adocSystemMessage[]
-    SystemMessage systemMessage = new SystemMessage("You are a library assistant and can output any book upon user request.");
+    SystemMessage systemMessage = new SystemMessage("You are a library assistant, and you can answer customers' request on any book.");
     UserMessage userMessage = new UserMessage("What genre is Brave New World?");
     Response<AiMessage> reponse = model.generate(systemMessage, userMessage);
     // end::adocSystemMessage[]
