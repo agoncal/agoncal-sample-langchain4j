@@ -22,6 +22,9 @@ public class MusicianAssistant {
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
 
+  // ################################
+  // ### USE CONVERSATIONAL CHAIN ###
+  // ################################
   public void useConversationalChain() throws InterruptedException {
     System.out.println("### useConversationalChain");
 
@@ -53,39 +56,28 @@ public class MusicianAssistant {
   }
 
 
-  // ################################
-  // ### USE CONVERSATIONAL CHAIN ###
-  // ################################
   public void useConversationalChainWithMemory() throws InterruptedException {
     System.out.println("### useConversationalChainWithMemory");
 
     ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
-    // tag::adocChatMemory[]
-    ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(2);
+    // tag::adocChainMemory[]
+    ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(20);
 
     ConversationalChain chain = ConversationalChain.builder()
       .chatLanguageModel(model)
       .chatMemory(chatMemory)
       .build();
+    // end::adocChainMemory[]
 
     System.out.println(chain.execute("My name is Antonio"));
-    // tag::adocSkip[]
     Thread.sleep(5000);
-    // end::adocSkip[]
     System.out.println(chain.execute("My favourite Rock band is the Rolling Stones"));
-    // tag::adocSkip[]
     Thread.sleep(5000);
-    // end::adocSkip[]
     System.out.println(chain.execute("When was their first album released?"));
-    // tag::adocSkip[]
     Thread.sleep(5000);
-    // end::adocSkip[]
     System.out.println(chain.execute("What's the name of the singer?"));
-    // tag::adocSkip[]
     Thread.sleep(5000);
-    // end::adocSkip[]
     System.out.println(chain.execute("What's my name?"));
-    // end::adocChatMemory[]
   }
 }
