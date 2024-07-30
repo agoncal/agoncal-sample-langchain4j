@@ -37,29 +37,28 @@ public class MusicianAssistant {
 
     ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
     // tag::adocNoMemory[]
-    UserMessage firstMessage = UserMessage.from("My name is Antonio");
-    UserMessage secondMessage = UserMessage.from("My favourite Rock band is the Beatles");
-    UserMessage thirdMessage = UserMessage.from("When was their first album released?");
-    UserMessage forthMessage = UserMessage.from("What's the name of the singer?");
-    UserMessage fifthMessage = UserMessage.from("What's my name?");
-
-    System.out.println(model.generate(firstMessage));
+    UserMessage msg = UserMessage.from("My name is Antonio");
+    System.out.println(model.generate(msg));
     // tag::adocSkip[]
     Thread.sleep(5000);
     // end::adocSkip[]
-    System.out.println(model.generate(secondMessage));
+    msg = UserMessage.from("My favourite Rock band is the Beatles");
+    System.out.println(model.generate(msg));
     // tag::adocSkip[]
     Thread.sleep(5000);
     // end::adocSkip[]
-    System.out.println(model.generate(thirdMessage));
+    msg = UserMessage.from("When was their first album released?");
+    System.out.println(model.generate(msg));
     // tag::adocSkip[]
     Thread.sleep(5000);
     // end::adocSkip[]
-    System.out.println(model.generate(forthMessage));
+    msg = UserMessage.from("What's the name of the singer?");
+    System.out.println(model.generate(msg));
     // tag::adocSkip[]
     Thread.sleep(5000);
     // end::adocSkip[]
-    System.out.println(model.generate(fifthMessage));
+    msg = UserMessage.from("What's my name?");
+    System.out.println(model.generate(msg));
     // end::adocNoMemory[]
   }
 
@@ -89,16 +88,11 @@ public class MusicianAssistant {
     System.out.println("### useChatMemory");
 
     ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
-    UserMessage firstMessage = UserMessage.from("My name is Antonio");
-    UserMessage secondMessage = UserMessage.from("My favourite Rock band is the Beatles");
-    UserMessage thirdMessage = UserMessage.from("When was their first album released?");
-    UserMessage forthMessage = UserMessage.from("What's the name of the singer?");
-    UserMessage fifthMessage = UserMessage.from("What's my name?");
 
     // tag::adocChatMemory[]
     ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(20);
 
-    // My name is Antonio
+    UserMessage firstMessage = UserMessage.from("My name is Antonio");
     chatMemory.add(firstMessage);
     AiMessage answer1 = model.generate(chatMemory.messages()).content();
     System.out.println(answer1.text());
@@ -106,7 +100,8 @@ public class MusicianAssistant {
     // tag::adocSkip[]
     Thread.sleep(5000);
     // end::adocSkip[]
-    // My favourite Rock band is the Beatles
+
+    UserMessage secondMessage = UserMessage.from("My favourite Rock band is the Beatles");
     chatMemory.add(secondMessage);
     AiMessage answer2 = model.generate(chatMemory.messages()).content();
     System.out.println(answer2.text());
@@ -114,7 +109,8 @@ public class MusicianAssistant {
     // tag::adocSkip[]
     Thread.sleep(5000);
     // end::adocSkip[]
-    // When was their first album released?
+
+    UserMessage thirdMessage = UserMessage.from("When was their first album released?");
     chatMemory.add(thirdMessage);
     AiMessage answer3 = model.generate(chatMemory.messages()).content();
     System.out.println(answer3.text());
@@ -122,7 +118,8 @@ public class MusicianAssistant {
     // tag::adocSkip[]
     Thread.sleep(5000);
     // end::adocSkip[]
-    // What's the name of the singer?
+
+    UserMessage forthMessage = UserMessage.from("What's the name of the singer?");
     chatMemory.add(forthMessage);
     AiMessage answer4 = model.generate(chatMemory.messages()).content();
     System.out.println(answer4.text());
@@ -130,7 +127,8 @@ public class MusicianAssistant {
     // tag::adocSkip[]
     Thread.sleep(5000);
     // end::adocSkip[]
-    // What's my name?
+
+    UserMessage fifthMessage = UserMessage.from("What's my name?");
     chatMemory.add(fifthMessage);
     AiMessage answer5 = model.generate(chatMemory.messages()).content();
     System.out.println(answer5.text());
