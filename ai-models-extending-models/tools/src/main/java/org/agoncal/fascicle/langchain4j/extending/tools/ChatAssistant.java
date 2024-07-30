@@ -26,16 +26,13 @@ public class ChatAssistant {
 
   public static void main(String[] args) throws Exception {
 
-    // tag::adocStepOne[]
     ChatLanguageModel model = OpenAiChatModel.builder()
       .apiKey(System.getenv("OPENAI_API_KEY"))
       .modelName(GPT_4_O)
-      // tag::adocSkip[]
       .temperature(0.7)
       .timeout(ofSeconds(60))
       .logRequests(true)
       .logResponses(true)
-      // end::adocSkip[]
       .build();
 
 
@@ -44,6 +41,7 @@ public class ChatAssistant {
     System.out.println("####################################");
     System.out.println("STEP 1: User specify tools and query");
     // end::adocSkip[]
+    // tag::adocStepOne[]
     // Tools
     LegalDocumentTools tools = new LegalDocumentTools();
     List<ToolSpecification> toolSpecifications = ToolSpecifications.toolSpecificationsFrom(tools.getClass());
