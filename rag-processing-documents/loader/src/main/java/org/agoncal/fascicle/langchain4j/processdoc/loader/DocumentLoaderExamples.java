@@ -32,6 +32,7 @@ public class DocumentLoaderExamples {
   }
 
   private static void loadFromDocumentLoaderFile() {
+    System.out.println("\n### loadFromDocumentLoaderFile");
     // tag::adocLoadFromDocumentLoaderFile[]
     Path documentPath = toPath("data/bio-ella-fitzgerald.txt");
 
@@ -44,8 +45,9 @@ public class DocumentLoaderExamples {
   }
 
   private static void loadFromDocumentLoaderURL() throws MalformedURLException {
+    System.out.println("\n### loadFromDocumentLoaderURL");
     // tag::adocLoadFromDocumentLoaderURL[]
-    URL documentUrl = new URL("https://raw.githubusercontent.com/agoncal/agoncal-sample-langchain4j/main/processing-documents/loader/src/main/resources/data/bio-duke-ellington.txt");
+    URL documentUrl = new URL("https://raw.githubusercontent.com/agoncal/agoncal-sample-langchain4j/main/rag-processing-documents/loader/src/main/resources/data/bio-duke-ellington.txt");
 
     Document document = DocumentLoader.load(new UrlSource(documentUrl), new TextDocumentParser());
 
@@ -55,6 +57,7 @@ public class DocumentLoaderExamples {
   }
 
   private static void loadFromDocumentLoaderAzure() {
+    System.out.println("\n### loadFromDocumentLoaderAzure");
     // tag::adocLoadFromDocumentLoaderAzure[]
     Document document = DocumentLoader.load(new AzureBlobStorageSource(null, null, null, null, null), new TextDocumentParser());
 
@@ -67,6 +70,7 @@ public class DocumentLoaderExamples {
   }
 
   private static void loadFromFileSystemDocumentLoader() {
+    System.out.println("\n### loadFromFileSystemDocumentLoader");
     // tag::adocLoadFromFileSystemDocumentLoader[]
     Path documentPath = toPath("data/bio-ella-fitzgerald.txt");
 
@@ -79,8 +83,9 @@ public class DocumentLoaderExamples {
   }
 
   private static void loadFromUrlDocumentLoader() throws MalformedURLException {
+    System.out.println("\n### loadFromUrlDocumentLoader");
     // tag::loadFromUrlDocumentLoader[]
-    URL documentUrl = new URL("https://raw.githubusercontent.com/agoncal/agoncal-sample-langchain4j/main/processing-documents/loader/src/main/resources/data/bio-duke-ellington.txt");
+    URL documentUrl = new URL("https://raw.githubusercontent.com/agoncal/agoncal-sample-langchain4j/main/rag-processing-documents/loader/src/main/resources/data/bio-duke-ellington.txt");
 
     Document document = UrlDocumentLoader.load(documentUrl, new TextDocumentParser());
 
@@ -90,6 +95,7 @@ public class DocumentLoaderExamples {
   }
 
   private static void loadFromAzureDocumentLoader() throws MalformedURLException {
+    System.out.println("\n### loadFromAzureDocumentLoader");
     // tag::loadFromAzureDocumentLoader[]
     URL documentUrl = new URL("https://en.wikipedia.org/wiki/Ella_Fitzgerald");
 
