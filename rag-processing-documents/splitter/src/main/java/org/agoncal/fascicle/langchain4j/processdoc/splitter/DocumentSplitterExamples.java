@@ -31,7 +31,7 @@ public class DocumentSplitterExamples {
   }
 
   private static void splitWithDocumentBySentenceSplitterLoad() {
-    // tag::adocSplitWithDocumentBySentenceSplitter[]
+    // tag::adocSplitWithDocumentBySentenceSplitterLoad[]
     Path documentPath = toPath("data/biography-of-isaac-asimov.txt");
 
     Document document = DocumentLoader.load(new FileSystemSource(documentPath), new TextDocumentParser());
@@ -42,7 +42,7 @@ public class DocumentSplitterExamples {
 
     segments.forEach(segment -> System.out.println(segment.text().length()));
 
-    // end::adocSplitWithDocumentBySentenceSplitter[]
+    // end::adocSplitWithDocumentBySentenceSplitterLoad[]
   }
 
   private static void splitWithDocumentBySentenceSplitter() {
