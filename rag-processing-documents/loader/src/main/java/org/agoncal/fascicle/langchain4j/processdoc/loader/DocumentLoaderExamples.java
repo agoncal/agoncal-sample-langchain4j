@@ -38,10 +38,23 @@ public class DocumentLoaderExamples {
 
     Document document = DocumentLoader.load(new FileSystemSource(documentPath), new TextDocumentParser());
 
+    log.info(document.text().trim().substring(0, 50));
+    log.info(document.metadata().getString(Document.FILE_NAME));
+    log.info(document.metadata().getString(Document.ABSOLUTE_DIRECTORY_PATH));
+    // end::adocLoadFromDocumentLoaderFile[]
+  }
+
+  private static void loadFromFileSystemDocumentLoader() {
+    System.out.println("\n### loadFromFileSystemDocumentLoader");
+    // tag::adocLoadFromFileSystemDocumentLoader[]
+    Path documentPath = toPath("data/bio-ella-fitzgerald.txt");
+
+    Document document = FileSystemDocumentLoader.loadDocument(documentPath, new TextDocumentParser());
+    // end::adocLoadFromFileSystemDocumentLoader[]
+
     log.info(document.metadata().getString(Document.FILE_NAME));
     log.info(document.metadata().getString(Document.ABSOLUTE_DIRECTORY_PATH));
     log.info(document.text().trim().substring(0, 50));
-    // end::adocLoadFromDocumentLoaderFile[]
   }
 
   private static void loadFromDocumentLoaderURL() throws MalformedURLException {
@@ -67,19 +80,6 @@ public class DocumentLoaderExamples {
     log.info(document.metadata().getString("azure_storage_blob_content_length"));
     log.info(document.text().trim().substring(0, 50));
     // end::adocLoadFromDocumentLoaderAzure[]
-  }
-
-  private static void loadFromFileSystemDocumentLoader() {
-    System.out.println("\n### loadFromFileSystemDocumentLoader");
-    // tag::adocLoadFromFileSystemDocumentLoader[]
-    Path documentPath = toPath("data/bio-ella-fitzgerald.txt");
-
-    Document document = FileSystemDocumentLoader.loadDocument(documentPath, new TextDocumentParser());
-
-    log.info(document.metadata().getString(Document.FILE_NAME));
-    log.info(document.metadata().getString(Document.ABSOLUTE_DIRECTORY_PATH));
-    log.info(document.text().trim().substring(0, 50));
-    // end::adocLoadFromFileSystemDocumentLoader[]
   }
 
   private static void loadFromUrlDocumentLoader() throws MalformedURLException {

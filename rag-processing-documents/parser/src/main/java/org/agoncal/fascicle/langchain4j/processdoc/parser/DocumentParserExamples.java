@@ -23,43 +23,47 @@ public class DocumentParserExamples {
   }
 
   private static void parseWithTextDocumentParser() {
+    System.out.println("\n### parseWithTextDocumentParser");
     // tag::adocParseWithTextDocumentParser[]
     InputStream documentStream = toStream("data/bio-ella-fitzgerald.txt");
 
     Document document = new TextDocumentParser().parse(documentStream);
 
-    log.info(document.text().trim().substring(0, 50));
+    log.info(document.text());
     // end::adocParseWithTextDocumentParser[]
   }
 
   private static void parseWithPDFBox() {
+    System.out.println("\n### parseWithPDFBox");
     // tag::adocParseWithApachePdfBoxDocumentParser[]
     InputStream documentStream = toStream("data/history-of-audiotapes.pdf");
 
     Document document = new ApachePdfBoxDocumentParser().parse(documentStream);
+    // end::adocParseWithApachePdfBoxDocumentParser[]
 
     log.info(document.text().trim().substring(0, 100));
-    // end::adocParseWithApachePdfBoxDocumentParser[]
   }
 
   private static void parseWithTika() {
+    System.out.println("\n### parseWithTika");
     // tag::adocParseWithApacheTikaDocumentParser[]
     InputStream documentStream = toStream("data/history-of-audiotapes.pdf");
 
     Document document = new ApacheTikaDocumentParser().parse(documentStream);
+    // end::adocParseWithApacheTikaDocumentParser[]
 
     log.info(document.text().trim().substring(0, 100));
-    // end::adocParseWithApacheTikaDocumentParser[]
   }
 
   private static void parseWithPoi() {
+    System.out.println("\n### parseWithPoi");
     // tag::adocParseWithApachePoiDocumentParser[]
     InputStream documentStream = toStream("data/history-of-videotapes.docx");
 
     Document document = new ApachePoiDocumentParser().parse(documentStream);
+    // end::adocParseWithApachePoiDocumentParser[]
 
     log.info(document.text().trim().substring(0, 100));
-    // end::adocParseWithApachePoiDocumentParser[]
   }
 
   private static InputStream toStream(String fileName) {
