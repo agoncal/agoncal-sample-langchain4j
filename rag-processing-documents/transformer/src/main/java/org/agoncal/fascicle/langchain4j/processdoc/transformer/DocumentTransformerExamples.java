@@ -30,9 +30,9 @@ public class DocumentTransformerExamples {
 
     HtmlTextExtractor transformer = new HtmlTextExtractor();
 
-    Document transformedTikaDocument = transformer.transform(document);
+    Document transformedDocument = transformer.transform(document);
 
-    log.info(transformedTikaDocument.text().trim().substring(0, 50));
+    log.info(transformedDocument.text().trim().substring(0, 50));
     // end::adocTransformWithTextDocumentParser[]
   }
 
@@ -47,10 +47,10 @@ public class DocumentTransformerExamples {
     // end::adocSkip[]
     HtmlTextExtractor transformer = new HtmlTextExtractor("#early-dev", null, false);
 
-    Document transformedTikaDocument = transformer.transform(document);
+    Document transformedDocument = transformer.transform(document);
     // end::adocTransformWithCSSSelector[]
 
-    log.info(transformedTikaDocument.text().trim().substring(0, 50));
+    log.info(transformedDocument.text().trim().substring(0, 50));
   }
 
   private static void transformWithTikaDocumentParser() {
@@ -63,9 +63,9 @@ public class DocumentTransformerExamples {
 
     HtmlTextExtractor transformer = new HtmlTextExtractor();
 
-    Document transformedTikaDocument = transformer.transform(document);
+    Document transformedDocument = transformer.transform(document);
 
-    log.info(transformedTikaDocument.text().trim().substring(0, 50));
+    log.info(transformedDocument.text().trim().substring(0, 50));
     // end::adocParseWithTikaDocumentParser[]
   }
 
