@@ -39,7 +39,7 @@ public class DocumentLoaderExamples {
 
     Document document = DocumentLoader.load(new FileSystemSource(documentPath), new TextDocumentParser());
 
-    log.info(document.text().trim().substring(0, 50));
+    log.info(document.text());
     log.info(document.metadata().getString(Document.FILE_NAME));
     log.info(document.metadata().getString(Document.ABSOLUTE_DIRECTORY_PATH));
     // end::adocLoadFromDocumentLoaderFile[]
