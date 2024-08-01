@@ -23,11 +23,12 @@ public class DocumentLoaderExamples {
   private static final Logger log = LoggerFactory.getLogger(DocumentLoaderExamples.class);
 
   public static void main(String[] args) throws MalformedURLException {
-    loadFromDocumentLoaderFile();
-    loadFromDocumentLoaderURL();
+//    loadFromDocumentLoaderFile();
+    loadFromDocumentLoaderFileNoParser();
+//    loadFromDocumentLoaderURL();
 //    loadFromDocumentLoaderAzure();
-    loadFromFileSystemDocumentLoader();
-    loadFromUrlDocumentLoader();
+//    loadFromFileSystemDocumentLoader();
+//    loadFromUrlDocumentLoader();
 //    loadFromAzureDocumentLoader();
   }
 
@@ -42,6 +43,19 @@ public class DocumentLoaderExamples {
     log.info(document.metadata().getString(Document.FILE_NAME));
     log.info(document.metadata().getString(Document.ABSOLUTE_DIRECTORY_PATH));
     // end::adocLoadFromDocumentLoaderFile[]
+  }
+
+  private static void loadFromDocumentLoaderFileNoParser() {
+    System.out.println("\n### loadFromDocumentLoaderFileNoParser");
+    // tag::adocLoadFromDocumentLoaderFileNoParser[]
+    Path documentPath = toPath("data/bio-ella-fitzgerald.txt");
+
+    Document document = FileSystemDocumentLoader.loadDocument(documentPath);
+    // end::adocLoadFromDocumentLoaderFileNoParser[]
+
+    log.info(document.text().trim().substring(0, 50));
+    log.info(document.metadata().getString(Document.FILE_NAME));
+    log.info(document.metadata().getString(Document.ABSOLUTE_DIRECTORY_PATH));
   }
 
   private static void loadFromFileSystemDocumentLoader() {
