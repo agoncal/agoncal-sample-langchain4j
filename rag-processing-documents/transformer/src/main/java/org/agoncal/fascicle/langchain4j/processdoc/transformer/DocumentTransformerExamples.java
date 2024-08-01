@@ -15,9 +15,9 @@ public class DocumentTransformerExamples {
   private static final Logger log = LoggerFactory.getLogger(DocumentTransformerExamples.class);
 
   public static void main(String[] args) throws MalformedURLException {
-    transformWithTextDocumentParser();
+//    transformWithTextDocumentParser();
     transformWithCSSSelector();
-    transformWithTikaDocumentParser();
+//    transformWithTikaDocumentParser();
   }
 
   private static void transformWithTextDocumentParser() {
@@ -42,14 +42,15 @@ public class DocumentTransformerExamples {
 
     Document document = new TextDocumentParser().parse(documentStream);
 
+    // tag::adocSkip[]
     log.info(document.text().trim().substring(0, 50));
-
+    // end::adocSkip[]
     HtmlTextExtractor transformer = new HtmlTextExtractor("#early-dev", null, false);
 
     Document transformedTikaDocument = transformer.transform(document);
+    // end::adocTransformWithCSSSelector[]
 
     log.info(transformedTikaDocument.text().trim().substring(0, 50));
-    // end::adocTransformWithCSSSelector[]
   }
 
   private static void transformWithTikaDocumentParser() {
