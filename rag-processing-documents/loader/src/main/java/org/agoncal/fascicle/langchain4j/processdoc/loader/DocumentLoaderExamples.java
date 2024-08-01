@@ -65,8 +65,8 @@ public class DocumentLoaderExamples {
     Document document = DocumentLoader.load(new UrlSource(documentUrl), new TextDocumentParser());
 
     log.info(document.metadata().getString(Document.URL));
-    log.info(document.text().trim().substring(0, 50));
     // end::adocLoadFromDocumentLoaderURL[]
+    log.info(document.text().trim().substring(0, 50));
   }
 
   private static void loadFromDocumentLoaderAzure() {
@@ -88,10 +88,10 @@ public class DocumentLoaderExamples {
     URL documentUrl = new URL("https://raw.githubusercontent.com/agoncal/agoncal-sample-langchain4j/main/rag-processing-documents/loader/src/main/resources/data/bio-duke-ellington.txt");
 
     Document document = UrlDocumentLoader.load(documentUrl, new TextDocumentParser());
+    // end::loadFromUrlDocumentLoader[]
 
     log.info(document.metadata().getString(Document.URL));
     log.info(document.text().trim().substring(0, 50));
-    // end::loadFromUrlDocumentLoader[]
   }
 
   private static void loadFromAzureDocumentLoader() throws MalformedURLException {
