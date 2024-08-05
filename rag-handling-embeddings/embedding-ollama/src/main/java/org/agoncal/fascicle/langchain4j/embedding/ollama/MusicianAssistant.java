@@ -1,4 +1,4 @@
-package org.agoncal.fascicle.langchain4j.embedding.openai;
+package org.agoncal.fascicle.langchain4j.embedding.ollama;
 
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
