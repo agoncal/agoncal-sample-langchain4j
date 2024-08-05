@@ -30,7 +30,7 @@ public class MusicianAssistant {
     // tag::adocTextToEmbeddingOpenAI[]
     EmbeddingModel model = OpenAiEmbeddingModel.withApiKey(OPENAI_API_KEY);
 
-    TextSegment segment = TextSegment.from("Isaac Asimov is a writer and is a biochemist.");
+    TextSegment segment = TextSegment.from("Isaac Asimov is a writer and a biochemist");
     Response<Embedding> embedding = model.embed(segment);
 
     System.out.println(embedding.content());

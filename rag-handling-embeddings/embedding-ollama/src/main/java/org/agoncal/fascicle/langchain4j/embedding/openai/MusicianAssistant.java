@@ -1,9 +1,9 @@
-package org.agoncal.fascicle.langchain4j.embedding.allmini;
+package org.agoncal.fascicle.langchain4j.embedding.openai;
 
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.embedding.EmbeddingModel;
-import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2EmbeddingModel;
+import dev.langchain4j.model.ollama.OllamaEmbeddingModel;
 import dev.langchain4j.model.output.Response;
 
 // tag::adocSkip[]
@@ -19,19 +19,22 @@ public class MusicianAssistant {
   public static void main(String[] args) {
     MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianAssistant.textToEmbeddingAllMiniLmL6V2();
+    musicianAssistant.textToEmbeddingOllama();
   }
 
-  public void textToEmbeddingAllMiniLmL6V2() {
-    System.out.println("### textToEmbeddingAllMiniLmL6V2");
+  public void textToEmbeddingOllama() {
+    System.out.println("### textToEmbeddingOllama");
 
-    // tag::adocTextToEmbeddingAllMiniLmL6V2[]
-    EmbeddingModel model = new AllMiniLmL6V2EmbeddingModel();
+    // tag::adocTextToEmbeddingOllama[]
+    EmbeddingModel model = OllamaEmbeddingModel.builder()
+      .baseUrl("http://localhost:11434")
+      .modelName("mxbai-embed-large")
+      .build();
 
     TextSegment segment = TextSegment.from("Isaac Asimov is a writer and a biochemist");
     Response<Embedding> embedding = model.embed(segment);
 
     System.out.println(embedding.content());
-    // end::adocTextToEmbeddingAllMiniLmL6V2[]
+    // end::adocTextToEmbeddingOllama[]
   }
 }

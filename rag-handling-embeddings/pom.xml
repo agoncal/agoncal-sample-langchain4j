@@ -18,6 +18,7 @@
 
   <modules>
     <module>embedding-local</module>
+    <module>embedding-ollama</module>
     <module>embedding-openai</module>
     <module>store-azure-ai-search</module>
     <module>store-cassandra</module>
