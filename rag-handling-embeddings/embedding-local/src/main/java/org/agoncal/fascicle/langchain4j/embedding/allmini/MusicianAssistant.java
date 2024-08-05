@@ -1,9 +1,9 @@
-package org.agoncal.fascicle.langchain4j.vectordb.qdrant;
+package org.agoncal.fascicle.langchain4j.embedding.allmini;
 
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.model.embedding.EmbeddingModel;
-import dev.langchain4j.model.openai.OpenAiEmbeddingModel;
+import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.model.output.Response;
 
 // tag::adocSkip[]
@@ -16,24 +16,22 @@ import dev.langchain4j.model.output.Response;
 // end::adocSkip[]
 public class MusicianAssistant {
 
-  private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
-
   public static void main(String[] args) {
     MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianAssistant.textToEmbeddingOpenAI();
+    musicianAssistant.textToEmbeddingAllMiniLmL6V2();
   }
 
-  public void textToEmbeddingOpenAI() {
-    System.out.println("### textToEmbeddingOpenAI");
+  public void textToEmbeddingAllMiniLmL6V2() {
+    System.out.println("### textToEmbeddingAllMiniLmL6V2");
 
-    // tag::adocTextToEmbeddingOpenAI[]
-    EmbeddingModel model = OpenAiEmbeddingModel.withApiKey(OPENAI_API_KEY);
+    // tag::adocTextToEmbeddingAllMiniLmL6V2[]
+    EmbeddingModel model = new AllMiniLmL6V2EmbeddingModel();
 
     TextSegment segment = TextSegment.from("Isaac Asimov is a writer and is a biochemist.");
     Response<Embedding> embedding = model.embed(segment);
 
     System.out.println(embedding.content());
-    // end::adocTextToEmbeddingOpenAI[]
+    // end::adocTextToEmbeddingAllMiniLmL6V2[]
   }
 }
