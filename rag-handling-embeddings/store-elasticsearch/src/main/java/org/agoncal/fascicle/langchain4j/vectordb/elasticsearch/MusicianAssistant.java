@@ -1,4 +1,4 @@
-package org.agoncal.fascicle.langchain4j.vectordb.azureaisearch;
+package org.agoncal.fascicle.langchain4j.vectordb.elasticsearch;
 
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
@@ -6,7 +6,7 @@ import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2Embedding
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.store.embedding.EmbeddingMatch;
 import dev.langchain4j.store.embedding.EmbeddingStore;
-import dev.langchain4j.store.embedding.azure.search.AzureAiSearchEmbeddingStore;
+import dev.langchain4j.store.embedding.elasticsearch.ElasticsearchEmbeddingStore;
 
 import java.util.List;
 
@@ -18,12 +18,12 @@ import java.util.List;
  * --
  */
 // end::adocSkip[]
-public class MusicianService {
+public class MusicianAssistant {
 
   public static void main(String[] args) {
-    MusicianService musicianService = new MusicianService();
+    MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianService.useQdrantToStoreEmbeddings();
+    musicianAssistant.useQdrantToStoreEmbeddings();
   }
 
   public void useQdrantToStoreEmbeddings() {
@@ -31,7 +31,7 @@ public class MusicianService {
 
     // tag::adocSnippet[]
     EmbeddingStore<TextSegment> embeddingStore =
-      AzureAiSearchEmbeddingStore.builder()
+      ElasticsearchEmbeddingStore.builder()
         .build();
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();

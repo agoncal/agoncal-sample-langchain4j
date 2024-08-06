@@ -18,12 +18,12 @@ import java.util.List;
  * --
  */
 // end::adocSkip[]
-public class MusicianService {
+public class MusicianAssistant {
 
   public static void main(String[] args) {
-    MusicianService musicianService = new MusicianService();
+    MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianService.useQdrantToStoreEmbeddings();
+    musicianAssistant.useQdrantToStoreEmbeddings();
   }
 
   public void useQdrantToStoreEmbeddings() {

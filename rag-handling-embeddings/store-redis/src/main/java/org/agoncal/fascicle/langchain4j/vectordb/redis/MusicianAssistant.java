@@ -1,4 +1,4 @@
-package org.agoncal.fascicle.langchain4j.vectordb.infinispan;
+package org.agoncal.fascicle.langchain4j.vectordb.redis;
 
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
@@ -6,7 +6,7 @@ import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2Embedding
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.store.embedding.EmbeddingMatch;
 import dev.langchain4j.store.embedding.EmbeddingStore;
-import dev.langchain4j.store.embedding.infinispan.InfinispanEmbeddingStore;
+import dev.langchain4j.store.embedding.redis.RedisEmbeddingStore;
 
 import java.util.List;
 
@@ -18,20 +18,21 @@ import java.util.List;
  * --
  */
 // end::adocSkip[]
-public class MusicianService {
+public class MusicianAssistant {
 
   public static void main(String[] args) {
-    MusicianService musicianService = new MusicianService();
+    MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianService.useInfinispanToStoreEmbeddings();
+    musicianAssistant.useQdrantToStoreEmbeddings();
   }
 
-  public void useInfinispanToStoreEmbeddings() {
-    System.out.println("### useInfinispanToStoreEmbeddings");
+  public void useQdrantToStoreEmbeddings() {
+    System.out.println("### useQdrantToStoreEmbeddings");
 
     // tag::adocSnippet[]
     EmbeddingStore<TextSegment> embeddingStore =
-      InfinispanEmbeddingStore.builder()
+      RedisEmbeddingStore.builder()
+        .port(6334)
         .build();
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();

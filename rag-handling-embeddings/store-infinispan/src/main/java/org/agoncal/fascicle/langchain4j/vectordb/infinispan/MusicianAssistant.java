@@ -1,4 +1,4 @@
-package org.agoncal.fascicle.langchain4j.vectordb.pgvector;
+package org.agoncal.fascicle.langchain4j.vectordb.infinispan;
 
 import dev.langchain4j.data.embedding.Embedding;
 import dev.langchain4j.data.segment.TextSegment;
@@ -6,7 +6,7 @@ import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2Embedding
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.store.embedding.EmbeddingMatch;
 import dev.langchain4j.store.embedding.EmbeddingStore;
-import dev.langchain4j.store.embedding.pgvector.PgVectorEmbeddingStore;
+import dev.langchain4j.store.embedding.infinispan.InfinispanEmbeddingStore;
 
 import java.util.List;
 
@@ -18,31 +18,21 @@ import java.util.List;
  * --
  */
 // end::adocSkip[]
-public class MusicianService {
+public class MusicianAssistant {
 
   public static void main(String[] args) {
-    MusicianService musicianService = new MusicianService();
+    MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianService.usePGVectorToStoreEmbeddings();
+    musicianAssistant.useInfinispanToStoreEmbeddings();
   }
 
-  public void usePGVectorToStoreEmbeddings() {
-    System.out.println("### usePGVectorToStoreEmbeddings");
+  public void useInfinispanToStoreEmbeddings() {
+    System.out.println("### useInfinispanToStoreEmbeddings");
 
     // tag::adocSnippet[]
     EmbeddingStore<TextSegment> embeddingStore =
-      PgVectorEmbeddingStore.builder()
-        .host("localhost")
-        .port(5432)
-        .createTable(true)
-        .dropTableFirst(true)
-        .dimension(384)
-        .table("langchain4j_collection")
-        .user("agoncal")
-        .password("agoncal")
-        .database("agoncal")
+      InfinispanEmbeddingStore.builder()
         .build();
-    // end::adocSnippet[]
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 
@@ -60,5 +50,6 @@ public class MusicianService {
 
     System.out.println(embeddingMatch.score());
     System.out.println(embeddingMatch.embedded().text());
+    // end::adocSnippet[]
   }
 }
