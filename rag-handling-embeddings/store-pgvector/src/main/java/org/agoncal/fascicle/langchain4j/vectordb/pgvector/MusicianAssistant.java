@@ -29,9 +29,8 @@ public class MusicianAssistant {
   public void usePGVectorToStoreEmbeddings() {
     System.out.println("### usePGVectorToStoreEmbeddings");
 
-    // tag::adocSnippet[]
-    EmbeddingStore<TextSegment> embeddingStore =
-      PgVectorEmbeddingStore.builder()
+    // tag::adocPGVectorToStoreEmbeddings[]
+    EmbeddingStore<TextSegment> embeddingStore = PgVectorEmbeddingStore.builder()
         .host("localhost")
         .port(5432)
         .createTable(true)
@@ -42,7 +41,7 @@ public class MusicianAssistant {
         .password("agoncal")
         .database("agoncal")
         .build();
-    // end::adocSnippet[]
+    // end::adocPGVectorToStoreEmbeddings[]
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 

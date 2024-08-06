@@ -30,12 +30,12 @@ public class MusicianAssistant {
   public void useQdrantToStoreEmbeddingsSimple() {
     System.out.println("### useQdrantToStoreEmbeddingsSimple");
 
-    // tag::adocSimple[]
+    // tag::adocQdrantToStoreEmbeddingsConnect[]
     EmbeddingStore<TextSegment> embeddingStore =
       QdrantEmbeddingStore.builder()
         .collectionName("langchain4j-collection")
         .build();
-    // end::adocSimple[]
+    // end::adocQdrantToStoreEmbeddingsConnect[]
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 

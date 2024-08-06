@@ -23,16 +23,16 @@ public class MusicianAssistant {
   public static void main(String[] args) {
     MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianAssistant.useQdrantToStoreEmbeddings();
+    musicianAssistant.useNeo4jToStoreEmbeddings();
   }
 
-  public void useQdrantToStoreEmbeddings() {
-    System.out.println("### useQdrantToStoreEmbeddings");
+  public void useNeo4jToStoreEmbeddings() {
+    System.out.println("### useNeo4jToStoreEmbeddings");
 
-    // tag::adocSnippet[]
-    EmbeddingStore<TextSegment> embeddingStore =
-      Neo4jEmbeddingStore.builder()
+    // tag::adocNeo4jToStoreEmbeddingsConnect[]
+    EmbeddingStore<TextSegment> embeddingStore = Neo4jEmbeddingStore.builder()
         .build();
+    // end::adocNeo4jToStoreEmbeddingsConnect[]
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 
@@ -50,6 +50,5 @@ public class MusicianAssistant {
 
     System.out.println(embeddingMatch.score());
     System.out.println(embeddingMatch.embedded().text());
-    // end::adocSnippet[]
   }
 }

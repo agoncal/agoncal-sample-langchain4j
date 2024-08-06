@@ -23,16 +23,17 @@ public class MusicianAssistant {
   public static void main(String[] args) {
     MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianAssistant.useQdrantToStoreEmbeddings();
+    musicianAssistant.useMongoToStoreEmbeddings();
   }
 
-  public void useQdrantToStoreEmbeddings() {
-    System.out.println("### useQdrantToStoreEmbeddings");
+  public void useMongoToStoreEmbeddings() {
+    System.out.println("### useMongoToStoreEmbeddings");
 
-    // tag::adocSnippet[]
+    // tag::adocMongoToStoreEmbeddings[]
     EmbeddingStore<TextSegment> embeddingStore =
       MongoDbEmbeddingStore.builder()
         .build();
+    // end::adocMongoToStoreEmbeddings[]
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 
@@ -50,6 +51,5 @@ public class MusicianAssistant {
 
     System.out.println(embeddingMatch.score());
     System.out.println(embeddingMatch.embedded().text());
-    // end::adocSnippet[]
   }
 }
