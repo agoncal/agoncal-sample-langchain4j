@@ -20,6 +20,10 @@ import java.util.List;
 // end::adocSkip[]
 public class MusicianAssistant {
 
+  public static final String USERNAME = "neo4j";
+  public static final String ADMIN_PASSWORD = "adminPass";
+
+
   public static void main(String[] args) {
     MusicianAssistant musicianAssistant = new MusicianAssistant();
 
@@ -31,7 +35,12 @@ public class MusicianAssistant {
 
     // tag::adocNeo4jToStoreEmbeddingsConnect[]
     EmbeddingStore<TextSegment> embeddingStore = Neo4jEmbeddingStore.builder()
-        .build();
+      .withBasicAuth("http://localhost:7474", USERNAME, ADMIN_PASSWORD)
+      .dimension(384)
+      .metadataPrefix("metadata.")
+      .label("vintagestore_label")
+      .indexName("vintagestore_idx")
+      .build();
     // end::adocNeo4jToStoreEmbeddingsConnect[]
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();

@@ -20,6 +20,9 @@ import java.util.List;
 // end::adocSkip[]
 public class MusicianAssistant {
 
+  public static final String USERNAME = "neo4j";
+  public static final String PASSWORD = "adminPass";
+
   public static void main(String[] args) {
     MusicianAssistant musicianAssistant = new MusicianAssistant();
 
@@ -36,10 +39,10 @@ public class MusicianAssistant {
         .createTable(true)
         .dropTableFirst(true)
         .dimension(384)
-        .table("langchain4j_collection")
-        .user("agoncal")
-        .password("agoncal")
-        .database("agoncal")
+        .table("vintagestore_collection")
+        .user(USERNAME)
+        .password(PASSWORD)
+        .database("vintagestore_db")
         .build();
     // end::adocPGVectorToStoreEmbeddings[]
 

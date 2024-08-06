@@ -20,6 +20,10 @@ import java.util.List;
 // end::adocSkip[]
 public class MusicianAssistant {
 
+  private String AZURE_SEARCH_ENDPOINT = System.getenv("AZURE_SEARCH_ENDPOINT");
+  private String AZURE_SEARCH_KEY = System.getenv("AZURE_SEARCH_KEY");
+
+
   public static void main(String[] args) {
     MusicianAssistant musicianAssistant = new MusicianAssistant();
 
@@ -31,7 +35,10 @@ public class MusicianAssistant {
 
     // tag::adocAzureAiSearchConnect[]
     EmbeddingStore<TextSegment> embeddingStore = AzureAiSearchEmbeddingStore.builder()
-        .build();
+      .endpoint(AZURE_SEARCH_ENDPOINT)
+      .apiKey(AZURE_SEARCH_KEY)
+      .dimensions(1536)
+      .build();
     // end::adocAzureAiSearchConnect[]
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();

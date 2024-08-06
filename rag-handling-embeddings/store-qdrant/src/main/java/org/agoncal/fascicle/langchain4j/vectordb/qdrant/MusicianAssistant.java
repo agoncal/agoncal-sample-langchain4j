@@ -33,7 +33,7 @@ public class MusicianAssistant {
     // tag::adocQdrantToStoreEmbeddingsConnect[]
     EmbeddingStore<TextSegment> embeddingStore =
       QdrantEmbeddingStore.builder()
-        .collectionName("langchain4j-collection")
+        .collectionName("vintagestore-collection")
         .build();
     // end::adocQdrantToStoreEmbeddingsConnect[]
 

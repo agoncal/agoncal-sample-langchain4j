@@ -31,7 +31,10 @@ public class MusicianAssistant {
 
     // tag::adocElasticsearchToStoreEmbeddingsConnect[]
     EmbeddingStore<TextSegment> embeddingStore = ElasticsearchEmbeddingStore.builder()
-        .build();
+      .serverUrl("http://localhost:9200")
+      .indexName("index_lc4j")
+      .dimension(384)
+      .build();
     // end::adocElasticsearchToStoreEmbeddingsConnect[]
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();

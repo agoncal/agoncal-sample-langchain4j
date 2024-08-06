@@ -21,9 +21,7 @@
     <module>embedding-ollama</module>
     <module>embedding-openai</module>
     <module>store-azure-ai-search</module>
-    <module>store-cassandra</module>
     <module>store-elasticsearch</module>
-    <module>store-infinispan</module>
     <module>store-mongodb</module>
     <module>store-neo4j</module>
     <module>store-pgvector</module>
