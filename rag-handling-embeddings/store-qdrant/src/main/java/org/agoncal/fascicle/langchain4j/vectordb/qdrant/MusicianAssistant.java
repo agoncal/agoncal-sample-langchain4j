@@ -215,7 +215,7 @@ public class MusicianAssistant {
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 
-    // tag::adocInMemoryToQuery[]
+    // tag::adocInMemoryToQuery1[]
     // Data
     TextSegment segment1 = TextSegment.from("Kind of Blue (1959): Widely regarded as one of the greatest jazz albums of all time, featuring musicians like John Coltrane and Bill Evans.");
     Embedding embedding1 = embeddingModel.embed(segment1).content();
@@ -228,17 +228,23 @@ public class MusicianAssistant {
     TextSegment segment3 = TextSegment.from("Blue Moods” (1955): This lesser-known Miles Davis album is a collaboration with Charles Mingus alongside Britt Woodman on trombone and Elvin Jones on drums.");
     Embedding embedding3 = embeddingModel.embed(segment2).content();
     embeddingStore.add(embedding3, segment3);
+    // end::adocInMemoryToQuery1[]
 
+    // tag::adocInMemoryToQuery2[]
     // Question to ask
     Embedding embeddedQuestion = embeddingModel.embed("Which Miles Davis album uses a piano?").content();
+    // end::adocInMemoryToQuery2[]
 
+    // tag::adocInMemoryToQuery3[]
     // Search
     EmbeddingSearchRequest searchRequest = EmbeddingSearchRequest.builder()
       .queryEmbedding(embeddedQuestion)
       .maxResults(3)
       .minScore(0.5)
       .build();
+    // end::adocInMemoryToQuery3[]
 
+    // tag::adocInMemoryToQuery4[]
     // Results
     EmbeddingSearchResult<TextSegment> searchResult = embeddingStore.search(searchRequest);
 
@@ -246,7 +252,7 @@ public class MusicianAssistant {
       System.out.println(match.score());
       System.out.println(match.embedded().text());
     });
-    // end::adocInMemoryToQuery[]
+    // end::adocInMemoryToQuery4[]
   }
 
   public void useQdrantToStoreEmbeddingsComplex() {
