@@ -35,8 +35,8 @@ public class MusicianAssistant {
     musicianAssistant.useQdrantToRemoveEmbeddings();
   }
 
-  public void useQdrantToStoreEmbeddingsSimple() {
-    System.out.println("### useQdrantToStoreEmbeddingsSimple");
+  public void useQdrantToStoreEmbeddingsConnect() {
+    System.out.println("### useQdrantToStoreEmbeddingsConnect");
 
     // tag::adocQdrantToStoreEmbeddingsConnect[]
     EmbeddingStore<TextSegment> embeddingStore = QdrantEmbeddingStore.builder()
@@ -54,8 +54,8 @@ public class MusicianAssistant {
     Embedding embedding2 = embeddingModel.embed(segment2).content();
     embeddingStore.add(embedding2, segment2);
 
-    Embedding queryEmbedding = embeddingModel.embed("Did you ever travel abroad?").content();
-    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(queryEmbedding, 1);
+    Embedding embeddedQuestion = embeddingModel.embed("Did you ever travel abroad?").content();
+    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(embeddedQuestion, 1);
     EmbeddingMatch<TextSegment> embeddingMatch = relevant.get(0);
 
     System.out.println(embeddingMatch.score());
@@ -77,15 +77,15 @@ public class MusicianAssistant {
     // tag::adocQdrantToStoreEmbeddings[]
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 
-    TextSegment segment1 = TextSegment.from("Kind of Blue (1959): Widely regarded as one of the greatest jazz albums of all time, featuring musicians like John Coltrane and Bill Evans.");
+    TextSegment segment1 = TextSegment.from("Kind of Blue (1959) ...");
     Embedding embedding1 = embeddingModel.embed(segment1).content();
     embeddingStore.add(embedding1, segment1);
 
-    TextSegment segment2 = TextSegment.from("Bitches Brew (1970): This groundbreaking album marked a significant shift in jazz, blending rock, funk, and electronic elements.");
+    TextSegment segment2 = TextSegment.from("Bitches Brew (1970) ...");
     Embedding embedding2 = embeddingModel.embed(segment2).content();
     embeddingStore.add(embedding2, segment2);
 
-    TextSegment segment3 = TextSegment.from("Sketches of Spain (1960): A unique collaboration with arranger Gil Evans, showcases Davis's exploration of Spanish folk melodies and classical influences.");
+    TextSegment segment3 = TextSegment.from("Sketches of Spain (1960) ...");
     Embedding embedding3 = embeddingModel.embed(segment2).content();
     embeddingStore.add(embedding3, segment3);
     // end::adocQdrantToStoreEmbeddings[]
@@ -113,13 +113,13 @@ public class MusicianAssistant {
     // tag::adocQdrantToStoreJustEmbeddings[]
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 
-    Response<Embedding> embedding1 = embeddingModel.embed("Kind of Blue (1959): Widely regarded as one of the greatest jazz albums of all time, featuring musicians like John Coltrane and Bill Evans.");
+    Response<Embedding> embedding1 = embeddingModel.embed("Kind of Blue (1959) ...");
     embeddingStore.add(embedding1.content());
 
-    Response<Embedding> embedding2 = embeddingModel.embed("Bitches Brew (1970): This groundbreaking album marked a significant shift in jazz, blending rock, funk, and electronic elements.");
+    Response<Embedding> embedding2 = embeddingModel.embed("Bitches Brew (1970) ...");
     embeddingStore.add(embedding2.content());
 
-    Response<Embedding> embedding3 = embeddingModel.embed("Sketches of Spain (1960): A unique collaboration with arranger Gil Evans, showcases Davis's exploration of Spanish folk melodies and classical influences.");
+    Response<Embedding> embedding3 = embeddingModel.embed("Sketches of Spain (1960) ...");
     embeddingStore.add(embedding3.content());
     // end::adocQdrantToStoreJustEmbeddings[]
 
@@ -148,13 +148,13 @@ public class MusicianAssistant {
     // tag::adocQdrantToStoreJustListEmbeddings[]
     List<Embedding> embeddings = new ArrayList<>();
 
-    Response<Embedding> embedding1 = embeddingModel.embed("Kind of Blue (1959): Widely regarded as one of the greatest jazz albums of all time, featuring musicians like John Coltrane and Bill Evans.");
+    Response<Embedding> embedding1 = embeddingModel.embed("Kind of Blue (1959) ...");
     embeddings.add(embedding1.content());
 
-    Response<Embedding> embedding2 = embeddingModel.embed("Bitches Brew (1970): This groundbreaking album marked a significant shift in jazz, blending rock, funk, and electronic elements.");
+    Response<Embedding> embedding2 = embeddingModel.embed("Bitches Brew (1970) ...");
     embeddings.add(embedding2.content());
 
-    Response<Embedding> embedding3 = embeddingModel.embed("Sketches of Spain (1960): A unique collaboration with arranger Gil Evans, showcases Davis's exploration of Spanish folk melodies and classical influences.");
+    Response<Embedding> embedding3 = embeddingModel.embed("Sketches of Spain (1960) ...");
     embeddings.add(embedding3.content());
 
     embeddingStore.addAll(embeddings);
@@ -183,6 +183,42 @@ public class MusicianAssistant {
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 
     // tag::adocQdrantToStoreListEmbeddings[]
+    TextSegment segment1 = TextSegment.from("Kind of Blue (1959) ...");
+    Embedding embedding1 = embeddingModel.embed(segment1).content();
+    embeddingStore.add(embedding1, segment1);
+
+    TextSegment segment2 = TextSegment.from("Bitches Brew (1970) ...");
+    Embedding embedding2 = embeddingModel.embed(segment2).content();
+    embeddingStore.add(embedding2, segment2);
+
+    TextSegment segment3 = TextSegment.from("Sketches of Spain (1960) ...");
+    Embedding embedding3 = embeddingModel.embed(segment2).content();
+    embeddingStore.add(embedding3, segment3);
+    // end::adocQdrantToStoreListEmbeddings[]
+
+    Embedding embeddedQuestion = embeddingModel.embed("Which Miles Davis album uses a piano?").content();
+    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(embeddedQuestion, 1);
+    EmbeddingMatch<TextSegment> embeddingMatch = relevant.get(0);
+
+    System.out.println(embeddingMatch.score());
+    System.out.println(embeddingMatch.embedded().text());
+  }
+
+  public void useQdrantToQuery() {
+    System.out.println("### useQdrantToQuery");
+
+    createCollection();
+
+    EmbeddingStore<TextSegment> embeddingStore =
+      QdrantEmbeddingStore.builder()
+        .collectionName("langchain4j-collection")
+        .host("localhost")
+        .port(6334)
+        .build();
+
+    EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
+
+    // tag::adocQdrantToQuery[]
     TextSegment segment1 = TextSegment.from("Kind of Blue (1959): Widely regarded as one of the greatest jazz albums of all time, featuring musicians like John Coltrane and Bill Evans.");
     Embedding embedding1 = embeddingModel.embed(segment1).content();
     embeddingStore.add(embedding1, segment1);
@@ -194,7 +230,6 @@ public class MusicianAssistant {
     TextSegment segment3 = TextSegment.from("Sketches of Spain (1960): A unique collaboration with arranger Gil Evans, showcases Davis's exploration of Spanish folk melodies and classical influences.");
     Embedding embedding3 = embeddingModel.embed(segment2).content();
     embeddingStore.add(embedding3, segment3);
-    // end::adocQdrantToStoreListEmbeddings[]
 
     Embedding embeddedQuestion = embeddingModel.embed("Which Miles Davis album uses a piano?").content();
     List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(embeddedQuestion, 1);
@@ -202,6 +237,7 @@ public class MusicianAssistant {
 
     System.out.println(embeddingMatch.score());
     System.out.println(embeddingMatch.embedded().text());
+    // end::adocQdrantToQuery[]
   }
 
   public void useQdrantToStoreEmbeddingsComplex() {
@@ -228,8 +264,8 @@ public class MusicianAssistant {
     Embedding embedding2 = embeddingModel.embed(segment2).content();
     embeddingStore.add(embedding2, segment2);
 
-    Embedding queryEmbedding = embeddingModel.embed("Did you ever travel abroad?").content();
-    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(queryEmbedding, 1);
+    Embedding embeddedQuestion = embeddingModel.embed("Did you ever travel abroad?").content();
+    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(embeddedQuestion, 1);
     EmbeddingMatch<TextSegment> embeddingMatch = relevant.get(0);
 
     System.out.println(embeddingMatch.score());
