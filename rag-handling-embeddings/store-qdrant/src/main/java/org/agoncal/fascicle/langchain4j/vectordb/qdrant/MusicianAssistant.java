@@ -6,7 +6,10 @@ import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.model.output.Response;
 import dev.langchain4j.store.embedding.EmbeddingMatch;
+import dev.langchain4j.store.embedding.EmbeddingSearchRequest;
+import dev.langchain4j.store.embedding.EmbeddingSearchResult;
 import dev.langchain4j.store.embedding.EmbeddingStore;
+import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 import dev.langchain4j.store.embedding.qdrant.QdrantEmbeddingStore;
 import io.qdrant.client.QdrantClient;
 import io.qdrant.client.QdrantGrpcClient;
@@ -32,7 +35,8 @@ public class MusicianAssistant {
 //    musicianAssistant.useQdrantToStoreEmbeddingsComplex();
 //    musicianAssistant.useQdrantToStoreEmbeddings();
 //    musicianAssistant.useQdrantToStoreJustEmbeddings();
-    musicianAssistant.useQdrantToRemoveEmbeddings();
+//    musicianAssistant.useQdrantToRemoveEmbeddings();
+    musicianAssistant.useInMemoryToQuery();
   }
 
   public void useQdrantToStoreEmbeddingsConnect() {
@@ -204,21 +208,15 @@ public class MusicianAssistant {
     System.out.println(embeddingMatch.embedded().text());
   }
 
-  public void useQdrantToQuery() {
-    System.out.println("### useQdrantToQuery");
+  public void useInMemoryToQuery() {
+    System.out.println("### useInMemoryToQuery");
 
-    createCollection();
-
-    EmbeddingStore<TextSegment> embeddingStore =
-      QdrantEmbeddingStore.builder()
-        .collectionName("langchain4j-collection")
-        .host("localhost")
-        .port(6334)
-        .build();
+    InMemoryEmbeddingStore<TextSegment> embeddingStore = new InMemoryEmbeddingStore<>();
 
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 
-    // tag::adocQdrantToQuery[]
+    // tag::adocInMemoryToQuery[]
+    // Data
     TextSegment segment1 = TextSegment.from("Kind of Blue (1959): Widely regarded as one of the greatest jazz albums of all time, featuring musicians like John Coltrane and Bill Evans.");
     Embedding embedding1 = embeddingModel.embed(segment1).content();
     embeddingStore.add(embedding1, segment1);
@@ -227,17 +225,28 @@ public class MusicianAssistant {
     Embedding embedding2 = embeddingModel.embed(segment2).content();
     embeddingStore.add(embedding2, segment2);
 
-    TextSegment segment3 = TextSegment.from("Sketches of Spain (1960): A unique collaboration with arranger Gil Evans, showcases Davis's exploration of Spanish folk melodies and classical influences.");
+    TextSegment segment3 = TextSegment.from("Blue Moods” (1955): This lesser-known Miles Davis album is a collaboration with Charles Mingus alongside Britt Woodman on trombone and Elvin Jones on drums.");
     Embedding embedding3 = embeddingModel.embed(segment2).content();
     embeddingStore.add(embedding3, segment3);
 
+    // Question to ask
     Embedding embeddedQuestion = embeddingModel.embed("Which Miles Davis album uses a piano?").content();
-    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(embeddedQuestion, 1);
-    EmbeddingMatch<TextSegment> embeddingMatch = relevant.get(0);
 
-    System.out.println(embeddingMatch.score());
-    System.out.println(embeddingMatch.embedded().text());
-    // end::adocQdrantToQuery[]
+    // Search
+    EmbeddingSearchRequest searchRequest = EmbeddingSearchRequest.builder()
+      .queryEmbedding(embeddedQuestion)
+      .maxResults(3)
+      .minScore(0.5)
+      .build();
+
+    // Results
+    EmbeddingSearchResult<TextSegment> searchResult = embeddingStore.search(searchRequest);
+
+    searchResult.matches().forEach(match -> {
+      System.out.println(match.score());
+      System.out.println(match.embedded().text());
+    });
+    // end::adocInMemoryToQuery[]
   }
 
   public void useQdrantToStoreEmbeddingsComplex() {
@@ -288,7 +297,7 @@ public class MusicianAssistant {
     EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
 
     // tag::adocQdrantToRemoveEmbeddings[]
-    Embedding embedding = embeddingModel.embed("The Fifth Season (2015): This Hugo Award-winning novel, the first in the Broken Earth trilogy, introduces readers to a world on the brink of destruction.").content();
+    Embedding embedding = embeddingModel.embed("Kind of Blue (1959) ...").content();
     String id = embeddingStore.add(embedding);
 
     embeddingStore.remove(id);
