@@ -31,7 +31,8 @@ public class MusicianAssistant {
 //    musicianAssistant.useQdrantToStoreEmbeddingsSimple();
 //    musicianAssistant.useQdrantToStoreEmbeddingsComplex();
 //    musicianAssistant.useQdrantToStoreEmbeddings();
-    musicianAssistant.useQdrantToStoreJustEmbeddings();
+//    musicianAssistant.useQdrantToStoreJustEmbeddings();
+    musicianAssistant.useQdrantToRemoveEmbeddings();
   }
 
   public void useQdrantToStoreEmbeddingsSimple() {
@@ -89,8 +90,8 @@ public class MusicianAssistant {
     embeddingStore.add(embedding3, segment3);
     // end::adocQdrantToStoreEmbeddings[]
 
-    Embedding queryEmbedding = embeddingModel.embed("Which Miles Davis album uses a piano?").content();
-    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(queryEmbedding, 1);
+    Embedding embeddedQuestion = embeddingModel.embed("Which Miles Davis album uses a piano?").content();
+    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(embeddedQuestion, 1);
     EmbeddingMatch<TextSegment> embeddingMatch = relevant.get(0);
 
     System.out.println(embeddingMatch.score());
@@ -122,8 +123,8 @@ public class MusicianAssistant {
     embeddingStore.add(embedding3.content());
     // end::adocQdrantToStoreJustEmbeddings[]
 
-    Embedding queryEmbedding = embeddingModel.embed("Which Miles Davis album uses a piano?").content();
-    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(queryEmbedding, 1);
+    Embedding embeddedQuestion = embeddingModel.embed("Which Miles Davis album uses a piano?").content();
+    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(embeddedQuestion, 1);
     EmbeddingMatch<TextSegment> embeddingMatch = relevant.get(0);
 
     System.out.println(embeddingMatch.score());
@@ -159,8 +160,8 @@ public class MusicianAssistant {
     embeddingStore.addAll(embeddings);
     // end::adocQdrantToStoreJustListEmbeddings[]
 
-    Embedding queryEmbedding = embeddingModel.embed("Which Miles Davis album uses a piano?").content();
-    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(queryEmbedding, 1);
+    Embedding embeddedQuestion = embeddingModel.embed("Which Miles Davis album uses a piano?").content();
+    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(embeddedQuestion, 1);
     EmbeddingMatch<TextSegment> embeddingMatch = relevant.get(0);
 
     System.out.println(embeddingMatch.score());
@@ -195,8 +196,8 @@ public class MusicianAssistant {
     embeddingStore.add(embedding3, segment3);
     // end::adocQdrantToStoreListEmbeddings[]
 
-    Embedding queryEmbedding = embeddingModel.embed("Which Miles Davis album uses a piano?").content();
-    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(queryEmbedding, 1);
+    Embedding embeddedQuestion = embeddingModel.embed("Which Miles Davis album uses a piano?").content();
+    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(embeddedQuestion, 1);
     EmbeddingMatch<TextSegment> embeddingMatch = relevant.get(0);
 
     System.out.println(embeddingMatch.score());
@@ -234,6 +235,35 @@ public class MusicianAssistant {
     System.out.println(embeddingMatch.score());
     System.out.println(embeddingMatch.embedded().text());
     // end::adocSnippet[]
+  }
+
+  public void useQdrantToRemoveEmbeddings() {
+    System.out.println("### useQdrantToRemoveEmbeddings");
+
+    createCollection();
+
+    EmbeddingStore<TextSegment> embeddingStore =
+      QdrantEmbeddingStore.builder()
+        .collectionName("langchain4j-collection")
+        .host("localhost")
+        .port(6334)
+        .build();
+
+    EmbeddingModel embeddingModel = new AllMiniLmL6V2EmbeddingModel();
+
+    // tag::adocQdrantToRemoveEmbeddings[]
+    Embedding embedding = embeddingModel.embed("The Fifth Season (2015): This Hugo Award-winning novel, the first in the Broken Earth trilogy, introduces readers to a world on the brink of destruction.").content();
+    String id = embeddingStore.add(embedding);
+
+    embeddingStore.remove(id);
+    // end::adocQdrantToRemoveEmbeddings[]
+
+    Embedding embeddedQuestion = embeddingModel.embed("Which Nora Jemisin won an award?").content();
+    List<EmbeddingMatch<TextSegment>> relevant = embeddingStore.findRelevant(embeddedQuestion, 1);
+    EmbeddingMatch<TextSegment> embeddingMatch = relevant.get(0);
+
+    System.out.println(embeddingMatch.score());
+    System.out.println(embeddingMatch.embedding().dimension());
   }
 
   private static void createCollection() {
