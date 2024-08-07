@@ -28,5 +28,5 @@ teamworkUser.xml
 projectFilesBackup*
 create.sql
 drop.sql
-.env
+.env-backup
 .qdrant
