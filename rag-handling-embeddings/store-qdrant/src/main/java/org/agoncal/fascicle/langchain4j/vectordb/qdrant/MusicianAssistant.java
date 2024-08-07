@@ -298,6 +298,7 @@ public class MusicianAssistant {
 
     // tag::adocQdrantToRemoveEmbeddings[]
     Embedding embedding = embeddingModel.embed("Kind of Blue (1959) ...").content();
+
     String id = embeddingStore.add(embedding);
 
     embeddingStore.remove(id);
