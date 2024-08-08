@@ -8,7 +8,6 @@
   <artifactId>rag</artifactId>
   <version>1.0</version>
   <name>LangChain4j :: RAG :: RAG</name>
-  <packaging>pom</packaging>
 
   <parent>
     <groupId>org.agoncal.fascicle</groupId>
@@ -16,8 +15,33 @@
     <version>1.0</version>
   </parent>
 
-  <modules>
-<!--    <module>token</module>-->
-  </modules>
+  <dependencies>
+    <!-- LangChain4j -->
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-open-ai</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>dev.langchain4j</groupId>
+      <artifactId>langchain4j-document-parser-apache-pdfbox</artifactId>
+    </dependency>
+    <!-- Other -->
+    <dependency>
+      <groupId>org.tinylog</groupId>
+      <artifactId>slf4j-tinylog</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.tinylog</groupId>
+      <artifactId>tinylog-impl</artifactId>
+    </dependency>
+  </dependencies>
 
 </project>

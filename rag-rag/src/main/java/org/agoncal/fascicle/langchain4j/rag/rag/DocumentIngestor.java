@@ -1,4 +1,4 @@
-package org.agoncal.fascicle.langchain4j.goingfurther;
+package org.agoncal.fascicle.langchain4j.rag.rag;
 
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.DocumentSplitter;

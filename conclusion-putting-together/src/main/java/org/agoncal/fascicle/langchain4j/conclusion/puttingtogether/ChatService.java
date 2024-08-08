@@ -1,4 +1,4 @@
-package org.agoncal.fascicle.langchain4j.goingfurther;
+package org.agoncal.fascicle.langchain4j.conclusion.puttingtogether;
 
 import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
