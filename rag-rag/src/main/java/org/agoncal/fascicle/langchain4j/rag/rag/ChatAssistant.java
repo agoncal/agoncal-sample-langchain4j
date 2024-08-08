@@ -44,7 +44,7 @@ public class ChatAssistant {
     private static final ChatMemory chatMemory = memory();
     private static final EmbeddingModel embeddingModel = embeddingModel();
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         String question;
