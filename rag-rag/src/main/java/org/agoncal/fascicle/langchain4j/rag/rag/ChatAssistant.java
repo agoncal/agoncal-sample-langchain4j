@@ -68,7 +68,7 @@ public class ChatAssistant {
     }
 
     private static String chat(String question) {
-        // tag::adocEmbed[]
+        // tag::adocSimilaritySearch[]
         Embedding embeddedQuestion = embeddingModel.embed(question).content();
 
         EmbeddingSearchRequest searchRequest = EmbeddingSearchRequest.builder()
@@ -82,7 +82,7 @@ public class ChatAssistant {
         searchResult.matches().forEach(match -> {
             chatMemory.add(UserMessage.from(match.embedded().text()));
         });
-        // end::adocEmbed[]
+        // end::adocSimilaritySearch[]
 
         // tag::adocChat[]
         UserMessage userMsg = UserMessage.from("Here is the customer's question:" + question);
