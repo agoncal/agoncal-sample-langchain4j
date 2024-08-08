@@ -85,16 +85,16 @@ public class ChatAssistant {
         // end::adocSimilaritySearch[]
 
         // tag::adocChat[]
-        UserMessage userMsg = UserMessage.from("Here is the customer's question:" + question);
+        UserMessage userQuestion = UserMessage.from("Here is the customer's question:" + question);
 
-        chatMemory.add(userMsg);
-        AiMessage answer = model.generate(chatMemory.messages()).content();
-        chatMemory.add(answer);
+        chatMemory.add(userQuestion);
+        AiMessage aiAnswer = model.generate(chatMemory.messages()).content();
+        chatMemory.add(aiAnswer);
 
-        System.out.println("Vintage Store chat bot: " + answer.text());
+        System.out.println("Vintage Store chat bot: " + aiAnswer.text());
         // end::adocChat[]
 
-        return answer.text();
+        return aiAnswer.text();
     }
 
     private static ChatMemory memory() {
