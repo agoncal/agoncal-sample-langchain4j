@@ -196,9 +196,9 @@ public class MusicianAssistant {
     ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
     UserMessage userMessage = new UserMessage("Who composed the Moonlight Sonata?");
-    Response<AiMessage> reponse = model.generate(userMessage);
+    Response<AiMessage> response = model.generate(userMessage);
 
-    System.out.println(reponse.content());
+    System.out.println(response.content());
     // end::adocChatTypeOfModel[]
   }
 

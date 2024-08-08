@@ -30,7 +30,7 @@ import java.util.Scanner;
 // tag::adocMain[]
 public class ChatService {
 
-  private static final Logger log = LoggerFactory.getLogger(DocumentIngestor.class);
+  private static final Logger log = LoggerFactory.getLogger(ChatService.class);
   private static final String INDEX_NAME = "VintageStoreIndex";
   private static final String QDRANT_URL = "http://localhost:6334";
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
@@ -44,7 +44,7 @@ public class ChatService {
     Scanner scanner = new Scanner(System.in);
     String question;
 
-    System.out.println("You are chating with the Vintage Store chat bot, ask any questions.:");
+    System.out.println("You are chatting with the Vintage Store chat bot, ask any questions.:");
     System.out.println("Type 'exit' to quit the chat bot.");
 
     while (true) {

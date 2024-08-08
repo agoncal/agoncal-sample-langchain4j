@@ -49,10 +49,10 @@ public class AuthorAssistant {
 
     // tag::adocUserMessage[]
     UserMessage userMessage = new UserMessage("What genre is Brave New World?");
-    Response<AiMessage> reponse = model.generate(userMessage);
+    Response<AiMessage> response = model.generate(userMessage);
     // end::adocUserMessage[]
 
-    System.out.println(reponse.content().text());
+    System.out.println(response.content().text());
   }
 
   public void useUserMessageFrom() {
@@ -62,10 +62,10 @@ public class AuthorAssistant {
 
     // tag::adocUserMessageFrom[]
     UserMessage userMessage = UserMessage.from("What genre is Brave New World?");
-    Response<AiMessage> reponse = model.generate(userMessage);
+    Response<AiMessage> response = model.generate(userMessage);
     // end::adocUserMessageFrom[]
 
-    System.out.println(reponse.content().text());
+    System.out.println(response.content().text());
   }
 
   public void useSystemMessage() {
@@ -76,10 +76,10 @@ public class AuthorAssistant {
     // tag::adocSystemMessage[]
     SystemMessage systemMessage = new SystemMessage("You are a library assistant, and you can answer customers' request on any book.");
     UserMessage userMessage = new UserMessage("What genre is Brave New World?");
-    Response<AiMessage> reponse = model.generate(systemMessage, userMessage);
+    Response<AiMessage> response = model.generate(systemMessage, userMessage);
     // end::adocSystemMessage[]
 
-    System.out.println(reponse.content().text());
+    System.out.println(response.content().text());
   }
 
   public void useUserMessageContent() {
@@ -90,10 +90,10 @@ public class AuthorAssistant {
     // tag::adocUserMessageContent[]
     TextContent textContent = TextContent.from("What genre is Brave New World?");
     UserMessage userMessage = UserMessage.from(textContent);
-    Response<AiMessage> reponse = model.generate(userMessage);
+    Response<AiMessage> response = model.generate(userMessage);
     // end::adocUserMessageContent[]
 
-    System.out.println(reponse.content().text());
+    System.out.println(response.content().text());
   }
 
   public void useUserMessagesPdfContent() throws URISyntaxException {
@@ -111,10 +111,10 @@ public class AuthorAssistant {
       TextContent.from("Summarize the following PDF file"),
       pdfFileContent
     );
-    Response<AiMessage> reponse = model.generate(userMessage);
+    Response<AiMessage> response = model.generate(userMessage);
     // end::adocUserMessagesPdfContent[]
 
-    System.out.println(reponse.content().text());
+    System.out.println(response.content().text());
   }
 
   public void useUserMessagePdfContent() {
@@ -131,10 +131,10 @@ public class AuthorAssistant {
       TextContent.from("Summarize the following PDF file"),
       PdfFileContent.from(Paths.get("src/main/resources/brave_new_world_chapter_I.pdf").toUri())
     );
-    Response<AiMessage> reponse = model.generate(userMessage);
+    Response<AiMessage> response = model.generate(userMessage);
     // end::adocUserMessagePdfContent[]
 
-    System.out.println(reponse.content().text());
+    System.out.println(response.content().text());
   }
 
   public void useUserMessagesImageContent() {
@@ -152,10 +152,10 @@ public class AuthorAssistant {
       TextContent.from("Tell me more about this book cover"),
       imageContent
     );
-    Response<AiMessage> reponse = model.generate(userMessage);
+    Response<AiMessage> response = model.generate(userMessage);
     // end::adocUserMessagesImageContent[]
 
-    System.out.println(reponse.content().text());
+    System.out.println(response.content().text());
   }
 
   public void useUserMessageImageContent() {
@@ -168,9 +168,9 @@ public class AuthorAssistant {
       TextContent.from("Tell me more about this book cover"),
       ImageContent.from(Paths.get("src/main/resources/brave_new_world.jpg").toUri())
     );
-    Response<AiMessage> reponse = model.generate(userMessage);
+    Response<AiMessage> response = model.generate(userMessage);
     // end::adocUserMessageImageContent[]
 
-    System.out.println(reponse.content().text());
+    System.out.println(response.content().text());
   }
 }
