@@ -99,13 +99,14 @@ public class ChatAssistant {
 
     private static ChatMemory memory() {
         // tag::adocMemory[]
+        ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(20);
+
         SystemMessage systemMsg = new SystemMessage("""
                 You are a Vintage Store assistant.
                 Vintage Store is a company specialising in the sale of nostalgic items, including paper books, CDs, tapes, and other cherished vintage collectibles.
                 You can answer customers' request on any of these vintage items.
                 """);
 
-        ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(20);
         chatMemory.add(systemMsg);
         return chatMemory;
         // end::adocMemory[]
