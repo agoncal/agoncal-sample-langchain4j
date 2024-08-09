@@ -105,6 +105,7 @@ public class ChatAssistant {
                 You are a Vintage Store assistant.
                 Vintage Store is a company specialising in the sale of nostalgic items, including paper books, CDs, tapes, and other cherished vintage collectibles.
                 You can answer customers' request on any of these vintage items.
+                If you don't know the answer, say 'I don't know'.
                 """);
 
         chatMemory.add(systemMsg);
