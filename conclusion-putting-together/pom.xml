@@ -83,7 +83,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>${version.exec.plugin}</version>
         <configuration>
-          <mainClass>org.agoncal.fascicle.langchain4j.conclusion.puttingtogether.ChatService</mainClass>
+          <mainClass>org.agoncal.fascicle.langchain4j.puttingtogether.ChatService</mainClass>
         </configuration>
       </plugin>
     </plugins>
@@ -101,7 +101,7 @@
             <artifactId>exec-maven-plugin</artifactId>
             <version>${version.exec.plugin}</version>
             <configuration>
-              <mainClass>org.agoncal.fascicle.langchain4j.conclusion.puttingtogether.DocumentIngestor</mainClass>
+              <mainClass>org.agoncal.fascicle.langchain4j.puttingtogether.DocumentIngestor</mainClass>
             </configuration>
           </plugin>
         </plugins>

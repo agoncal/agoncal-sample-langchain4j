@@ -1,4 +1,4 @@
-package org.agoncal.fascicle.langchain4j.conclusion.puttingtogether;
+package org.agoncal.fascicle.langchain4j.puttingtogether;
 
 
 import dev.langchain4j.service.SystemMessage;

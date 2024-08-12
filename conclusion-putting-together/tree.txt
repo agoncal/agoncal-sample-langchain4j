@@ -4,7 +4,7 @@
 │    ├─ docker
 │    │  └─ qdrant.yml
 │    ├─ java
-│    │  └─ org/agoncal/fascicle/langchain4j/conclusion/puttingtogether
+│    │  └─ org/agoncal/fascicle/langchain4j/puttingtogether
 │    │     ├── ChatAssistant.java
 │    │     ├── ChatService.java
 │    │     ├── ChatTools.java
