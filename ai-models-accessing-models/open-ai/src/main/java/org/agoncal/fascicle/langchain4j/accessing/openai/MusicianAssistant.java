@@ -424,4 +424,14 @@ public class MusicianAssistant {
     System.out.println(response.content().vectorAsList());
     // end::adocTypedUntypedResponseEmbedding[]
   }
+
+  public void dontKnow() {
+    // tag::adocDontKnow[]
+    SystemMessage systemMsg = new SystemMessage("""
+      You are a Vintage Store assistant.
+      You can answer customers' request on any of these vintage items.
+      If you don't know the answer, say 'I don't know'.
+      """);
+    // end::adocDontKnow[]
+  }
 }
