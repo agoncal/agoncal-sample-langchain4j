@@ -18,6 +18,5 @@
     "prompt_tokens": 15,
     "completion_tokens": 64,
     "total_tokens": 79
-  },
-  "system_fingerprint": "fp_ce0793330f"
+  }
 }

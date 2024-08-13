@@ -42,17 +42,18 @@ public class MusicianAssistant {
   // end::adocHeader[]
 
   // tag::adocMethod[]
-  Musician generateTopThreeAlbums(ChatLanguageModel model, String firstName, String lastName) {
+  Musician generateTopThreeAlbums(ChatLanguageModel model, String first, String last) {
+
     SystemMessage systemMsg = SystemMessage.from("You are an expert in Jazz music");
     UserMessage userMsg = UserMessage.from(
-      String.format("List the top 3 albums of %s %s as bullet points", firstName, lastName)
+      String.format("List the top 3 albums of %s %s as bullet points", first, last)
     );
     List<ChatMessage> messages = List.of(systemMsg, userMsg);
 
     Response<AiMessage> albums = model.generate(messages);
     String topThreeAlbums = albums.content().text();
 
-    return new Musician(firstName, lastName, topThreeAlbums);
+    return new Musician(first, last, topThreeAlbums);
   }
   // end::adocMethod[]
 }
