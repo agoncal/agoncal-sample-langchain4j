@@ -1,5 +1,5 @@
 - status code: 200
-- headers: [content-type: application/json], [openai-organization: user-p5v8e9cdoyzttm9werpqnvkc], [openai-processing-ms: 546], [openai-version: 2020-10-01]
+- headers: [content-type: application/json], [openai-processing-ms: 546]
 - body: {
   "id": "chatcmpl-9cTB6iPJtQTitmZ",
   "object": "chat.completion",
@@ -30,5 +30,4 @@
     "completion_tokens": 11,
     "total_tokens": 711
   },
-  "system_fingerprint": "fp_9cb5d38cf7"
 }
