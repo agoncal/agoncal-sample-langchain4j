@@ -44,7 +44,7 @@ public class ChatService {
     Scanner scanner = new Scanner(System.in);
     String question;
 
-    System.out.println("You are chatting with the Vintage Store chat bot, ask any questions.:");
+    System.out.println("You are chatting with the Vintage Store chatbot, ask any questions.:");
     System.out.println("Type 'exit' to quit the chat bot.");
 
     while (true) {
