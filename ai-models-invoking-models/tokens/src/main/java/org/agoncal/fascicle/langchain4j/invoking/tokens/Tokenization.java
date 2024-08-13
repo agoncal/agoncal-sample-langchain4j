@@ -126,7 +126,8 @@ public class Tokenization {
     // tag::adocTokenUsage[]
     Response<AiMessage> response = model.generate(new UserMessage("In one sentence, how does Jane Eyre end?"));
 
-    System.out.println(response.content().text());  // Jane Eyre ends with Jane and Mr. Rochester reuniting and getting married.
+    // Jane Eyre ends with Jane and Mr. Rochester reuniting and getting married.
+    System.out.println(response.content().text());
 
     TokenUsage tokenUsage = response.tokenUsage();
 
