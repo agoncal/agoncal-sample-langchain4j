@@ -19,7 +19,7 @@
     <version.langchain4j>0.33.0</version.langchain4j>
     <version.tinylog>2.6.2</version.tinylog>
     <!-- Test -->
-    <version.testcontainers>1.19.8</version.testcontainers>
+    <version.testcontainers>1.20.1</version.testcontainers>
     <version.junit>5.10.1</version.junit>
     <!-- Maven Plugins -->
     <version.exec.plugin>3.1.1</version.exec.plugin>
@@ -79,6 +79,12 @@
     <dependency>
       <groupId>org.testcontainers</groupId>
       <artifactId>junit-jupiter</artifactId>
+      <version>${version.testcontainers}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>ollama</artifactId>
       <version>${version.testcontainers}</version>
       <scope>test</scope>
     </dependency>
