@@ -46,7 +46,7 @@ public class MusicianAssistant {
 
     SystemMessage systemMsg = SystemMessage.from("You are an expert in Jazz music");
     UserMessage userMsg = UserMessage.from(
-      String.format("List the top 3 albums of %s %s as bullet points", first, last)
+      String.format("Only list the top 3 albums of %s %s as bullet points", first, last)
     );
     List<ChatMessage> messages = List.of(systemMsg, userMsg);
 

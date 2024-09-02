@@ -10,7 +10,7 @@
       "index": 0,
       "message": {
         "role": "assistant",
-        "content": "Certainly! Here are three of the most acclaimed albums by Miles Davis:\n\n- Kind of Blue" (1959):...\n- Bitches Brew (1970): ...\n- Sketches of Spain (1960): ..."
+        "content": "\n- Kind of Blue" (1959):...\n- Bitches Brew (1970): ...\n- Sketches of Spain (1960): ..."
       },
       "finish_reason": "stop"
     }
