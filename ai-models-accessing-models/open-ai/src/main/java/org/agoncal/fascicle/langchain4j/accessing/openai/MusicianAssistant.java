@@ -41,7 +41,7 @@ public class MusicianAssistant {
   public static void main(String[] args) {
     MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-//    musicianAssistant.useLangChain4jInsteadSDK();
+    musicianAssistant.useLangChain4jInsteadSDK();
 //    musicianAssistant.useOpenAiLanguageTypeOfModel();
 //    musicianAssistant.useOpenAiLanguageModel();
 //    musicianAssistant.useOpenAiLanguageModelPrompt();
@@ -55,7 +55,7 @@ public class MusicianAssistant {
 //    musicianAssistant.useTypedUntypedResponseUserMessage();
 //    musicianAssistant.useTypedUntypedResponseImage();
 //    musicianAssistant.useTypedUntypedResponseEmbedding();
-    musicianAssistant.useOpenAiStreaming();
+//    musicianAssistant.useOpenAiStreaming();
 //    musicianAssistant.useOpenAiChatModelBuilder();
 //    musicianAssistant.useOpenAiStreamingChatTypeOfModel();
 
@@ -74,16 +74,12 @@ public class MusicianAssistant {
     System.out.println("### useLangChain4jInsteadSDK");
 
     // tag::adocUseLangChain4jInsteadSDK[]
-    LanguageModel model = OpenAiLanguageModel.withApiKey(OPENAI_API_KEY);
+    ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
-    Response<String> response = model.generate("When was the first Beatles album released?");
+    String answer = model.generate("When was the first Beatles album released?");
 
-    String content = response.content();
-
-    System.out.println(content);
+    System.out.println(answer);
     // end::adocUseLangChain4jInsteadSDK[]
-    System.out.println(response.finishReason());
-    System.out.println(response.tokenUsage());
   }
 
   public void useOpenAiLanguageTypeOfModel() {
