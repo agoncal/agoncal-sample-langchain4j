@@ -8,6 +8,7 @@ import dev.langchain4j.model.input.Prompt;
 import dev.langchain4j.model.input.PromptTemplate;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.output.Response;
+
 import static java.util.Collections.singletonMap;
 
 import java.util.HashMap;
@@ -28,9 +29,9 @@ public class MusicianAssistant {
   public static void main(String[] args) throws InterruptedException {
     MusicianAssistant musicianAssistant = new MusicianAssistant();
 
-    musicianAssistant.usePromptTemplate();
+//    musicianAssistant.usePromptTemplate();
     musicianAssistant.useMultiplePromptTemplate();
-    musicianAssistant.usePromptTemplateCurrentDate();
+//    musicianAssistant.usePromptTemplateCurrentDate();
   }
 
   // #######################
@@ -43,7 +44,7 @@ public class MusicianAssistant {
     ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
     // tag::adocPromptTemplate[]
-    PromptTemplate promptTemplate = PromptTemplate.from("When was the first {{band}} album released?");
+    PromptTemplate promptTemplate = PromptTemplate.from("When was the first album of {{band}} released?");
 
     Map<String, Object> variables = singletonMap("band", "Miles Davis");
 
@@ -62,9 +63,9 @@ public class MusicianAssistant {
     // tag::adocMultiplePromptTemplate[]
     PromptTemplate promptTemplate = PromptTemplate.from("Give me the titles of the album {{album}} of {{band}}");
 
-    Map<String, Object> variables = new HashMap<>();
-    variables.put("album", "Kind of Blue");
-    variables.put("band", "Miles Davis");
+    Map<String, Object> variables = Map.of(
+      "album", "Kind of Blue",
+      "band", "Miles Davis");
 
     Prompt prompt = promptTemplate.apply(variables);
 
