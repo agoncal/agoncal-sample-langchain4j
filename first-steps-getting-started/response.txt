@@ -10,7 +10,7 @@
       "index": 0,
       "message": {
         "role": "assistant",
-        "content": "\n- Kind of Blue" (1959):...\n- Bitches Brew (1970): ...\n- Sketches of Spain (1960): ..."
+        "content": "Kind of Blue, Bitches Brew, Sketches of Spain"
       },
       "finish_reason": "stop"
     }
