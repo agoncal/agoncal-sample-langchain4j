@@ -8,8 +8,11 @@ import dev.langchain4j.data.message.SystemMessage;
 import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
+
 import static dev.langchain4j.model.openai.OpenAiChatModelName.GPT_4_O;
+
 import dev.langchain4j.model.output.Response;
+
 import static java.lang.System.exit;
 import static java.time.Duration.ofSeconds;
 
@@ -44,9 +47,14 @@ public class MusicianAssistant {
   // tag::adocMethod[]
   Musician generateTopThreeAlbums(ChatLanguageModel model, String first, String last) {
 
-    SystemMessage systemMsg = SystemMessage.from("You are an expert in Jazz music");
+    SystemMessage systemMsg = SystemMessage.from("""
+      You are an expert in Jazz music.
+      Reply with only the names of the artists, albums, etc.
+      Be very concise.
+      If a list is given, separate the items with commas.
+      """);
     UserMessage userMsg = UserMessage.from(
-      String.format("Only list the top 3 albums of %s %s as bullet points", first, last)
+      String.format("Only list the top 3 albums of %s %s", first, last)
     );
     List<ChatMessage> messages = List.of(systemMsg, userMsg);
 

@@ -44,14 +44,14 @@ public class ChatService {
     Scanner scanner = new Scanner(System.in);
     String question;
 
-    System.out.println("You are chatting with the Vintage Store chatbot, ask any questions.:");
+    System.out.println("You are chatting with the Vintage Store chatbot, ask any questions.");
     System.out.println("Type 'exit' to quit the chat bot.");
 
     while (true) {
       question = scanner.nextLine();
 
       if ("exit".equalsIgnoreCase(question)) {
-        System.out.println("Exiting...");
+        System.out.println("Thanks for using the Vintage Store chatbot! We're looking forward to chatting with you again.");
         break;
       }
 
