@@ -85,7 +85,7 @@ public class ChatAssistant {
         // end::adocSimilaritySearch[]
 
         // tag::adocChat[]
-        UserMessage userQuestion = UserMessage.from("Here is the customer's question:" + question);
+        UserMessage userQuestion = UserMessage.from("Here is the customer's question: " + question);
 
         chatMemory.add(userQuestion);
         AiMessage aiAnswer = model.generate(chatMemory.messages()).content();
