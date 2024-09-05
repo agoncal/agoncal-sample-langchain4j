@@ -23,8 +23,8 @@ public class MusicianAssistant {
     MusicianAssistant musicianAssistant = new MusicianAssistant();
 
 //    musicianAssistant.useNoMemory();
-//    musicianAssistant.sendingMultipleMessages();
-    musicianAssistant.useChatMemory();
+    musicianAssistant.sendingMultipleMessages();
+//    musicianAssistant.useChatMemory();
   }
 
   private static final String OPENAI_API_KEY = System.getenv("OPENAI_API_KEY");
@@ -71,13 +71,13 @@ public class MusicianAssistant {
     ChatLanguageModel model = OpenAiChatModel.withApiKey(OPENAI_API_KEY);
 
     // tag::adocMultipleMessages[]
-    UserMessage firstMessage = UserMessage.from("My name is Antonio");
-    UserMessage secondMessage = UserMessage.from("My favourite Rock band is the Beatles");
-    UserMessage thirdMessage = UserMessage.from("When was their first album released?");
-    UserMessage forthMessage = UserMessage.from("What's the name of the singer?");
-    UserMessage fifthMessage = UserMessage.from("What's my name?");
+    UserMessage firstMsg = UserMessage.from("My name is Antonio");
+    UserMessage secondMsg = UserMessage.from("My favourite Rock band is the Beatles");
+    UserMessage thirdMsg = UserMessage.from("When was their first album released?");
+    UserMessage forthMsg = UserMessage.from("What's the name of the singer?");
+    UserMessage fifthMsg = UserMessage.from("What's my name?");
 
-    System.out.println(model.generate(firstMessage, secondMessage, thirdMessage, forthMessage, fifthMessage).content().text());
+    System.out.println(model.generate(firstMsg, secondMsg, thirdMsg, forthMsg, fifthMsg));
     // end::adocMultipleMessages[]
   }
 
