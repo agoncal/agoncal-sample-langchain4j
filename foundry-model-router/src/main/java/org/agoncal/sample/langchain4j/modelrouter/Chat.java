@@ -1,17 +1,142 @@
 package org.agoncal.sample.langchain4j.modelrouter;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import static java.lang.System.exit;
+import dev.langchain4j.data.message.UserMessage;
+import dev.langchain4j.model.chat.ChatModel;
+import dev.langchain4j.model.chat.response.ChatResponse;
+import dev.langchain4j.model.openai.OpenAiChatModel;
 
 public class Chat {
 
-  private static final Logger LOG = LoggerFactory.getLogger(Chat.class);
+  private static final String MICROSOFT_FOUNDRY_API_KEY = System.getenv("MICROSOFT_FOUNDRY_API_KEY");
+  private static final String MICROSOFT_FOUNDRY_ENDPOINT = System.getenv("MICROSOFT_FOUNDRY_ENDPOINT");
 
-  private static final boolean IS_LOGGING_ENABLED = true;
+  public static void main(String[] args) {
 
-  public static void main(String[] args) throws Exception {
-    exit(0);
+    ChatModel model = OpenAiChatModel.builder()
+      .apiKey(MICROSOFT_FOUNDRY_API_KEY)
+      .baseUrl(MICROSOFT_FOUNDRY_ENDPOINT)
+      .logRequests(true)
+      .logResponses(true)
+      .modelName("model-router")
+      .build();
+
+    ChatResponse simple = model.chat(new UserMessage("What is LangChain4j?"));
+    System.out.println("### Model " + simple.metadata().modelName() + " responded:");
+    System.out.println("# Token in:    " + simple.tokenUsage().inputTokenCount());
+    System.out.println("# Token out:   " + simple.tokenUsage().outputTokenCount());
+    System.out.println("# Token total: " + simple.tokenUsage().totalTokenCount());
+    System.out.println(simple.aiMessage().text());
+
+    ChatResponse complex = model.chat(new UserMessage("Ultrathink and update this LangChain4j newsletter to the latest version 1.8:\n" + PROMPT));
+    System.out.println("### Model " + complex.metadata().modelName() + " responded:");
+    System.out.println("# Token in:    " + complex.tokenUsage().inputTokenCount());
+    System.out.println("# Token out:   " + complex.tokenUsage().outputTokenCount());
+    System.out.println("# Token total: " + complex.tokenUsage().totalTokenCount());
+    System.out.println(complex.aiMessage().text());
   }
+
+  private static final String PROMPT = """
+        ## LangChain4j Newsletter – May 2025
+
+    This newsletter helps you stay tuned for the latest features of LangChain4j
+
+    ### What is LangChain4j?
+
+    [LangChain4j](https://docs.langchain4j.dev/) is an open-source library that simplifies the integration of AI and Large Language Models (LLMs) into Java applications. It provides a unified API for interacting with various model providers and embedding stores, along with tools for prompt templating, memory management, and high-level patterns like RAG (Retrieval-Augmented Generation).
+
+    #### Some Numbers
+
+    * [LangChain4j main GitHub repository](https://github.com/langchain4j/langchain4j):
+        * GitHub repository created in May 2023
+        * 7.7k stars, 100 watching, 1.4K forks
+        * 221 contributors
+        * 939 closed issues, 1,359 closed Pull Requests
+        * Used by 1.4K other repositories
+    * Integration:
+        * Supports 19 model providers (Azure OpenAI, OpenAI, Amazon Bedrock…)
+        * Supports 28 embedding stores (Azure AI Search, Cassandra, MongoDB…)
+        * Integrates with 4 Java runtimes (Quarkus, SpringBoot, Helidon, Micronaut)
+
+    ### What's New Since the Last Newsletter?
+
+    The last LangChain4j newsletter was sent in October 2024. Since then, the project has achieved a major milestone with the release of version 1.0.0 and introduced significant architectural improvements and new features:
+
+    * **Revamped** Chat API: New ChatModel.chat(...) API replacing deprecated ChatLanguageModel.generate(...) methods
+    * **MCP**: LangChain4j now includes initial implementation of the Model Context Protocol client and tool provider.
+    * **Enhanced** Model Support: Support for OpenAI O1/O3 models, audio inputs, official Java SDK integration. Support for Azure OpenAI passwordless authentication, latest SDK versions.
+    * **Structured** Outputs: Enhanced JSON schema support with more return types and optional fields by default
+    * **Integrations**: MariaDB embedding store, enhanced MongoDB Atlas support
+
+    ### Release Pace
+
+    LangChain4j continues its rapid development with frequent releases:
+
+    * [1.0.1](https://github.com/langchain4j/langchain4j/releases/tag/1.0.1) released in May 2025
+    * [1.0.0](https://github.com/langchain4j/langchain4j/releases/tag/1.0.0) released in April 2025
+    * [1.0.0-rc1](https://github.com/langchain4j/langchain4j/releases/tag/1.0.0-rc1) released in April 2025
+    * [1.0.0-beta3](https://github.com/langchain4j/langchain4j/releases/tag/1.0.0-beta3) released in April 2025
+    * [1.0.0-beta2](https://github.com/langchain4j/langchain4j/releases/tag/1.0.0-beta2) released in March 2025
+    * [1.0.0-beta1](https://github.com/langchain4j/langchain4j/releases/tag/1.0.0-beta1) released in February 2025
+    * [1.0.0-alpha1](https://github.com/langchain4j/langchain4j/releases/tag/1.0.0-alpha1) released in December 2024
+    * [0.36.2](https://github.com/langchain4j/langchain4j/releases/tag/0.36.2) released in November 2024
+    * [0.36.1](https://github.com/langchain4j/langchain4j/releases/tag/0.36.1) released in November 2024
+
+    ### Azure AI Support
+
+    Azure support continues to be a priority with several Microsoft contributors actively improving the integration. Recent Azure AI enhancements include:
+
+    * Structured outputs support in streaming mode
+    * Passwordless authentication capabilities
+    * Enhanced Azure OpenAI integration with latest SDK versions
+    * Improved Azure AI Search content retriever with metadata preservation
+    * Azure OpenAI (full support with latest features)
+    * Azure Blob Storage (document loading)
+    * Azure CosmosDB (embedding store)
+    * Azure AI Search (vector search and retrieval)
+    * Azure AI Foundry and Foundry Local (through OpenAI APIs)
+
+    The project maintains an automatic Azure label system in GitHub for tracking Azure-related issues and pull requests, making it easier to follow developer needs for Azure support:
+
+    * [34 issues are still open](https://github.com/langchain4j/langchain4j/labels/Azure)
+    * [213 issues are closed](https://github.com/langchain4j/langchain4j/issues?q=label%3AAzure+is%3Aclosed)
+    * [7 PRs are still waiting to be merged](https://github.com/langchain4j/langchain4j/pulls?q=is%3Apr+label%3AAzure+is%3Aclosed)
+    * [159 PRs have been merged](https://github.com/langchain4j/langchain4j/pulls?q=is%3Apr+label%3AAzure+is%3Aclosed)
+
+    ### Other Models Support
+
+    Other major model providers have also significantly invested in enhancing their LangChain4j integrations.
+
+    * **Google Vertex AI**: Enhanced Google AI Gemini support with embedding models, Google Cloud Storage document loader integration, Improved Vertex AI streaming capabilities with custom headers
+    * **Amazon Bedrock**: Significant Bedrock improvements with Converse API, Enhanced tool calling and streaming support, Nova model integration with tool execution requirements, Cohere embeddings support on Bedrock
+    * **OpenAI**: Full migration to official OpenAI Java SDK, Support for latest model releases (O1/O3), Enhanced audio input capabilities, Improved structured outputs
+
+    ### Some Code
+
+    Here's how to use the new 1.0.0 ChatModel API to access a DeepSeek model deployed locally on [Foundry Local](https://github.com/microsoft/Foundry-Local) using the Azure OpenAI API:
+
+    ```java
+    ChatModel model = OpenAiChatModel.builder()
+        .baseUrl("http://localhost:5273/v1")
+        .modelName("deepseek-r1-distill-qwen-14b-generic-gpu")
+        .build();
+
+    String answer = model.chat("What is the best Pink Floyd album?");
+    System.out.
+
+    println(answer);
+    ```
+
+    ### References
+
+    If you are interested in learning more about LangChain4j and its Azure support, here are some helpful resources:
+
+    * [LangChain4j main GitHub repository](https://github.com/langchain4j/langchain4j)
+    * [LangChain4j documentation](https://docs.langchain4j.dev/)
+    * [LangChain4j Discord channel](https://discord.gg/Q8rGAztc)
+    * Azure support:
+        * [Azure OpenAI](https://github.com/langchain4j/langchain4j/tree/main/langchain4j-azure-open-ai)
+        * [Azure AI Search](https://github.com/langchain4j/langchain4j/tree/main/langchain4j-azure-ai-search)
+        * [Azure CosmosDB](https://github.com/langchain4j/langchain4j/tree/main/langchain4j-azure-cosmos-nosql)
+        * [Azure Blob Storage](https://github.com/langchain4j/langchain4j/tree/main/document-loaders/langchain4j-document-loader-azure-storage-blob)
+    """;
 }
